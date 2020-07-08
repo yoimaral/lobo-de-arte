@@ -36,6 +36,7 @@ Route::patch('/actualizar/{usuarId}', 'UserController@actualizar')->name('actual
     'verified',
     AdminVerify::class
 );
+
 Route::delete('/delete/{usuarId}', 'UserController@destroy')->name('destroy')->middleware(
     'verified',
     AdminVerify::class

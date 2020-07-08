@@ -27,7 +27,7 @@
             <td>{{$usuario->name}}</td>
             <td>{{$usuario->email}}</td>
             <!--IF--->
-            @if ($usuario->admin )
+            @if ($usuario->is_admin )
             <td>Admin</td>
             @else
             <td>User</td>
@@ -43,7 +43,7 @@
             <!--EndIF--->
 
             <!--IF--->
-            @if ($usuario->state )
+            @if ($usuario->state_enabled_at )
             <td>Enabled</td>
             @else
             <td>Disabled</td>

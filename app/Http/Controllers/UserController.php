@@ -18,7 +18,6 @@ class UserController extends Controller
     }
 
 
-
     public function editar($usuarioId) /* me recibe por parametro el metodo id de la vista usuarios.blade.php */
     {
         $usuario = User::find($usuarioId);
@@ -26,12 +25,10 @@ class UserController extends Controller
         return view('edit_user', compact('usuario'));
     }
 
-
-
     public function actualizar(Request $request, $usuarioId)
     {
         $usuario = User::find($usuarioId);
-        $estad = $usuario->state;
+        $estad = $usuario->state_enabled_at;
 
         if ($request->estado === '1') {
             $estad = true;
@@ -41,7 +38,7 @@ class UserController extends Controller
         }
         $usuario->update([
             'name' => $request->nombre,
-            'state' => $estad
+            'state_enabled_at' => $estad
         ]);
 
         return redirect()->route('User');
