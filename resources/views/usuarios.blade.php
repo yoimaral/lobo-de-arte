@@ -13,13 +13,14 @@
             <th scope="col">E-mail</th>
             <th scope="col">Type User</th>
             <th scope="col">Verificación de E-mail</th>
-            <th scope="col">Estado</th>
+            <th scope="col">Estadode la cuenta</th>
             <th scope="col">Fecha de creacion</th>
             <th scope="col">Edit</th>
 
         </tr>
     </thead>
     <tbody>
+        <!---FOREACH-->
         @foreach ($usuarios as $usuario)
         <tr>
             <td>{{$usuario->id}}</td>
@@ -32,6 +33,7 @@
             <td>User</td>
             @endif
             <!--EndIF--->
+
             <!--IF--->
             @if ($usuario->email_verified_at )
             <td>Enabled</td>
@@ -39,6 +41,7 @@
             <td>Disabled</td>
             @endif
             <!--EndIF--->
+
             <!--IF--->
             @if ($usuario->state )
             <td>Enabled</td>
@@ -46,12 +49,16 @@
             <td>Disabled</td>
             @endif
             <!--EndIF--->
+
             <td>{{$usuario->created_at}}</td>
-            <td scope="col" class="btn"><a href="{{route ('editar', $usuario)}}">Edit</a></td>
+
+            <td scope="col" class="btn">
+                <a href="{{route ('editar', $usuario)}}">Edit</a>
+            </td>
         </tr>
 
         @endforeach
-
+        <!--EndFOREACH-->
 
 
         {{-- <tr>

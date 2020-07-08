@@ -19,7 +19,7 @@ class UserController extends Controller
 
 
 
-    public function editar($usuarioId) /* me recibe por parametro el metodo id de la vista */
+    public function editar($usuarioId) /* me recibe por parametro el metodo id de la vista usuarios.blade.php */
     {
         $usuario = User::find($usuarioId);
 

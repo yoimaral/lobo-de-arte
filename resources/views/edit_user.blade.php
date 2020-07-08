@@ -8,7 +8,7 @@
         {{-- Le pasamos el $usuario del controlador para que me actualice la información --}}
 
         @method('PATCH')
-        {{-- Me realiza la comversion de POST ya que no me lo permite enviar como POST y se le pone el @method('PATCH') --}}
+        {{-- Me realiza la comversion de POST a PATCH ya que no me lo permite enviar como POST y se le pone el @method('PATCH') --}}
 
         @csrf {{-- Para que permita enviar el formulario ya que larabel no lo permite por seguridad --}}
 
@@ -26,12 +26,14 @@
             </select>
 
         </div>
+
         <button type="submit" class="btn btn-primary">Actualizar</button>
+
         <a href="{{ url()->previous() }}" class="btn btn-secondary">Cancelar</a>
     </form>
     <!--EndFORM-->
 
-    <!--FORM-->
+    <!--FORM Destroy-->
     <form action="{{route ('destroy',$usuario)}}" method="POST">
 
         @csrf
@@ -42,10 +44,5 @@
     </form>
     <!--EndFORM-->
 
-
-
-    {{-- <form action="{{route ('user')}}">
-    <button type="submit" class="btn btn-secondary">Cancelar</button>
-    </form> --}}
 </div>
 @endsection
