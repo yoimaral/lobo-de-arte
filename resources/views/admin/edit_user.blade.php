@@ -34,7 +34,7 @@
     <!--EndFORM-->
 
     <!--FORM Destroy-->
-    <form action="{{route ('destroy',$usuario)}}" method="POST">
+    <form action="{{route ('destroy', $usuario)}}" method="POST">
 
         @csrf
         @method('DELETE')

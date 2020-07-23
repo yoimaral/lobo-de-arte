@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminVerify;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,20 +25,35 @@ Auth::routes(['verify' => true]); /* verify funciona para la verificacion del em
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 /* middleware para bloquear las rutas si no esta logueado */
 
-Route::get('/user', 'UserController@index')->name('User')->middleware('verified', AdminVerify::class);
+Route::get('/user', 'Admin\UserController@index')->name('User')->middleware('verified', AdminVerify::class);
 /* AdminVerify para que la persona que este logueada y no sea admin lo saque de la tabla user */
 
-Route::get('/editar/{usuarId}', 'UserController@editar')->name('editar')->middleware(
+Route::get('/editar/{usuarId}', 'Admin\UserController@editar')->name('editar')->middleware(
     'verified',
     AdminVerify::class
 );
 
-Route::patch('/actualizar/{usuarId}', 'UserController@actualizar')->name('actualizar')->middleware(
+Route::patch('/actualizar/{usuario}', 'Admin\UserController@actualizar')->name('actualizar')->middleware(
     'verified',
     AdminVerify::class
 );
 
-Route::delete('/delete/{usuarId}', 'UserController@destroy')->name('destroy')->middleware(
+Route::delete('/delete/{usuarId}', 'Admin\UserController@destroy')->name('destroy')->middleware(
     'verified',
     AdminVerify::class
 );
+
+Route::get('/products', 'Admin\ProductsController@products')->name('products');
+
+Route::get('/carrito', 'Admin\ProductsController@carrito')->name('carrito');
+
+Route::get('add-to-cart/{id}', 'Admin\ProductsController@addToCarrito')->name("addCarrito");
+
+Route::get('/Detail_Product/{detail}', 'Admin\ProductsController@detail')->name('detail');
+
+
+Route::get('Create-products/', 'Admin\ProductsController@viewcreateproducts')->name('viewcreateproducts');
+
+Route::post('/Create-products', 'Admin\ProductsController@createproducts')->name('createproducts');
+
+Route::resource('photos', 'PhotoController');

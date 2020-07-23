@@ -23,7 +23,12 @@
 
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+
+    <nav class="navbar navbar-expand-md navbar-danger 
+    bg-secondary shadow-sm">
+
+
+
       <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
           {{ config('app.name', 'Laravel') }}
@@ -33,60 +38,123 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Left Side Of Navbar -->
-          <ul class="navbar-nav mr-auto">
 
-          </ul>
 
-          <!-- Right Side Of Navbar -->
-          <ul class="navbar-nav ml-auto">
-            @auth
-            @if (Auth::user()->is_admin)
+        <ul class="navbar-nav ml-auto text-decoration-none">
+          <li>
+            <a href="#" class="link text-decoration-none text-dark font-">CACHETEROS</a>
+          </li>
+          <li class="palito">|</li>
+          <li>
+            <a href="" class="link text-decoration-none text-dark">
+              COLLARES
+            </a>
+          </li>
+          <li class="palito">|</li>
+          <li>
+            <a href="#" class="link text-decoration-none text-dark">
+              ARETES
+            </a>
+          </li>
+          <li class="palito">|</li>
+          <li>
+            <a href="#" class="link text-decoration-none text-dark">
+              CAMISAS
+            </a>
+          </li>
+          <li class="palito">|</li>
+          <li>
+            <a href="#" class="link text-decoration-none text-dark">
+              PANTALONES
+            </a>
+          </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('User') }}">{{ __('usuarios') }}</a>
-            </li>
-            @endif
-            @endauth
-            <!-- Authentication Links -->
-            @guest
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            @if (Route::has('register'))
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-            </li>
-            @endif
-            @else
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->name }} <span class="caret"></span>
+        </ul>
+
+
+        <!-- Right Side Of Navbar -->
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('products') }}">{{ __('productos') }}</a>
+          </li>
+
+          @auth
+          @if (Auth::user()->is_admin)
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('User') }}">{{ __('usuarios') }}</a>
+          </li>
+          @endif
+          @endauth
+          <!-- Authentication Links -->
+          @guest
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+          </li>
+          @if (Route::has('register'))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+          </li>
+          @endif
+          @else
+          <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" v-pre>
+              {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
               </a>
 
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-                </form>
-              </div>
-            </li>
-            @endguest
-          </ul>
-        </div>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+            </div>
+          </li>
+          @endguest
+        </ul>
       </div>
-    </nav>
-
-    <main class="py-4">
-      @yield('content')
-    </main>
   </div>
+  </nav>
+
+  <main class="py-4">
+    @yield('content')
+  </main>
+  </div>
+
+  <!--Footer-->
+  <footer id="footer" class="foo pb-4 pt-4 bg-dark" style=": 18rem >
+    <div class=" container">
+    <div class="row text-center">
+      <div class="col-12 col-lg">
+        <a href="#">Preguntas frecuentes</a>
+      </div>
+
+      <div class="col-12 col-lg">
+        <a href="#">Contáctanos</a>
+      </div>
+      <div class="col-12 col-lg">
+        <a href="#">Prensa</a>
+      </div>
+
+      <div class="col-12 col-lg">
+        <a href="#">Conferencias</a>
+      </div>
+      <div class="col-12 col-lg">
+        <a href="#">Terminos y condiciones</a>
+      </div>
+      <div class="col-12 col-lg">
+        <a href="#">Privacidad</a>
+      </div>
+    </div>
+    </div>
+  </footer>
+
+
 </body>
 
 </html>

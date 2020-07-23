@@ -43,7 +43,7 @@
             <!--EndIF--->
 
             <!--IF--->
-            @if ($usuario->state_enabled_at )
+            @if ($usuario->enabled_at )
             <td>Enabled</td>
             @else
             <td>Disabled</td>
