@@ -24,8 +24,8 @@
 <body>
   <div id="app">
 
-    <nav class="navbar navbar-expand-md navbar-danger 
-    bg-secondary shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark 
+    bg-dark"> {{-- Aqui cambio el color del navbar y las letras se cambian solas --}}
 
 
 
@@ -34,41 +34,48 @@
           {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-          <span class="navbar-toggler-icon"></span>
+          aria-controls="navbarSupportedContent" aria-expanded="active" aria-label="{{ __('Toggle navigation') }}">
+          <span class="navbar-toggler-icon">yoimar</span>
         </button>
 
 
 
-        <ul class="navbar-nav ml-auto text-decoration-none">
-          <li>
-            <a href="#" class="link text-decoration-none text-dark font-">CACHETEROS</a>
-          </li>
-          <li class="palito">|</li>
-          <li>
-            <a href="" class="link text-decoration-none text-dark">
-              COLLARES
-            </a>
-          </li>
-          <li class="palito">|</li>
-          <li>
-            <a href="#" class="link text-decoration-none text-dark">
-              ARETES
-            </a>
-          </li>
-          <li class="palito">|</li>
-          <li>
-            <a href="#" class="link text-decoration-none text-dark">
-              CAMISAS
-            </a>
-          </li>
-          <li class="palito">|</li>
-          <li>
-            <a href="#" class="link text-decoration-none text-dark">
-              PANTALONES
-            </a>
-          </li>
+        <ul id="navbarSupportedContent" class="navbar-nav navbar-expand-lg ml-auto text-secondary text-decoration-none">
+          <li class="nav-item">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarObras" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">Obras</a>
 
+            <div class="dropdown-menu" aria-labelledby="navbarObras">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarArtistas" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Artistas
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarArtistas">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarColecciones" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Colecciones
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarColecciones">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
         </ul>
 
 
@@ -76,14 +83,14 @@
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('products') }}">{{ __('productos') }}</a>
+            <a class="nav-link" href="{{ route('products') }}">{{ __('Productos') }}</a>
           </li>
 
           @auth
           @if (Auth::user()->is_admin)
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('User') }}">{{ __('usuarios') }}</a>
+            <a class="nav-link" href="{{ route('User') }}">{{ __('Usuarios') }}</a>
           </li>
           @endif
           @endauth
@@ -121,36 +128,36 @@
   </div>
   </nav>
 
-  <main class="py-4">
-    @yield('content')
-  </main>
+
+  @yield('content')
+
   </div>
 
   <!--Footer-->
-  <footer id="footer" class="foo pb-4 pt-4 bg-dark" style=": 18rem >
+  <footer id="footer" class="foo pb-4 pt-4 bg-dark" style=": 18rem ">
     <div class=" container">
-    <div class="row text-center">
-      <div class="col-12 col-lg">
-        <a href="#">Preguntas frecuentes</a>
-      </div>
+      <div class="row text-center">
+        <div class="col-12 col-lg">
+          <a href="#">Preguntas frecuentes</a>
+        </div>
 
-      <div class="col-12 col-lg">
-        <a href="#">Contáctanos</a>
-      </div>
-      <div class="col-12 col-lg">
-        <a href="#">Prensa</a>
-      </div>
+        <div class="col-12 col-lg">
+          <a href="#">Contáctanos</a>
+        </div>
+        <div class="col-12 col-lg">
+          <a href="#">Prensa</a>
+        </div>
 
-      <div class="col-12 col-lg">
-        <a href="#">Conferencias</a>
+        <div class="col-12 col-lg">
+          <a href="#">Conferencias</a>
+        </div>
+        <div class="col-12 col-lg">
+          <a href="#">Terminos y condiciones</a>
+        </div>
+        <div class="col-12 col-lg">
+          <a href="#">Privacidad</a>
+        </div>
       </div>
-      <div class="col-12 col-lg">
-        <a href="#">Terminos y condiciones</a>
-      </div>
-      <div class="col-12 col-lg">
-        <a href="#">Privacidad</a>
-      </div>
-    </div>
     </div>
   </footer>
 

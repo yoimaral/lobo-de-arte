@@ -8,12 +8,17 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+/* Mi Css */
+
 body {
     font-family: Arial;
 }
 
-#carousel {
+.carousel-item {
+    max-height: 100vh; /* Para ajustar el alto de la imagen */
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 #carousel .overlay {
@@ -30,15 +35,6 @@ body {
         0.5
     ); /* Para que se vea un poco mas opaco el overlay */
     color: white;
-}
-
-#place-time {
-    background-color: #343a40;
-    color: white;
-}
-
-#place-time img {
-    max-width: 100%; /* Para bajar el tamaño de la imagen  */
 }
 
 /* FinMiCss */

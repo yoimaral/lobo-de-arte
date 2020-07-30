@@ -4,29 +4,45 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      <div class="card">
+      <div class="card mt-5 mb-5">
         <div class="card-header">{{ __('Nuevo Producto') }}</div>
-
         <div class="card-body">
           <form method="POST" enctype="multipart/form-data" action="{{ route('createproducts') }}">
             @csrf
             {{-- @method('PATCH') --}}
 
             <div class="form-group row">
+              <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Adjuntar Imagen') }}</label>
 
               <div class="col-md-6">
-                <input name="img" required type="file" class="col-md-6 custom-file-input " id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
-              </div>
 
+                <div class="custom-file">
+                  <input name="img" type="file" class="@error('img') is-invalid @enderror  col-md-6 custom-file-input"
+                    required id="customFile">
+                  <label class="custom-file-label" for="customFile">Seleccionar Archivo</label>
+                </div>
+
+                @error('img')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+
+              </div>
             </div>
 
             <div class="form-group row">
               <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
               <div class="col-md-6">
-                <input id="name" type="text" required class="form-control" name="name" value="{{ old('name') }}"
-                  required autocomplete="name">
+                <input id="name" type="text" class="@error('name') is-invalid @enderror form-control" name="name"
+                  value="{{ old('name') }}" autocomplete="name">
+
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
             </div>
 
@@ -34,8 +50,13 @@
               <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('description') }}</label>
 
               <div class="col-md-6">
-                <input id="description" type="text" class="form-control" name="description"
-                  value="{{ old('description') }}" required autocomplete="description">
+                <input id="description" type="text" class="@error('description') is-invalid @enderror form-control"
+                  name="description" value="{{ old('description') }}" autocomplete="description">
+                @error('description')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
             </div>
 
@@ -43,8 +64,13 @@
               <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('price') }}</label>
 
               <div class="col-md-6">
-                <input id="price" type="text" class="form-control" name="price" value="{{ old('price') }}" required
-                  autocomplete="price">
+                <input id="price" type="text" class="@error('price') is-invalid @enderror form-control" name="price"
+                  value="{{ old('price') }}" autocomplete="price">
+                @error('price')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
               </div>
             </div>
 

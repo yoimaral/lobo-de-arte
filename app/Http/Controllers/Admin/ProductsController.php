@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\SaveProductRequest;
 
 use App\Product;
 
@@ -15,18 +15,13 @@ class ProductsController extends Controller
         return view('admin.create_products');
     }
 
-    public function createproducts(Request $request)
+    public function createproducts(SaveProductRequest $request)
     {
-        // return $request->file('img')->store('images');
 
-        Product::create([
-            'img' => $request['img']->store('images'),
-            'name' => $request['name'],
-            'description' => $request['description'],
-            'price' => $request['price']
+        $product = new Product($request->validated());
 
-        ]);
-
+        $product->img = $request->file('img')->store('images');
+        $product->save();
         return back();
     }
 
