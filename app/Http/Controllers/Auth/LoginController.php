@@ -43,7 +43,7 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         $credenciales = $request->only($this->username(), 'password');
-        // $credenciales['enabled_at'] = true;
+        $credenciales['disabled_at'] = null;
         return $credenciales;
     }
 }

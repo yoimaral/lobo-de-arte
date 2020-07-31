@@ -4,7 +4,7 @@
 <div class="container col-md-4">
 
     <!--FORM-->
-    <form action="{{route('actualizar', $usuario)}}" method="POST">
+    <form action="{{route('users.update', $user)}}" method="POST">
         {{-- Le pasamos el $usuario del controlador para que me actualice la información --}}
 
         @method('PATCH')
@@ -15,7 +15,7 @@
         <div class="form-group">
             <label for="exampleInputEmail1">Actualizar</label>
             <input name="nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                value="{{$usuario->name}}">
+                value="{{$user->name}}">
         </div>
 
         <div class="form-group ">
@@ -34,7 +34,7 @@
     <!--EndFORM-->
 
     <!--FORM Destroy-->
-    <form action="{{route ('destroy', $usuario)}}" method="POST">
+    <form action="{{route ('users.destroy', $user)}}" method="POST">
 
         @csrf
         @method('DELETE')

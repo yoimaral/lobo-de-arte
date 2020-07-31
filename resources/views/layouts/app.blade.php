@@ -91,16 +91,13 @@
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
 
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('products') }}">{{ __('Productos') }}</a>
-          </li>
-
           @auth
           @if (Auth::user()->is_admin)
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('User') }}">{{ __('Usuarios') }}</a>
+            <a class="nav-link" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
           </li>
+
           @endif
           @endauth
           <!-- Authentication Links -->

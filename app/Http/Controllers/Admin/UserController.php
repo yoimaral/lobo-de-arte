@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\User;
 
 class UserController extends Controller
@@ -12,37 +11,33 @@ class UserController extends Controller
 
     public function index()
     {
+        $users =  User::all();
 
-        $usuarios =  User::all();
-
-        return view('admin.users.usuarios', compact('usuarios'));
+        return view('admin.users.index', compact('users'));
     }
 
 
-    public function editar($usuarioId)
+    public function edit(User $user)
     {
-        $usuario = User::find($usuarioId);
-
-        return view('admin.users.edit_user', compact('usuario'));
+        return view('admin.users.edit', compact('user'));
     }
 
-    public function actualizar(Request $request, User $usuario)
+    public function update(Request $request, User $user)
     {
+        $enabledAt = $request->estado ? null : now();
 
-        $enabledAt = $request->estado ? now() : null;
-
-        $usuario->update([
+        $user->update([
             'name' => $request->nombre,
-            'enabled_at' => $enabledAt
+            'disabled_at' => $enabledAt
         ]);
 
-        return redirect()->route('User');
+        return back();
     }
 
-    public function destroy($usuarioId)
+    public function destroy(User $user)
     {
-        $usuario = User::find($usuarioId);
-        $usuario->delete();
-        return redirect()->route('User');
+        $user->delete();
+
+        return redirect()->route('users.index');
     }
 }
