@@ -19,6 +19,8 @@
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/de25909b6f.js" crossorigin="anonymous" defer></script>
+  {{-- Para que me tome los icosnos de fontawesome y se le pone el defer para que el crip se ejecute al final de la pagina --}}
 </head>
 
 <body>
@@ -39,41 +41,48 @@
         </button>
 
 
-
         <ul id="navbarSupportedContent" class="navbar-nav navbar-expand-lg ml-auto text-secondary text-decoration-none">
           <li class="nav-item">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarObras" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">Obras</a>
+            <div class="btn-group" role="group ">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarObras" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">Obras</a>
 
-            <div class="dropdown-menu" aria-labelledby="navbarObras">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-menu" aria-labelledby="navbarObras">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
             </div>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarArtistas" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Artistas
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarArtistas">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+            <div class="btn-group" role="group ">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarArtistas" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Artistas
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarArtistas">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
             </div>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarColecciones" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Colecciones
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarColecciones">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
+            <div class="btn-group" role="group ">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarColecciones" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Colecciones
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarColecciones">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
             </div>
           </li>
         </ul>

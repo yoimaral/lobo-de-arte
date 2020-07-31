@@ -27,6 +27,8 @@
               <a href="{{ route("addCarrito",$product->id) }}" class="btn btn-primary btn-lg btn-block" role="button"
                 aria-pressed="true">Agregar al carrito</a>
 
+              <i class="fas fa-cart-plus"></i>
+
               <a href="{{ route("detail",$product) }}" class="btn btn-secondary btn-lg btn-block role=" button
                 aria-pressed="true">Detalle</a>
             </div>

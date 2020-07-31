@@ -12,7 +12,7 @@ class ProductsController extends Controller
 
     public function viewcreateproducts()
     {
-        return view('admin.create_products');
+        return view('admin.products.create_products');
     }
 
     public function createproducts(SaveProductRequest $request)
@@ -37,12 +37,12 @@ class ProductsController extends Controller
     public function detail($id)
     {
         $product = Product::find($id);
-        return view('cart.Detail_Product', compact('product'));
+        return view('cart.detail_product', compact('product'));
     }
 
     public function carrito()
     {
-        return view("cart.carrito");
+        return view("cart.cart");
     }
 
     public function addToCarrito($id)

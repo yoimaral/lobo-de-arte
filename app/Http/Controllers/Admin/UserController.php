@@ -15,7 +15,7 @@ class UserController extends Controller
 
         $usuarios =  User::all();
 
-        return view('admin.usuarios', compact('usuarios'));
+        return view('admin.users.usuarios', compact('usuarios'));
     }
 
 
@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $usuario = User::find($usuarioId);
 
-        return view('admin.edit_user', compact('usuario'));
+        return view('admin.users.edit_user', compact('usuario'));
     }
 
     public function actualizar(Request $request, User $usuario)
