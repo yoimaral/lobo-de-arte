@@ -27,5 +27,7 @@ class UserSeeder extends Seeder
         $user->email_verified_at = now();
         $user->password = bcrypt('12345678');
         $user->save();
+
+        factory(App\User::class, 50)->create();
     }
 }

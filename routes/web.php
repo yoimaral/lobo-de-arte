@@ -27,7 +27,9 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::resource('users', 'Admin\UserController')->middleware('verified', AdminVerify::class);
 /* Con resource puedo crear las 7 rutas rest en una sola línea */
 /* AdminVerify para que la persona que este logueada y no sea admin lo saque de la tabla user */
+Route::resource('products', 'Admin\ProductController')->except('show')->middleware('verified', AdminVerify::class);
 
+Route::match(['get', 'head'], 'products/{product}', 'Admin\ProductController@show')->name('products.show')->middleware('verified');
 // Route::get('/user', 'Admin\UserController@index')
 //     ->name('User')
 //     ->middleware('verified', AdminVerify::class);

@@ -95,7 +95,10 @@
           @if (Auth::user()->is_admin)
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('users.index') }}">{{ __('Usuarios') }}</a>
+            <a class="nav-link" href="{{ route('users.index') }}">{{ __('Users') }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a>
           </li>
 
           @endif
