@@ -14,4 +14,11 @@ class Product extends Model
     protected $fillable = [
         'name', 'img', 'description', 'price', 'disabled_at'
     ];
+
+    public function scopeProducts($query, $products)
+    {
+        if ($products)
+
+            return $query->where('name', 'LIKE', "%$products%");
+    }
 }

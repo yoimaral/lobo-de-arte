@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SaveProductRequest;
-
-use App\Product;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Product;
 
 class ProductController extends Controller
 {
@@ -17,9 +17,16 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::orderBy('id', 'desc')->paginate();
+
+        $products = trim($request->get('product'));
+        /* trim para eliminar los campos que vengan en blanco */
+
+        $products = Product::orderBy('id', 'ASC')
+            ->products($products)
+            ->paginate();
+
         return view('admin.products.index', compact('products'));
     }
 
@@ -61,7 +68,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
     }
 
     /**
@@ -82,9 +88,29 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(SaveProductRequest $request, Product $product)
+    public function update(Product $product, SaveProductRequest $request)
     {
-        $product->update(array_filter($request->validate()));
+        if ($request->hasFile('img')) {
+
+            Storage::delete($product->img);
+
+            $product->fill($request->validated()); /* Se rellenan todos los campos sin guardarlos en la base de datos */
+
+            $product->img = $request->file('img')->store('images');
+
+            $product->save();
+
+            $image = Image::make(storage::get($product->img))
+                ->widen(600)
+                // Para redimencionar el ancho de la imagen
+                ->LimitColors(255)
+                ->encode();
+            /* Para poder volver a codificar el contenido de la iamgen ya sea png,IMG_JPG */
+
+            Storage::put($product->img, (string) $image); /* sobre escribimos la imagen que acabamos de redimencionar con image y la guardamos */
+        } else {
+            $product->update(array_filter($request->validated()));
+        }
 
         return back();
     }
@@ -97,6 +123,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Storage::delete($product->img);
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }

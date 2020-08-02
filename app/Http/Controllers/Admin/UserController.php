@@ -9,9 +9,14 @@ use App\User;
 class UserController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $users =  User::all();
+        $name = trim($request->get('name'));
+        $email = trim($request->get('email'));
+
+        $users =  User::orderBy('id', 'ASC')
+            ->name($name)
+            ->paginate();
 
         return view('admin.users.index', compact('users'));
     }

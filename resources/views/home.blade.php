@@ -2,23 +2,29 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
+    <div class="row row-cols-1 row-cols-md-3 my-5">
+        @forelse ($products as $product)
+        <div class="col mb-4">
+            <div class="card h-100">
+                @if (substr($product->img, 0, 5) == 'https')
+                <img class="rounded-lg" src="{{$product->img}}" alt="">
+                @else
+                <img class="rounded-lg" src="/storage/{{$product->img}}" alt="">
+                @endif
                 <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-
-                    You are logged in!
-
+                    <h2 class="card-title">{{$product->name}}</h2>
+                    <p class="card-text">{{$product->description}}.</p>
+                    <a href="#" class="btn btn-primary">Detail</a>
+                    <a href="#" class="btn btn-primary">Add Cart</a>
                 </div>
             </div>
         </div>
+        @empty
+        No hay productos
+        @endforelse
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ $products->links() }}
     </div>
 </div>
 @endsection

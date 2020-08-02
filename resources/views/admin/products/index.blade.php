@@ -1,11 +1,27 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="d-flex justify-content-center my-3">
-        <a href="{{route('products.create')}}" type="button" class="btn btn-info">Crear un nuevo producto</a>
+
+    <div class="d-flex float-right my-3">
+        <a href="{{route('products.create')}}" type="button" class="btn btn-info">Crear un nuevo
+            producto</a>
     </div>
+
     <table class="table table-dark">
         <thead>
+            <tr>
+                <td>
+                    <form action="{{route('products.index')}}" method="GET" class="form-inline float-right"
+                        pull="right">
+                        <input name="product" type="search" class="form-control ds-input border-info" id="search-input"
+                            placeholder="Search..." aria-label="Search for..." autocomplete="off"
+                            data-docs-version="4.5" spellcheck="false" role="combobox" aria-autocomplete="list"
+                            aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
+                            style="position: relative; vertical-align: top;">
+
+                    </form>
+                </td>
+            </tr>
             <tr>
                 <th>#</th>
                 <th>Imagen</th>
@@ -41,6 +57,11 @@
                 </td>
                 <td scope="col" class="btn">
                     <a href="{{route ('products.edit', $product)}}">Edit</a>
+                    <form action="{{route('products.destroy', $product)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
             @empty
@@ -48,8 +69,11 @@
             @endforelse
         </tbody>
     </table>
+
     <div class="d-flex justify-content-center">
         {{ $products->links() }}
     </div>
+
 </div>
+
 @endsection
