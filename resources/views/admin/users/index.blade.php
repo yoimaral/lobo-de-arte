@@ -5,18 +5,16 @@
 <div class="container">
     <h1>Welcom your the user</h1>
 
-    <table class="table table-dark">
+    <table class="table table-dark row">
         <thead>
             <tr>
                 <td>
-
                     <form action="{{route('users.index')}}" method="GET" class="form-inline float-right" pull="right">
                         <input name="name" type="search" class="form-control ds-input border-info" id="search-input"
                             placeholder="Search..." aria-label="Search for..." autocomplete="off"
                             data-docs-version="4.5" spellcheck="false" role="combobox" aria-autocomplete="list"
                             aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
                             style="position: relative; vertical-align: top;">
-
                     </form>
                 </td>
             </tr>
@@ -33,7 +31,7 @@
         </thead>
         <tbody>
             @forelse ($users as $user)
-            <tr scope="row">
+            <tr>
                 <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
@@ -59,25 +57,38 @@
                     @endif
                 </td>
                 <td>{{$user->created_at}}</td>
-
                 <td scope="col" class="btn">
                     <a href="{{route ('users.edit', $user)}}">Edit</a>
+                    <!--FORM Destroy-->
+                    <form action="{{route ('users.destroy', $user)}}" method="POST">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger mt-2">Eliminar</button>
+
+                    </form>
                 </td>
                 <td>
-                    <div class="custom-control custom-checkbox">
-
-                        <form action="{{route('users.update', $user)}}" method="POST">
-                            <label><input class="form-check-input position-static" type="checkbox" id="blankCheckbox">
-                                Enable &
-                                Disable</label>
-                        </form>
-
-                    </div>
+                    <input name="estado" type="checkbox" class="form-check-input"
+                        onchange="event.preventDefault(); document.getElementById('{{$user->id}}').submit();"
+                        {{$user->disabled_at ? '' : 'checked'}}>
+                    @if ($user->disabled_at)
+                    Inhabilitado
+                    @else
+                    Habilitado
+                    @endif
+                    <form id="{{$user->id}}" action="{{route('users.update',$user)}}" method="POST"
+                        style="display: none;">
+                        @csrf
+                        @method('PATCH')
+                        <input name="name" type="text" value="{{old('name', $user->name)}}">
+                    </form>
                 </td>
+                @empty
+                No hay Usuarios
+                @endforelse
             </tr>
-            @empty
-            No hay Usuarios
-            @endforelse
         </tbody>
     </table>
 

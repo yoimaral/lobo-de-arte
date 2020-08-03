@@ -14,8 +14,8 @@
                 <div class="card-body">
                     <h2 class="card-title">{{$product->name}}</h2>
                     <p class="card-text">{{$product->description}}.</p>
-                    <a href="#" class="btn btn-primary">Detail</a>
-                    <a href="#" class="btn btn-primary">Add Cart</a>
+                    <div class="modal-dialog modal-xl">${{$product->price}} USD</div>
+                    <a href="{{route('products.show',$product)}}" class="btn btn-primary">Detail</a>
                 </div>
             </div>
         </div>

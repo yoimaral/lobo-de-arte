@@ -12,7 +12,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $name = trim($request->get('name'));
-        $email = trim($request->get('email'));
 
         $users =  User::orderBy('id', 'ASC')
             ->name($name)
@@ -21,7 +20,6 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-
     public function edit(User $user)
     {
         return view('admin.users.edit', compact('user'));
@@ -29,11 +27,9 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $enabledAt = $request->estado ? null : now();
-
         $user->update([
-            'name' => $request->nombre,
-            'disabled_at' => $enabledAt
+            'disabled_at' => $user->disabled_at ? null : now(),
+            'name' => $request->name
         ]);
 
         return back();

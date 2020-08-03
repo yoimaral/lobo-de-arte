@@ -143,7 +143,7 @@
   </div>
 
   <!--Footer-->
-  <footer id="footer" class="foo pb-4 pt-4 bg-dark" style=": 18rem ">
+  <footer id="footer" class="foo pb-4 pt-4 bg-dark d-flex mt-3" style=": 18rem ">
     <div class=" container">
       <div class="row text-center">
         <div class="col-12 col-lg">

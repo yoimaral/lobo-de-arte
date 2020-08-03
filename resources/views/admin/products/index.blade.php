@@ -1,5 +1,7 @@
 @extends('layouts.app')
+
 @section('content')
+
 <div class="container">
 
     <div class="d-flex float-right my-3">
@@ -18,24 +20,23 @@
                             data-docs-version="4.5" spellcheck="false" role="combobox" aria-autocomplete="list"
                             aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
                             style="position: relative; vertical-align: top;">
-
                     </form>
                 </td>
             </tr>
             <tr>
-                <th>#</th>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Estado</th>
-                <th>Acciones</th>
+                <th scope="col">#</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($products as $product)
             <tr>
-                <td scope="row">{{$product->id}}</td>
+                <td>{{$product->id}}</td>
                 <td>
                     <div class="product-image">
                         @if (substr($product->img, 0, 5) == 'https')
@@ -55,12 +56,14 @@
                     Enabled
                     @endif
                 </td>
-                <td scope="col" class="btn">
-                    <a href="{{route ('products.edit', $product)}}">Edit</a>
-                    <form action="{{route('products.destroy', $product)}}" method="POST">
+                <td>
+                    <form action="{{route('products.destroy' , $product)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        @if (Auth::user()->is_admin)
+                        <button href="" value="Delete" class="btn btn-outline-secondary" type="submit"
+                            id="button-addon2">Delete</button>
+                        @endif
                     </form>
                 </td>
             </tr>

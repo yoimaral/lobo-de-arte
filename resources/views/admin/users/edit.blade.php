@@ -18,29 +18,14 @@
                 value="{{$user->name}}">
         </div>
 
-        <div class="form-group ">
-            <select name="estado" class="custom-select">
-                <option selected>Estado</option>
-                <option value="1">Habilitar</option>
-                <option value="0">Inhabilitar</option>
-            </select>
-
+        <div class="form-group">
+            <label for="exampleInputEmail1">Actualizar</label>
+            <input name="nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                value="{{$user->email}}">
         </div>
-
         <button type="submit" class="btn btn-primary">Actualizar</button>
 
         <a href="{{ url()->previous() }}" class="btn btn-secondary">Cancelar</a>
-    </form>
-    <!--EndFORM-->
-
-    <!--FORM Destroy-->
-    <form action="{{route ('users.destroy', $user)}}" method="POST">
-
-        @csrf
-        @method('DELETE')
-
-        <button type="submit" class="btn btn-danger mt-2">Eliminar</button>
-
     </form>
     <!--EndFORM-->
 
