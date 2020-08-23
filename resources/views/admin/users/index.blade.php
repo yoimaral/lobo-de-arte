@@ -5,19 +5,17 @@
 <div class="container">
     <h1>Welcom your the user</h1>
 
-    <table class="table table-dark row">
+    <div class="container">
+        <form action="{{route('users.index')}}" method="GET" class="form-inline float-right" pull="right">
+            <input name="name" type="search" class="form-control ds-input border-darck mb-1 border-3" id="search-input"
+                placeholder="Search..." aria-label="Search for..." autocomplete="off" data-docs-version="4.5"
+                spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false"
+                aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+        </form>
+    </div>
+
+    <table class="table table-dark">
         <thead>
-            <tr>
-                <td>
-                    <form action="{{route('users.index')}}" method="GET" class="form-inline float-right" pull="right">
-                        <input name="name" type="search" class="form-control ds-input border-info" id="search-input"
-                            placeholder="Search..." aria-label="Search for..." autocomplete="off"
-                            data-docs-version="4.5" spellcheck="false" role="combobox" aria-autocomplete="list"
-                            aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
-                            style="position: relative; vertical-align: top;">
-                    </form>
-                </td>
-            </tr>
             <tr>
                 <th>#</th>
                 <th>Nombre</th>
@@ -26,14 +24,18 @@
                 <th>Verificación de E-mail</th>
                 <th>Estado de la cuenta</th>
                 <th>Fecha de creacion</th>
-                <th>Edit</th>
+                <th>Estado</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($users as $user)
             <tr>
                 <td>{{$user->id}}</td>
-                <td>{{$user->name}}</td>
+                <td>
+                    {{$user->name}}
+                </td>
                 <td>{{$user->email}}</td>
                 <td>
                     @if ($user->is_admin)
@@ -56,19 +58,11 @@
                     Enabled
                     @endif
                 </td>
-                <td>{{$user->created_at}}</td>
-                <td scope="col" class="btn">
-                    <a href="{{route ('users.edit', $user)}}">Edit</a>
-                    <!--FORM Destroy-->
-                    <form action="{{route ('users.destroy', $user)}}" method="POST">
 
-                        @csrf
-                        @method('DELETE')
-
-                        <button type="submit" class="btn btn-danger mt-2">Eliminar</button>
-
-                    </form>
+                <td>
+                    {{$user->created_at}}
                 </td>
+
                 <td>
                     <input name="estado" type="checkbox" class="form-check-input"
                         onchange="event.preventDefault(); document.getElementById('{{$user->id}}').submit();"
@@ -84,11 +78,27 @@
                         @method('PATCH')
                         <input name="name" type="text" value="{{old('name', $user->name)}}">
                     </form>
+
                 </td>
-                @empty
-                No hay Usuarios
-                @endforelse
+
+                <td>
+                    <a class="btn btn-outline-secondary" href="{{route ('users.edit', $user)}}">Edit</a>
+                </td>
+                <td>
+                    <form action="{{route ('users.destroy', $user)}}" method="POST">
+
+                        @csrf
+                        @method('DELETE')
+
+                        <button type="submit" class="btn btn-danger mt-2">Eliminar</button>
+
+                    </form>
+
+                </td>
             </tr>
+            @empty
+            No hay Usuarios
+            @endforelse
         </tbody>
     </table>
 

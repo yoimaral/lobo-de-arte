@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->unsignedInteger('price');
+            $table->softDeletes('deleted_at');
             $table->timestamp('disabled_at')->nullable()->default(null);
             $table->timestamps();
         });

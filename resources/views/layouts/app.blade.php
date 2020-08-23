@@ -91,6 +91,10 @@
         <!-- Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('users.index') }}">{{ __('Products') }}</a>
+          </li>
+
           @auth
           @if (Auth::user()->is_admin)
 
@@ -137,6 +141,11 @@
   </div>
   </nav>
 
+  {{--  Mensaje de validacion exitosamente. Carpeta en views partials --}}
+  <div class="include-partials text-center mt-2">
+    <h5>@include('partials.session-status')</h5>
+    {{-- endInclude --}}
+  </div>
 
   @yield('content')
 

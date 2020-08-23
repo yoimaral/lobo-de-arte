@@ -30,7 +30,7 @@
                 <th scope="col">Descripción</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">Editar</th>
             </tr>
         </thead>
         <tbody>
@@ -50,22 +50,25 @@
                 <td>{{$product->description}}</td>
                 <td>${{$product->price}} USD</td>
                 <td>
-                    @if ($product->disabled_at)
-                    Disabled {{$product->disabled_at->diffForHumans()}}
-                    @else
-                    Enabled
-                    @endif
-                </td>
-                <td>
+
                     <form action="{{route('products.destroy' , $product)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        @if (Auth::user()->is_admin)
-                        <button href="" value="Delete" class="btn btn-outline-secondary" type="submit"
-                            id="button-addon2">Delete</button>
+
+                        @if ($product->deleted_at)
+                        <button value="Delete" class="btn btn-outline-secondary" type="submit"
+                            id="button-addon2">Habilitar</button>
+                        @else
+                        <button value="Delete" class="btn btn-outline-secondary" type="submit"
+                            id="button-addon2">Inhabilitar</button>
                         @endif
                     </form>
                 </td>
+
+                <td>
+                    <a class="btn btn-outline-secondary" href="{{route ('products.edit', $product)}}">Edit</a>
+                </td>
+
             </tr>
             @empty
             No hay productos

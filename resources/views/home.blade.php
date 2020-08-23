@@ -1,8 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
+
     <div class="row row-cols-1 row-cols-md-3 my-5">
+
+        {{-- forelse --}}
+
         @forelse ($products as $product)
         <div class="col mb-4">
             <div class="card h-100">
@@ -22,9 +27,14 @@
         @empty
         No hay productos
         @endforelse
+
+        {{-- endforelse --}}
+
     </div>
+
     <div class="d-flex justify-content-center">
-        {{ $products->links() }}
+        {{ $products->links() }} {{-- Para la paginación --}}
     </div>
+
 </div>
 @endsection

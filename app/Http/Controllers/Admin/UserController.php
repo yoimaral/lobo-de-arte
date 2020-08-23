@@ -29,16 +29,16 @@ class UserController extends Controller
     {
         $user->update([
             'disabled_at' => $user->disabled_at ? null : now(),
-            'name' => $request->name
+            'name' => $request->name,
         ]);
 
-        return back();
+        return back()->with('message', 'Se ha actualizado exitosamente');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('message', 'Se ha eliminado exitosamente');
     }
 }

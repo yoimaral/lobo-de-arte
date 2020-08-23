@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
 
+use function Symfony\Component\String\b;
+
 class ProductController extends Controller
 {
     /**
@@ -23,7 +25,8 @@ class ProductController extends Controller
         $products = trim($request->get('product'));
         /* trim para eliminar los campos que vengan en blanco */
 
-        $products = Product::orderBy('id', 'ASC')
+        $products = Product::withTrashed()->orderby('id', 'ASC')
+            /* Con el get traigo todos los productos y withTrashed para que traiga todos los productos que hayan sido eliminados */
             ->products($products)
             ->paginate();
 
@@ -57,7 +60,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return back();
+        return back()->with('message', 'Ha sido exitosamente creado');
     }
 
     /**
@@ -95,7 +98,7 @@ class ProductController extends Controller
 
             Storage::delete($product->img);
 
-            $product->fill($request->validated()); /* Se rellenan todos los campos sin guardarlos en la base de datos */
+            $product->fill($request->validated()); /* Se rellenan todos los campos sin guardar los en la base de datos */
 
             $product->img = $request->file('img')->store('images');
 
@@ -113,7 +116,7 @@ class ProductController extends Controller
             $product->update(array_filter($request->validated()));
         }
 
-        return back();
+        return back()->with('message', 'Ha sido exitosamente actualizado');
     }
 
     /**
@@ -122,10 +125,25 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(int $id)
     {
-        Storage::delete($product->img);
-        $product->delete();
-        return redirect()->route('products.index');
+        $product = Product::withTrashed()->where('id', $id)->get()->first();
+        if ($product->deleted_at) {
+            $product->restore();
+            /* findOrFile para seleccionar el producto a habilitar nuevamente */
+            /* restore Para restaurar el producto */
+        } else {
+            $product->delete();
+        }
+
+        // return back();
+        return redirect()->route('products.index')->with('message', 'Ha sido exitosamente eliminado');
+    }
+
+    public function restorDelete(Product $product)
+    {
+
+
+        return back();
     }
 }

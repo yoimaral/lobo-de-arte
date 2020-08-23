@@ -38,6 +38,7 @@
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
                     <div class="form-group row">
                         <label for="description"
                             class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
@@ -51,6 +52,7 @@
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
                     <div class="form-group row">
                         <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('price') }}</label>
 
@@ -63,14 +65,18 @@
                     @error('price')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
                     <div class="form-group row mb-2">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Enviar') }}
                             </button>
+                            <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
                         </div>
                     </div>
+
                 </form>
+
             </div>
         </div>
     </div>
