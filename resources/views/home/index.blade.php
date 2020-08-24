@@ -20,7 +20,7 @@
                     <h2 class="card-title">{{$product->name}}</h2>
                     <p class="card-text">{{$product->description}}.</p>
                     <div class="modal-dialog modal-xl">${{$product->price}} USD</div>
-                    <a href="{{route('products.show',$product)}}" class="btn btn-primary">Detail</a>
+                    <a href="{{route('home.show',$product)}}" class="btn btn-primary">Detalle</a>
                 </div>
             </div>
         </div>

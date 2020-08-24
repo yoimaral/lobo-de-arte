@@ -12,6 +12,7 @@ use App\Product;
 
 use function Symfony\Component\String\b;
 
+
 class ProductController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class ProductController extends Controller
         $products = trim($request->get('product'));
         /* trim para eliminar los campos que vengan en blanco */
 
-        $products = Product::withTrashed()->orderby('id', 'ASC')
+        $products = Product::orderby('id', 'ASC')
             /* Con el get traigo todos los productos y withTrashed para que traiga todos los productos que hayan sido eliminados */
             ->products($products)
             ->paginate();
@@ -69,9 +70,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show()
     {
-        return view('admin.products.show', compact('product'));
+        /* Validando si es el index del home product */
+        // return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -125,25 +127,23 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(Product $product)
     {
-        $product = Product::withTrashed()->where('id', $id)->get()->first();
-        if ($product->deleted_at) {
-            $product->restore();
-            /* findOrFile para seleccionar el producto a habilitar nuevamente */
-            /* restore Para restaurar el producto */
-        } else {
-            $product->delete();
-        }
 
-        // return back();
+        $product->delete();
+
         return redirect()->route('products.index')->with('message', 'Ha sido exitosamente eliminado');
-    }
-
-    public function restorDelete(Product $product)
-    {
 
 
-        return back();
+        // $product = Product::withTrashed()->where('id', $id)->get()->first();
+        // if ($product->deleted_at) {
+        //     $product->restore();
+        //     /* findOrFile para seleccionar el producto a habilitar nuevamente */
+        //     /* restore Para restaurar el producto */
+        //     return redirect()->route('products.index')->with('message', 'Ha sido exitosamente habilitado');
+        // } else {
+        //     $product->delete();
+        //     return redirect()->route('products.index')->with('message', 'Ha sido exitosamente inhabilitado');
+        // }
     }
 }

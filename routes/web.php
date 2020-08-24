@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]); /* verify funciona para la verificacion del email al momento de registrarse */
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+// Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 /* middleware para bloquear las rutas si no esta logueado */
 
 Route::resource('users', 'Admin\UserController')->middleware('verified', AdminVerify::class);
@@ -29,7 +29,8 @@ Route::resource('users', 'Admin\UserController')->middleware('verified', AdminVe
 /* AdminVerify para que la persona que este logueada y no sea admin lo saque de la tabla user */
 Route::resource('products', 'Admin\ProductController')->except('show')->middleware('verified', AdminVerify::class);
 
-Route::match(['get', 'head'], 'products/{product}', 'Admin\ProductController@show')->name('products.show')->middleware('verified');
+Route::resource('home', 'Users\HomeController')->middleware('verified');
+
 // Route::get('/user', 'Admin\UserController@index')
 //     ->name('User')
 //     ->middleware('verified', AdminVerify::class);

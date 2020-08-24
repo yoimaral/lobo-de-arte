@@ -92,7 +92,7 @@
         <ul class="navbar-nav ml-auto">
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('users.index') }}">{{ __('Products') }}</a>
+            <a class="nav-link" href="{{ route('home.index') }}">{{ __('Home') }}</a>
           </li>
 
           @auth

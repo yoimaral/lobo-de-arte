@@ -27,9 +27,11 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+
         $user->update([
             'disabled_at' => $user->disabled_at ? null : now(),
             'name' => $request->name,
+            // 'email' => $request->email,
         ]);
 
         return back()->with('message', 'Se ha actualizado exitosamente');

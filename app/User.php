@@ -41,12 +41,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'disabled_at',
     ];
 
-    //Query Scope
+    //Query Scope para la busqueda personalizada
     public function scopeName($query, $name)
     {
         if ($name)
-            return $query
-                ->where('name', 'LIKE', "%$name%");
+            return $query->where('name', 'LIKE', "%$name%");
     }
 
     // public function scopeEmail($query, $email)

@@ -49,25 +49,40 @@
                 <td>{{$product->name}}</td>
                 <td>{{$product->description}}</td>
                 <td>${{$product->price}} USD</td>
-                <td>
 
-                    <form action="{{route('products.destroy' , $product)}}" method="POST">
+                <td>
+                    <form action="{{route('products.destroy',$product)}}" method="POST">
                         @csrf
                         @method('DELETE')
 
-                        @if ($product->deleted_at)
-                        <button value="Delete" class="btn btn-outline-secondary" type="submit"
-                            id="button-addon2">Habilitar</button>
-                        @else
-                        <button value="Delete" class="btn btn-outline-secondary" type="submit"
-                            id="button-addon2">Inhabilitar</button>
-                        @endif
+                        <button value="Delete" class="btn btn-outline-secondary" type="submit" id="button-addon1">
+                            Eliminar
+
+                        </button>
+
                     </form>
                 </td>
 
                 <td>
                     <a class="btn btn-outline-secondary" href="{{route ('products.edit', $product)}}">Edit</a>
                 </td>
+
+                {{-- <td>
+                    Metodo soft delete
+                    <form action="{{route('products.destroy' , $product)}}" method="POST">
+                @csrf
+                @method('DELETE')
+
+                @if ($product->deleted_at)
+                <button value="delete" class="btn btn-outline-secondary" type="submit"
+                    id="button-addon2">Habilitar</button>
+                @else
+                <button value="delete" class="btn btn-outline-secondary" type="submit"
+                    id="button-addon2">Inhabilitar</button>
+                @endif
+                </form>
+                </td> --}}
+
 
             </tr>
             @empty

@@ -13,21 +13,22 @@
         @csrf {{-- Para que permita enviar el formulario ya que larabel no lo permite por seguridad --}}
 
         <div class="form-group">
-            <label for="exampleInputEmail1">Actualizar</label>
-            <input name="nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <label for="exampleInputName">Name</label>
+            <input name="name" type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp"
                 value="{{$user->name}}">
         </div>
 
-        <div class="form-group">
-            <label for="exampleInputEmail1">Actualizar</label>
-            <input name="nombre" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        {{--  <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input name="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                 value="{{$user->email}}">
-        </div>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
+</div> --}}
 
-        <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
-    </form>
-    <!--EndFORM-->
+<button type="submit" class="btn btn-primary">Actualizar</button>
+
+<a href="{{route('users.index')}}" class="btn btn-secondary">Cancelar</a>
+</form>
+<!--EndFORM-->
 
 </div>
 @endsection

@@ -3,12 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-
-    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -20,9 +17,8 @@ class Product extends Model
     ];
 
     /**
-     * Que me trae y que me devuelve
-     * 
-     * 
+     * Esta funcion me realiza 
+     * laconsulta de busqueda en labase dedatos
      * 
      */
     public function scopeProducts($query, $products)
