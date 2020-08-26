@@ -95,7 +95,6 @@
     </div>
   </div>
 
-  <br>
 
   {{-- Nuevo carrousel --}}
   <div class="container">
@@ -103,7 +102,7 @@
       <section>
 
         <div class="Carousel">
-          <h2>Sugaleria de Arte Online</h2>
+          <h2>Su galeria de Arte Online</h2>
           <div class="slick-list" id="slick-list">
             <button class="slick-arrow slick-prev" id="button-prev">
               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left"

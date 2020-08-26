@@ -23,14 +23,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate();
+
+        $products = trim($request->get('product'));
+
+        $products = Product::products($products)
+            ->paginate();
 
         return view('home.index', compact('products'));
     }
 
-    /* Lo llame home para que la ruta me pase el objeto con la información y luego lo renombro como product para que me lo muestre en la vista */
+    /* Lo llame home para que la ruta me pase el objeto con la información y luego
+     lo renombro como product para que me lo muestre en la vista */
     public function show(Product $home)
     {
         return view('home.show', ['product' => $home]);
