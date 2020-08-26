@@ -71,7 +71,7 @@
                             <button type="submit" class="btn btn-primary">
                                 {{ __('Enviar') }}
                             </button>
-                            <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+                            <a href="{{route('products.index')}}" class="btn btn-secondary">Cancelar</a>
                         </div>
                     </div>
 

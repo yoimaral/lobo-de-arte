@@ -16,6 +16,7 @@
             <label for="exampleInputName">Name</label>
             <input name="name" type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp"
                 value="{{$user->name}}">
+            <input type="text" name="trick" hidden value="trick">
         </div>
 
         {{--  <div class="form-group">

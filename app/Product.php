@@ -16,6 +16,10 @@ class Product extends Model
         'name', 'img', 'description', 'price', 'disabled_at'
     ];
 
+    protected $dates = [
+        'disabled_at'
+    ];
+
     /**
      * Esta funcion me realiza 
      * laconsulta de busqueda en labase dedatos

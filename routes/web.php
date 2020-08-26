@@ -27,10 +27,12 @@ Auth::routes(['verify' => true]); /* verify funciona para la verificacion del em
 Route::resource('users', 'Admin\UserController')->middleware('verified', AdminVerify::class);
 /* Con resource puedo crear las 7 rutas rest en una sola línea */
 /* AdminVerify para que la persona que este logueada y no sea admin lo saque de la tabla user */
-Route::resource('products', 'Admin\ProductController')->except('show')->middleware('verified', AdminVerify::class);
+Route::resource('products', 'Admin\ProductController')->middleware('verified', AdminVerify::class);
+
+Route::patch('/change_state/{product}', 'Admin\ProductController@state')->name('state')->middleware('verified');
+/* Se crea la ruta para habilitar y deshabilitar los productos */
 
 Route::resource('home', 'Users\HomeController')->middleware('verified');
-
 // Route::get('/user', 'Admin\UserController@index')
 //     ->name('User')
 //     ->middleware('verified', AdminVerify::class);

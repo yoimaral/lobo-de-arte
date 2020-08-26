@@ -96,6 +96,7 @@ class ProductController extends Controller
      */
     public function update(Product $product, SaveProductRequest $request)
     {
+
         if ($request->hasFile('img')) {
 
             Storage::delete($product->img);
@@ -115,10 +116,22 @@ class ProductController extends Controller
 
             Storage::put($product->img, (string) $image); /* sobre escribimos la imagen que acabamos de redimencionar con image y la guardamos */
         } else {
+
             $product->update(array_filter($request->validated()));
         }
 
         return back()->with('message', 'Ha sido exitosamente actualizado');
+    }
+
+    public function state(Product $product)
+    {
+        $product->disabled_at = $product->disabled_at ? null : now();
+        $product->save();
+
+        // $state->update([
+        //     'disabled_at' => $stated
+        // ]);
+        return back();
     }
 
     /**

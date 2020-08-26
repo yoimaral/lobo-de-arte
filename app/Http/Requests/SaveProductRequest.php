@@ -30,7 +30,7 @@ class SaveProductRequest extends FormRequest
                 $this->route('product') ? 'nullable' : 'required',
                 'image:jpg,png'
             ],
-            'price' => 'required|numeric|min:3|max:30000'
+            'price' => 'required|numeric|min:3|max:30000',
         ];
     }
 }

@@ -30,6 +30,7 @@
                 <th scope="col">Descripción</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Estado</th>
+                <th scope="col">Eliminar</th>
                 <th scope="col">Editar</th>
             </tr>
         </thead>
@@ -49,6 +50,22 @@
                 <td>{{$product->name}}</td>
                 <td>{{$product->description}}</td>
                 <td>${{$product->price}} USD</td>
+
+                <td>
+                    <input name="disabled_at" type="checkbox" class="form-check-input"
+                        onchange="event.preventDefault(); document.getElementById('{{$product->id}}').submit();"
+                        {{$product->disabled_at ? '' : 'checked'}}>
+                    @if ($product->disabled_at)
+                    Inhabilitado
+                    @else
+                    Habilitado
+                    @endif
+                    <form id="{{$product->id}}" action="{{route('state',$product)}}" method="POST"
+                        style="display: none;">
+                        @csrf
+                        @method('PATCH')
+                    </form>
+                </td>
 
                 <td>
                     <form action="{{route('products.destroy',$product)}}" method="POST">

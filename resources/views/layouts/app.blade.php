@@ -142,7 +142,7 @@
   </nav>
 
   {{--  Mensaje de validacion exitosamente. Carpeta en views partials --}}
-  <div class="include-partials text-center mt-2">
+  <div class="include-partials text-center mt-2 text-success">
     <h5>@include('partials.session-status')</h5>
     {{-- endInclude --}}
   </div>

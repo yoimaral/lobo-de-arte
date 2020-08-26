@@ -78,12 +78,12 @@
                         @method('PATCH')
                         <input name="name" type="text" value="{{old('name', $user->name)}}">
                     </form>
-
                 </td>
 
                 <td>
                     <a class="btn btn-outline-secondary" href="{{route ('users.edit', $user)}}">Edit</a>
                 </td>
+
                 <td>
                     <form action="{{route ('users.destroy', $user)}}" method="POST">
 
