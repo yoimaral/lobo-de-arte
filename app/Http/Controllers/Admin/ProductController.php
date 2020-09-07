@@ -15,10 +15,13 @@ use function Symfony\Component\String\b;
 
 class ProductController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * Devuelve una peticion de busqueda 
+     * junto con los productos que hay en la DB
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
     public function index(Request $request)
     {
@@ -34,10 +37,11 @@ class ProductController extends Controller
         return view('admin.products.index', compact('products'));
     }
 
+
     /**
-     * Show the form for creating a new resource.
+     * Retorna a la vista create
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function create()
     {
@@ -45,21 +49,26 @@ class ProductController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * se valida con el SaveProductRequest la información
+     * y luego se crea un producto nuevo
+     * 
+     * @param SaveProductRequest $request
+     * @return void
      */
     public function store(SaveProductRequest $request)
     {
+
         $product = new Product;
 
         $product->img = $request->file('img')->store('images');
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->stock = $request->stock;
 
         $product->save();
+
+        /* $product = Product::create(request()->all()); */
 
         return back()->with('message', 'Ha sido exitosamente creado');
     }
@@ -72,27 +81,30 @@ class ProductController extends Controller
      */
     public function show()
     {
-        /* Validando si es el index del home product */
-        // return view('admin.products.show', compact('product'));
     }
 
+
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * 
+     * Recibe y devuelve un ID con la información del producto
+     *a lavista edit
+     * 
+     * @param Product $product
+     * @return void
      */
     public function edit(Product $product)
     {
         return view('admin.products.edit', compact('product'));
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * Se validan los datos con el request y 
+     * luego se actualizan en la BD
+     * 
+     * @param Product $product
+     * @param SaveProductRequest $request
+     * @return void
      */
     public function update(Product $product, SaveProductRequest $request)
     {
@@ -123,6 +135,15 @@ class ProductController extends Controller
         return back()->with('message', 'Ha sido exitosamente actualizado');
     }
 
+
+    /**
+     * captura el id del producto y
+     * Se actualiza el estado pasando de 
+     * activo a inactivo
+     *
+     * @param Product $product
+     * @return void
+     */
     public function state(Product $product)
     {
         $product->disabled_at = $product->disabled_at ? null : now();
@@ -134,11 +155,14 @@ class ProductController extends Controller
         return back();
     }
 
+
     /**
-     * Remove the specified resource from storage.
+     * Se resive el ID del producto 
+     * y se elimina de la base de datos
+     * y devuelve el mensaje de validación
      *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return void
      */
     public function destroy(Product $product)
     {
@@ -146,7 +170,6 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')->with('message', 'Ha sido exitosamente eliminado');
-
 
         // $product = Product::withTrashed()->where('id', $id)->get()->first();
         // if ($product->deleted_at) {

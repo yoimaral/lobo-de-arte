@@ -49879,8 +49879,8 @@ function Move(value) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\Lobo-De-Arte\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\Lobo-De-Arte\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/excalibur/Documentos/www/lobo-de-arte/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/excalibur/Documentos/www/lobo-de-arte/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

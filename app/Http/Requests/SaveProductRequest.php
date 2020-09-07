@@ -31,6 +31,7 @@ class SaveProductRequest extends FormRequest
                 'image:jpg,png'
             ],
             'price' => 'required|numeric|min:3|max:30000',
+            'stock' => 'nullable|required',
         ];
     }
 }

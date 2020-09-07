@@ -48,10 +48,10 @@
                 aria-haspopup="true" aria-expanded="false">Obras</a>
 
               <div class="dropdown-menu" aria-labelledby="navbarObras">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Pintura</a>
+                <a class="dropdown-item" href="#">Escultura</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Foto grafia</a>
               </div>
             </div>
           </li>
@@ -63,10 +63,10 @@
                 Artistas
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarArtistas">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Pintores</a>
+                <a class="dropdown-item" href="#">Fotógrafos</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Escultores</a>
               </div>
             </div>
           </li>
@@ -79,9 +79,15 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarColecciones">
                 <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Inspirado por...</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" href="#">Últimas colecciones</a>
+
+                {{-- PENDIENTE --}}
+                <picture>
+                  <img src="/images/14.jpg">
+                </picture>
+                {{-- END --}}
               </div>
             </div>
           </li>

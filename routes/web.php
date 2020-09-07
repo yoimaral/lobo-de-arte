@@ -30,7 +30,7 @@ Route::resource('users', 'Admin\UserController')->middleware('verified', AdminVe
 Route::resource('products', 'Admin\ProductController')->middleware('verified', AdminVerify::class);
 
 Route::patch('/change_state/{product}', 'Admin\ProductController@state')->name('state')->middleware('verified');
-/* Se crea la ruta para habilitar y deshabilitar los productos */
+
 
 Route::resource('home', 'Users\HomeController')->middleware('verified');
 // Route::get('/user', 'Admin\UserController@index')

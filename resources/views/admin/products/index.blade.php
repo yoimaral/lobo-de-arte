@@ -29,6 +29,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Precio</th>
+                <th scope="col">Stock</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Eliminar</th>
                 <th scope="col">Editar</th>
@@ -50,7 +51,7 @@
                 <td>{{$product->name}}</td>
                 <td>{{$product->description}}</td>
                 <td>${{$product->price}} USD</td>
-
+                <td>{{$product->stock}}</td>
                 <td>
                     <input name="disabled_at" type="checkbox" class="form-check-input"
                         onchange="event.preventDefault(); document.getElementById('{{$product->id}}').submit();"
@@ -83,23 +84,6 @@
                 <td>
                     <a class="btn btn-outline-secondary" href="{{route ('products.edit', $product)}}">Edit</a>
                 </td>
-
-                {{-- <td>
-                    Metodo soft delete
-                    <form action="{{route('products.destroy' , $product)}}" method="POST">
-                @csrf
-                @method('DELETE')
-
-                @if ($product->deleted_at)
-                <button value="delete" class="btn btn-outline-secondary" type="submit"
-                    id="button-addon2">Habilitar</button>
-                @else
-                <button value="delete" class="btn btn-outline-secondary" type="submit"
-                    id="button-addon2">Inhabilitar</button>
-                @endif
-                </form>
-                </td> --}}
-
 
             </tr>
             @empty
