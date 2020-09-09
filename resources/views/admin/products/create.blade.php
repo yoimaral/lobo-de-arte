@@ -6,7 +6,6 @@
             <div class="card mt-2">
                 <div class="card-header">{{ __('Create Products') }}</div>
 
-
                 <form action="{{route('products.store')}}" enctype="multipart/form-data" method="POST">
                     @csrf
 
@@ -65,9 +64,9 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
-
                     <div class="form-group row">
                         <label for="stock" class="col-md-4 col-form-label text-md-right">{{ __('stock') }}</label>
+
                         <div class="col-md-6">
                             <input id="stock" type="number" class="form-control " name="stock" autocomplete="new-stock"
                                 value="{{ old('stock') }}">
@@ -76,8 +75,6 @@
                     @error('stock')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-
-
             </div>
 
             <div class="form-group row mb-2 mt-2">

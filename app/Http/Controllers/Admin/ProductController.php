@@ -17,6 +17,14 @@ class ProductController extends Controller
 {
 
     /**
+     * Para asegurarme que des de los controladores tampoco se pueda acceder a lasrutas sinestarautenticado
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Devuelve una peticion de busqueda 
      * junto con los productos que hay en la DB
      *
@@ -106,7 +114,7 @@ class ProductController extends Controller
      * @param SaveProductRequest $request
      * @return void
      */
-    public function update(Product $product, SaveProductRequest $request)
+    public function update(SaveProductRequest $request, Product $product)
     {
 
         if ($request->hasFile('img')) {
