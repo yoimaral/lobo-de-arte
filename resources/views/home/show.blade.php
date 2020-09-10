@@ -17,9 +17,10 @@
             @endif
             <h2> {{$product->name}}</h2>
 
-            <p>{{$product->description}}</p>
+            <h6><strong> Descripción: </strong>{{$product->description}}</h6>
 
             <h6> <strong>Precio: </strong> ${{number_format($product->price)}} </h6>
+            <h6> <strong>Stock: </strong> {{$product->stock}} </h6>
 
           </div>
           <a href="#" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Add to cart</a>

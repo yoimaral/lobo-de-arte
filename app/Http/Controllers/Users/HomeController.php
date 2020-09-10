@@ -9,7 +9,8 @@ use App\Product;
 class HomeController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Para que elusuario no ingrese a las rutas 
+     * si no esta autenticado
      *
      * @return void
      */

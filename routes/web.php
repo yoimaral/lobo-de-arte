@@ -32,7 +32,6 @@ Route::resource('products', 'Admin\ProductController');
 
 Route::patch('/change_state/{product}', 'Admin\ProductController@state')->name('state');
 
-
 Route::resource('home', 'Users\HomeController');
 
 // Route::get('/user', 'Admin\UserController@index')

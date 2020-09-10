@@ -28,8 +28,9 @@
                 @endif
                 <div class="card-body">
                     <h2 class="card-title">{{$product->name}}</h2>
-                    <p class="card-text">{{$product->description}}.</p>
-                    <div class="modal-dialog modal-xl">${{$product->price}} USD</div>
+                    <p class="card-text"><strong> Descripción: </strong>{{$product->description}}.</p>
+                    <div class="modal-dialog modal-xl"><strong> Price: </strong>${{$product->price}} USD</div>
+
                     <a href="{{route('home.show',$product)}}" class="btn btn-primary">Detalle</a>
                 </div>
             </div>
