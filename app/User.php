@@ -37,11 +37,23 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Para asignar los campostipo fella en caso 
+     * de querer realizar asignacones masivas
+     *
+     * @var array
+     */
     protected $dates = [
         'disabled_at',
     ];
 
-    //Query Scope para la busqueda personalizada
+    /**
+     * //Query Scope para la busqueda personalizada
+     *
+     * @param [type] $query
+     * @param [type] $name
+     * @return void
+     */
     public function scopeName($query, $name)
     {
         if ($name)

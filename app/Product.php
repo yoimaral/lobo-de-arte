@@ -16,6 +16,12 @@ class Product extends Model
         'name', 'img', 'description', 'price', 'stock', 'disabled_at'
     ];
 
+    /**
+     * Para asignar los campostipo fella en caso 
+     * de querer realizar asignacones masivas
+     *
+     * @var array
+     */
     protected $dates = [
         'disabled_at'
     ];
