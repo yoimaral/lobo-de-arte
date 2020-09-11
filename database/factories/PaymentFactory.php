@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Payment::class, function (Faker $faker) {
     return [
-        //
+        'amount' => $faker->randomFloat($maxDecimals = 2, $min = 15, $max = 10000),
+        'payed_at' => $faker->dateTimeBetween($startDate = '-1 years', $emdDate = 'now', $timezone = null)
     ];
 });

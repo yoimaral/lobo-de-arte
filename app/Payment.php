@@ -13,7 +13,7 @@ class Payment extends Model
      * @var array
      */
     protected $fillable = [
-        'amount', 'payed_at'
+        'amount', 'payed_at', 'order_id'
     ];
 
     /**
@@ -25,4 +25,15 @@ class Payment extends Model
     protected $dates = [
         'payed_at',
     ];
+
+    /**
+     * Se le indica que un payment
+     * pertenece a una sola orden
+     *
+     * @return void
+     */
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
