@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Payment;
+use App\User;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,8 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'status'
+        'status',
+        'customer_id'
     ];
 
     /**
@@ -26,5 +28,16 @@ class Order extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+
+    /**
+     * Se crea la relacion de order y users
+     * indicando que order es la llave foranea de users
+     *
+     * @return void
+     */
+    public function users()
+    {
+        return $this->belongsTo(User::class);
     }
 }

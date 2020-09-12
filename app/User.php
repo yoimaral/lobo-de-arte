@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Order;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -65,4 +67,17 @@ class User extends Authenticatable implements MustVerifyEmail
     //     if ($email)
     //         return $query->where('email', 'LIKE', "%$email%");
     // }
+
+
+    /**
+     * Se indica que hay muchas ordenes 
+     * haciendo instancia de orders
+     *
+     * @return void
+     */
+    public function orders()
+    {
+
+        return $this->hasMany(Order::class);
+    }
 }
