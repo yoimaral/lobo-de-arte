@@ -40,4 +40,16 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'customer_id');
     }
+
+    /**
+     * Se crea la relacion de order y product 
+     * de muchos a muchos belongsToMany
+     *
+     * @return void
+     */
+    public function products()
+    {
+
+        return $this->belongsToMany(Product::class)->withPivot('quantity');
+    }
 }

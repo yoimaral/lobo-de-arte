@@ -37,4 +37,28 @@ class Product extends Model
 
             return $query->where('name', 'LIKE', "%$products%");
     }
+
+    /**
+     * Se crea la relacion de carts y product en los modelos
+     * de muchos a muchos belongsToMany
+     *
+     * @return void
+     */
+    public function carts()
+    {
+
+        return $this->belongsToMany(Cart::class)->withPivot('quantity');
+    }
+
+    /**
+     * Se crea la relacion de order y product 
+     * de muchos a muchos belongsToMany
+     *
+     * @return void
+     */
+    public function orders()
+    {
+
+        return $this->belongsToMany(Order::class)->withPivot('quantity');
+    }
 }
