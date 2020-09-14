@@ -78,4 +78,15 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Order::class, 'customer_id');
     }
+
+
+    public function payments()
+    {
+        return $this->hasManyThrough(Payments::class, Order::class, 'customer_id');
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 }
