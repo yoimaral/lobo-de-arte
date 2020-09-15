@@ -42,14 +42,15 @@ class Order extends Model
     }
 
     /**
-     * Se crea la relacion de order y product 
-     * de muchos a muchos belongsToMany
+     * Se crea la relacion polimorfica de order y product 
+     * de muchos a muchos con morphToMany y se pasa
+     * el nombre de la relacion polimorfica que es productable
      *
      * @return void
      */
     public function products()
     {
 
-        return $this->belongsToMany(Product::class)->withPivot('quantity');
+        return $this->morphToMany(Product::class, 'productable')->withPivot('quantity');
     }
 }
