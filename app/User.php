@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Order;
+use App\Image;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
