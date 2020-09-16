@@ -53,5 +53,24 @@ class UserSeeder extends Seeder
                 $payment = factory(Payment::class)->make();
                 $order->payment()->save($payment);
             });
+
+        $carts = factory(App\Cart::class, 10)->create();
+
+        $products = factory(App\Product::class, 50)->create()
+            ->each(function ($product) use ($orders, $carts) {
+                $order = $orders->random();
+
+                $order->products()->attach([
+                    $product->id => ['quantity' => mt_rand(1, 3)],
+                ]);
+                $cart = $carts->random();
+
+                $cart->products()->attach([
+                    $product->id => ['quantity' => mt_rand(1, 5)],
+
+                ]);
+                $images = factory(Image::class, mt_rand(2, 4))->make();
+                $product->images()->saveMany($images);
+            });
     }
 }
