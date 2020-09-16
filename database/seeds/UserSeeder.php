@@ -1,33 +1,57 @@
 <?php
 
 use App\User;
+use App\Order;
+use App\Payment;
+
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
+
     /**
-     * Run the database seeds.
+     * Undocumented function
      *
      * @return void
      */
     public function run()
     {
-        $user = new User;
-        $user->name = 'Yoimar Lozano';
-        $user->email = 'yoimar@gmail.com';
-        $user->is_admin = true;
-        $user->email_verified_at = now();
-        $user->password = bcrypt('12345678');
-        $user->save();
+        $users = new User;
+        $users->name = 'Yoimar Lozano';
+        $users->email = 'yoimar@gmail.com';
+        $users->is_admin = true;
+        $users->email_verified_at = now();
+        $users->password = bcrypt('12345678');
+        $users->save();
 
-        $user = new User;
-        $user->name = 'Juango';
-        $user->email = 'juango@gmail.com';
-        $user->is_admin = false;
-        $user->email_verified_at = now();
-        $user->password = bcrypt('12345678');
-        $user->save();
+        $users = new User;
+        $users->name = 'Juango';
+        $users->email = 'juango@gmail.com';
+        $users->is_admin = false;
+        $users->email_verified_at = now();
+        $users->password = bcrypt('12345678');
+        $users->save();
 
-        factory(App\User::class, 50)->create();
+        $users = factory(App\User::class, 10)
+            ->create()
+            ->each(function ($user) {
+                $image = factory(Image::class)
+                    ->states('user')
+                    ->make();
+
+                $user->image()
+                    ->user($image);
+            });
+
+        $orders = factory(Order::class, 10)
+            ->make()
+            ->each(function ($order) use ($users) {
+
+                $order->customer_id = $users->random()->id;
+                $order->save();
+
+                $payment = factory(Payment::class)->make();
+                $order->payment()->save($payment);
+            });
     }
 }
