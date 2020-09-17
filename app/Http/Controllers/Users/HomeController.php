@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         $products = trim($request->get('product'));
 
-        $products = Product::products($products)
+        $products = Product::products($products)->where('disabled_at')
             ->paginate();
 
         return view('home.index', compact('products'));

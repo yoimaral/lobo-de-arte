@@ -3,6 +3,7 @@
 use App\User;
 use App\Order;
 use App\Payment;
+use App\Image;
 
 use Illuminate\Database\Seeder;
 
@@ -40,7 +41,7 @@ class UserSeeder extends Seeder
                     ->make();
 
                 $user->image()
-                    ->user($image);
+                    ->save($image);
             });
 
         $orders = factory(Order::class, 10)
