@@ -1,3 +1,8 @@
+<div class="d-flex float-right my-3">
+    <a href="{{route('products.create')}}" type="button" class="btn btn-success">Comprar ahora
+    </a>
+</div>
+
 @if( !isset ($cart) || $cart->products->isEmpty())
 <div class="alert alert-warning">
     No hay productos agregados.
