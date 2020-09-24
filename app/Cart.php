@@ -7,16 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
 
+
+
     /**
-     * Se crea la relacion polimorfica de cart y product 
-     * de muchos a muchos con morphToMany y se pasa
-     * el nombre de la relacion polimorfica que es productable
+     * Undocumented function
      *
-     * @return void
+     * 
      */
     public function products()
     {
-
         return $this->morphToMany(Product::class, 'productable')->withPivot('quantity');
     }
 }

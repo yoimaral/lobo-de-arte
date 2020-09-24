@@ -20,16 +20,23 @@
 
         @forelse ($products as $product)
         <div class="col mb-4">
-            <div class="card h-100">
+            <div class="col border-0 card h-100">
                 @if (substr($product->img, 0, 5) == 'https')
-                <img class="rounded-lg w-50" src="{{$product->img}}" alt="">
+                <img class="rounded-lg my-2 w-50" src="{{$product->img}}" alt="">
                 @else
-                <img class="rounded-lg w-50" src="/storage/{{$product->img}}" alt="">
+                <img class="rounded-lg my-2 w-50" src="/storage/{{$product->img}}" alt="">
                 @endif
                 <div class="card-body">
                     <h2 class="card-title">{{$product->name}}</h2>
                     <p class="card-text"><strong> Descripción: </strong>{{$product->description}}.</p>
                     <div class="modal-dialog modal-xl"><strong> Price: </strong>${{$product->price}} USD</div>
+
+                    <form class="d-inline" method="POST"
+                        action=" {{route('products.carts.store', ['product' => $product->id])}} ">
+
+                        @csrf
+                        <button class="btn btn-success" type="submit">Add To Cart</button>
+                    </form>
 
                     <a href="{{route('home.show',$product)}}" class="btn btn-primary">Detalle</a>
                 </div>

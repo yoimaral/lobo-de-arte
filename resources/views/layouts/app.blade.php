@@ -142,6 +142,10 @@
             </div>
           </li>
           @endguest
+          <li class="nav-item">
+            @inject('cartService', 'App\Services\CartService')
+            <a class="nav-link" href="{{ route('carts.index') }}"> Cart ({{ $cartService->countProducts()}})</a>
+          </li>
         </ul>
       </div>
   </div>

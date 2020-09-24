@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
 
     /**
-     * Para asegurarme que des de los controladores tampoco se pueda acceder a lasrutas sinestarautenticado
+     * Para asegurarme que des de los controladores tampoco se pueda acceder a lasrutas sin estar autenticado
      */
     public function __construct()
     {

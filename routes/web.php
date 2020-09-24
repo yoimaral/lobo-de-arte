@@ -30,10 +30,15 @@ Route::resource('users', 'Admin\UserController');
 /* AdminVerify para que la persona que este logueada y no sea admin lo saque de la tabla user */
 Route::resource('products', 'Admin\ProductController');
 
-Route::resource('products.Cart', 'Admin\ProductCartController')->only(['store', 'destroy']);
+Route::patch('/change_state/{product}', 'Admin\ProductController@state')
+    ->name('state');
 
 
-Route::patch('/change_state/{product}', 'Admin\ProductController@state')->name('state');
+Route::resource('products.carts', 'Cart\ProductCartController')
+    ->only(['store', 'destroy']);
+
+Route::resource('carts', 'Cart\CartController')
+    ->only(['index']);
 
 Route::resource('home', 'Users\HomeController');
 

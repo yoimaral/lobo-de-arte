@@ -14,11 +14,11 @@ $factory->define(Image::class, function (Faker $faker) {
     ];
 });
 
-$factory->state(Image::class, 'users', function (Faker $faker) {
+$factory->state(Image::class, 'user', function (Faker $faker) {
 
     $fileName = $faker->numberBetween(1, 6) . '.jpg';
 
     return [
-        'path' => public_path("img/users/{$fileName}")
+        'path' => public_path("img/user/{$fileName}")
     ];
 });
