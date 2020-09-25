@@ -1,12 +1,12 @@
+@extends('layouts.app')
+
+@section('content')
 <!---FOREACH-->
-
-
 <h3 class="text-center"><strong>Gran Total: $</strong> {{$cart->Total}} </h3>
 
 <div class="text-center mb-3">
     <form class="d-line" action="{{route ('orders.store')}}" method="POST">
         @csrf
-        @method('PATH')
         <button class=" btn btn-primary">Confirmar orden</button>
     </form>
 </div>
@@ -15,7 +15,7 @@
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Imagen</th>
+                <th scope="col">Pintura</th>
                 <th scope="col">Name</th>
                 <th scope="col">Cantidad</th>
                 <th scope="col">Precio</th>
@@ -46,3 +46,4 @@
 </div>
 
 <!---ENDFOREACH-->
+@endsection
