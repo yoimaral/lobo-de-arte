@@ -67,4 +67,10 @@ class Product extends Model
 
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    public function getTotalAttribute()
+    {
+
+        return $this->pivot->quantity * $this->price;
+    }
 }

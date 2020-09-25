@@ -1,5 +1,5 @@
-<div class="d-flex float-right my-3">
-    <a href="{{route('products.create')}}" type="button" class="btn btn-success">Comprar ahora
+<div class="d-flex float-right my-1">
+    <a href="{{route('orders.create')}}" type="button" class="btn btn-success">Comprar ahora
     </a>
 </div>
 
@@ -11,34 +11,68 @@
 
 <!---FOREACH-->
 <div class="row">
-    @foreach($cart->products as $product)
-    <div class="col col-3 my-4">
-        <div class="col card border-0 h-100">
-            @if (substr($product->img, 0, 5) == 'https')
-            <img class="col my-2" src="{{$product->img}}" alt="">
-            @else
-            <img class="col my-2" src="/storage/{{$product->img}}" alt="">
-            @endif
-            <div class="card-body">
-                <h2 class="card-title">{{$product->name}}</h2>
-                <p class="card-text"><strong> Descripción: </strong>{{$product->description}}.</p>
-                <div class="modal-dialog modal-xl"><strong> Stock: </strong>{{$product->stock}}</div>
-                <div class="modal-dialog modal-xl"><strong> Price: </strong>${{$product->price}} USD</div>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Detalle</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($cart->products as $product)
+            <div class="card ">
+                <tr>
+                    <td>
+                        @if (substr($product->img, 0, 5) == 'https')
+                        <img class="col my-2" src="{{$product->img}}" alt="">
+                        @else
+                        <img class="col my-2" src="/storage/{{$product->img}}" alt="">
+                        @endif
+                    </td>
 
-                <a href="{{route('home.show',$product)}}" class="btn btn-primary">Detalle</a>
 
-                <form action="{{route('products.carts.destroy',['cart' => $cart->id, 'product' => $product->id])}}"
-                    method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class=" btn btn-primary">Remover del Carrito</button>
-                </form>
+                    <td>
+                        <h2 class="card-title">{{$product->name}}</h2>
+                    </td>
 
-            </div>
-        </div>
-    </div>
-    @endforeach
+                    <td>
+                        <p class="card-text"><strong> Descripción: </strong>{{$product->description}}.</p>
+                    </td>
+
+                    <td>
+                        <div class="modal-dialog modal-xl"><strong> Stock: </strong>{{$product->stock}}
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="modal-dialog modal-xl"><strong> Price: </strong>${{$product->price}} USD
+                        </div>
+                    </td>
+
+                    <td>
+                        <a href="{{route('home.show',$product)}}" class="btn btn-primary">Detalle</a>
+                    </td>
+
+                    <td>
+                        <form
+                            action="{{route('products.carts.destroy',['cart' => $cart->id, 'product' => $product->id])}}"
+                            method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class=" btn btn-primary">Remover</button>
+                        </form>
+                    </td>
+
+                </tr>
+                @endforeach
+        </tbody>
+    </table>
+
 </div>
+
 
 @endif
 <!---ENDFOREACH-->

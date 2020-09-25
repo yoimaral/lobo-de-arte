@@ -40,7 +40,7 @@ Route::resource('products.carts', 'Cart\ProductCartController')
 Route::resource('carts', 'Cart\CartController')
     ->only(['index']);
 
-Route::resource('orders', 'Cart\OrderController')
+Route::resource('orders', 'OrderController')
     ->only(['create', 'store']);
 
 Route::resource('home', 'Users\HomeController');

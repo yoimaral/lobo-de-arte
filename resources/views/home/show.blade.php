@@ -23,8 +23,7 @@
             <h6> <strong>Stock: </strong> {{$product->stock}} </h6>
 
           </div>
-          <a href="#" class="btn btn-primary btn-lg btn-block" role="button" aria-pressed="true">Add to cart</a>
-          <a href="{{route('home.index')}}" class="btn btn-primary btn-lg btn-block" role="button"
+          <a href="{{route('carts.index')}}" class="btn btn-primary btn-lg btn-block" role="button"
             aria-pressed="true">Cancelar</a>
 
         </div>
