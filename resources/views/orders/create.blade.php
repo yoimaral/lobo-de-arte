@@ -1,5 +1,16 @@
 <!---FOREACH-->
 
+
+<h3 class="text-center"><strong>Gran Total: $</strong> {{$cart->Total}} </h3>
+
+<div class="text-center mb-3">
+    <form class="d-line" action="{{route ('orders.store')}}" method="POST">
+        @csrf
+        @method('PATH')
+        <button class=" btn btn-primary">Confirmar orden</button>
+    </form>
+</div>
+
 <div class="table-responsive">
     <table class="table table-striped">
         <thead class="thead-dark">

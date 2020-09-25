@@ -53,4 +53,15 @@ class Order extends Model
 
         return $this->morphToMany(Product::class, 'productable')->withPivot('quantity');
     }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function getTotalAttribute()
+    {
+
+        return $this->products->pluck('total')->sum();
+    }
 }

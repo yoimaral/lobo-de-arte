@@ -26,7 +26,6 @@ class Cart extends Model
      */
     public function getTotalAttribute()
     {
-
-        return $this->pivot->pluck('total')->sum();
+        return $this->products->pluck('total')->sum();
     }
 }

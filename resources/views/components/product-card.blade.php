@@ -17,7 +17,7 @@
                 <th scope="col">Imagen</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Detalle</th>
-                <th scope="col">Stock</th>
+                <th scope="col">Cantidad</th>
                 <th scope="col">Precio</th>
             </tr>
         </thead>
@@ -43,7 +43,9 @@
                     </td>
 
                     <td>
-                        <div class="modal-dialog modal-xl"><strong> Stock: </strong>{{$product->stock}}
+                        <div class="modal-dialog modal-xl">{{ $product->pivot->quantity }} Articulos en tu carrito
+                            <strong> Total:
+                            </strong>({{$product->total}})
                         </div>
                     </td>
 
