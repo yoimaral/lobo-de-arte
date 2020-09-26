@@ -25,23 +25,23 @@ Auth::routes(['verify' => true]); /* verify funciona para la verificacion del em
 // Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 /* ->middleware('verified', AdminVerify::class) middleware para bloquear las rutas si no esta logueado */
 
-Route::resource('users', 'Admin\UserController');
+Route::resource('users', 'Admin\UserController')->middleware('verified', AdminVerify::class);
 /* Con resource puedo crear las 7 rutas rest en una sola línea */
 /* AdminVerify para que la persona que este logueada y no sea admin lo saque de la tabla user */
-Route::resource('products', 'Admin\ProductController');
+Route::resource('products', 'Admin\ProductController')->middleware('verified', AdminVerify::class);
 
 Route::patch('/change_state/{product}', 'Admin\ProductController@state')
-    ->name('state');
+    ->name('state')->middleware('verified', AdminVerify::class);
 
 
 Route::resource('products.carts', 'Cart\ProductCartController')
-    ->only(['store', 'destroy']);
+    ->only(['store', 'destroy'])->middleware('verified');
 
 Route::resource('carts', 'Cart\CartController')
-    ->only(['index']);
+    ->only(['index'])->middleware('verified');
 
 Route::resource('orders', 'OrderController')
-    ->only(['create', 'store']);
+    ->only(['create', 'store'])->middleware('verified');
 
 Route::resource('home', 'Users\HomeController');
 

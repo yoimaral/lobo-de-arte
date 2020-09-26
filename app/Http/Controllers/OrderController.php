@@ -18,6 +18,8 @@ class OrderController extends Controller
     public function __construct(CartService $cartService)
     {
         $this->cartService = $cartService;
+
+        $this->middleware('auth')->only(['store']);
     }
 
     /**
@@ -40,7 +42,8 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Para validar de que si allá un usuario autenticado 
+     * $user = $request->user();
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -48,5 +51,15 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
+
+        $order = $user->orders()->create([
+            'status' => 'pending'
+        ]);
+        $cart = $this->cartService->getFromCookie();
+
+        $cartProductsWithQuantity = $cart->products->mapWithKeys(function ($product) {
+            $element[$product->id] = ['quantity' => $product->pivot->quantity];
+        });
+        $order->product()->attach($cartProductsWithQuantity->toArray());
     }
 }

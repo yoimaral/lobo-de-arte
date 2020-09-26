@@ -5,7 +5,9 @@
   <div class="row">
     <div class="">
       <div class="card">
-        <div class="card-header">Carrito de compras</div>
+        <div class="card-header">
+          <h4><strong> Su sesta</strong></h4>
+        </div>
 
         @include('components.product-card')
 
