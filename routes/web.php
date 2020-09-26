@@ -43,6 +43,9 @@ Route::resource('carts', 'Cart\CartController')
 Route::resource('orders', 'OrderController')
     ->only(['create', 'store'])->middleware('verified');
 
+Route::resource('orders.payments', 'OrderPaymentController')
+    ->only(['create', 'store'])->middleware('verified');
+
 Route::resource('home', 'Users\HomeController');
 
 // Route::get('/user', 'Admin\UserController@index')

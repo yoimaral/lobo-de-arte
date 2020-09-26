@@ -61,5 +61,6 @@ class OrderController extends Controller
             $element[$product->id] = ['quantity' => $product->pivot->quantity];
         });
         $order->product()->attach($cartProductsWithQuantity->toArray());
+        return redirect()->route('orders.payment.create', ['order' => $order]);
     }
 }
