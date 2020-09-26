@@ -17,7 +17,9 @@ class OrderPaymentController extends Controller
      */
     public function create(Order $order)
     {
-        //
+        return view('payments.create')->with([
+            'order' => $order
+        ]);
     }
 
     /**
