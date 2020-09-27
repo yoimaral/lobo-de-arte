@@ -59,8 +59,11 @@ class OrderController extends Controller
 
         $cartProductsWithQuantity = $cart->products->mapWithKeys(function ($product) {
             $element[$product->id] = ['quantity' => $product->pivot->quantity];
+
+            return $element;
         });
-        $order->product()->attach($cartProductsWithQuantity->toArray());
-        return redirect()->route('orders.payment.create', ['order' => $order]);
+
+        $order->products()->attach($cartProductsWithQuantity->toArray());
+        return redirect()->route('orders.payments.create', ['order' => $order]);
     }
 }
