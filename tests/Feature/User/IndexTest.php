@@ -5,6 +5,7 @@ namespace Tests\Feature\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\User;
 
 class IndexTest extends TestCase
 {
@@ -13,10 +14,6 @@ class IndexTest extends TestCase
     public function ListUsers()
     {
         /*  $this->withoutExceptionHandling(); */
-
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user);
 
         $response = $this->get(route('login'))
             ->assertStatus(200)

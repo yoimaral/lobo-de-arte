@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\User;
 
 class LoginTest extends TestCase
 {
@@ -15,7 +16,7 @@ class LoginTest extends TestCase
 
         $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)
+        $response = $this
             ->post(route('register'), [
                 'name' => 'Yepeto',
                 'email' => 'Yepeto@gmail.com',
@@ -27,6 +28,6 @@ class LoginTest extends TestCase
             'email' => 'Yepeto@gmail.com',
             'password' => '12345678',
         ]); */
-        $response->assertSRedirect(route('welcom'));
+        $response->assertRedirect(url(''));
     }
 }

@@ -23,7 +23,6 @@ class Order extends Model
      * Se indica que una orden 
      * tiene un solo pago
      *
-     * @return void
      */
     public function payment()
     {

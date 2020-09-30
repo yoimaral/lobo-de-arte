@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('users', 'Admin\UserController')->middleware('verified');
+Route::resource('users', 'UserController')->middleware('verified');
 /* Con resource puedo crear las 7 rutas rest en una sola línea */
 /* AdminVerify para que la persona que este logueada y no sea admin lo saque de la tabla user */
-Route::resource('products', 'Admin\ProductController')->middleware('verified');
+Route::resource('products', 'ProductController')->middleware('verified');
 
-Route::patch('/change_state/{product}', 'Admin\ProductController@state')
+Route::patch('/change_state/{product}', 'ProductController@state')
     ->name('state')->middleware('verified');
 
 // Route::get('/user', 'Admin\UserController@index')

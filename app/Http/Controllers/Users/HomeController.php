@@ -37,57 +37,8 @@ class HomeController extends Controller
 
     /* Lo llame home para que la ruta me pase el objeto con la información y luego
      lo renombro como product para que me lo muestre en la vista */
-    public function show(Product $home)
+    public function show(Product $product)
     {
-        return view('home.show', ['product' => $home]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\HomeController  $homeController
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(HomeController $homeController)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\HomeController  $homeController
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, HomeController $homeController)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\HomeController  $homeController
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(HomeController $homeController)
-    {
-        //
+        return view('home.show', ['product' => $product]);
     }
 }

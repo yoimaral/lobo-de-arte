@@ -70,7 +70,7 @@ class ProductController extends Controller
 
         /* $product = Product::create(request()->all()); */
 
-        return back()->with('message', 'Ha sido exitosamente creado');
+        return redirect()->route('products.create')->with('message', 'Ha sido exitosamente creado');
     }
 
     /**
