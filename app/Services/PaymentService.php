@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Payments;
+namespace App\Http\Services;
 
 use App\Payment;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Http;
 
-class PaymentController extends Controller
+class PaymentService
 {
     /**
      * Display a listing of the resource.
@@ -23,10 +22,10 @@ class PaymentController extends Controller
      * Show the form for creating a new resource.
      *
      */
-    public function createRequest()
+    public function handlePayment()
     {
         $response = Http::POST(url('https://test.placetopay.com/redirection/api/session'), [
-            'auth' => $this->store(),
+            'auth' => $this->getCredentials(),
             'payment' => [
                 'reference' => '2020sep30013859',
                 'description' => 'Cuadro de la cosa',
@@ -35,8 +34,8 @@ class PaymentController extends Controller
                     'total' => '50000',
                 ],
             ],
-            'expiration' => '2020-09-01T00:00:00-05:00',
-            'returnUrl' => '127.0.0.1:46702 ',
+            'expiration' => date('c', strtotime('+1 hour')),
+            'returnUrl' => 'http://127.0.0.1:8000',
             'ipAddress' => '127.0.0.1',
             'userAgent' => 'PlacetoPay Sandbox',
         ]);
@@ -46,16 +45,18 @@ class PaymentController extends Controller
 
     public function getRequestInformation($requestId)
     {
-        $response = Http::post('https:test.placetopay.com/redirection/api/session/' . $requestId, [
-            'auth' => $this->stor()
+        $response = Http::post('https://test.placetopay.com/redirection/api/session/' . $requestId, [
+            'auth' => $this->getCredentials()
         ]);
+
+        return $response->json();
     }
 
     /**
      * Store a newly created resource in storage.
      *
      */
-    public function store()
+    public function getCredentials()
     {
         $login = '6dd490faf9cb87a9862245da41170ff2';
         $secretKey = '024h1IlD';
@@ -74,10 +75,10 @@ class PaymentController extends Controller
 
         return [
 
-            'login' => '$login',
-            'seed' => '$secretKey',
-            'nonce' => '$nonceBase64',
-            'tranKey' => '$tranKey',
+            'login' => $login,
+            'seed' => $seed,
+            'nonce' => $nonceBase64,
+            'tranKey' => $tranKey,
 
         ];
     }

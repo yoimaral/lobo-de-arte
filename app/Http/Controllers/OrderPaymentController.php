@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\PaymentService;
 use App\Order;
 use App\Payment;
 use App\Services\CartService;
@@ -11,7 +12,7 @@ class OrderPaymentController extends Controller
 {
 
     public $cartService;
-
+    public $PaymentService;
     /**
      * Undocumented function
      *
@@ -19,6 +20,8 @@ class OrderPaymentController extends Controller
      */
     public function __construct(CartService $cartService)
     {
+
+
         $this->cartService = $cartService;
 
         $this->middleware('auth')->only(['store']);
@@ -48,7 +51,7 @@ class OrderPaymentController extends Controller
      */
     public function store(Request $request, Order $order)
     {
-        /* PaymentService::handlePayment(); */
+        $payment = PaymentService::handlePayment();
 
         $this->cartService->getFromCookie()->products()->detach();
 
