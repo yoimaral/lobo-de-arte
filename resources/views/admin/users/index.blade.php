@@ -24,9 +24,7 @@
                 <th>Verificación de E-mail</th>
                 <th>Estado de la cuenta</th>
                 <th>Fecha de creacion</th>
-                <th>Estado</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
