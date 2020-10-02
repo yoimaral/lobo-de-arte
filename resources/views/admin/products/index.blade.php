@@ -31,8 +31,8 @@
                 <th scope="col">Precio</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Estado</th>
-                <th scope="col">Eliminar</th>
-                <th scope="col">Editar</th>
+                <th scope="col">Acciones</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>

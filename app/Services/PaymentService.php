@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Services;
+namespace App\Services;
 
+use App\Order;
 use App\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -22,16 +23,16 @@ class PaymentService
      * Show the form for creating a new resource.
      *
      */
-    public function handlePayment()
+    public function handlePayment(Order $order, Request $request)
     {
         $response = Http::POST(url('https://test.placetopay.com/redirection/api/session'), [
             'auth' => $this->getCredentials(),
             'payment' => [
-                'reference' => '2020sep30013859',
-                'description' => 'Cuadro de la cosa',
+                'reference' => $order->id,
+                'description' => $request->texTarea,
                 'amount' => [
                     'currency' => 'COP',
-                    'total' => '50000',
+                    'total' => $order->total,
                 ],
             ],
             'expiration' => date('c', strtotime('+1 hour')),

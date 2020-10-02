@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\PaymentService;
+use App\Services\PaymentService;
 use App\Order;
 use App\Payment;
 use App\Services\CartService;
@@ -18,9 +18,9 @@ class OrderPaymentController extends Controller
      *
      * @param CartService $cartService
      */
-    public function __construct(CartService $cartService)
+    public function __construct(CartService $cartService, PaymentService $PaymentService)
     {
-
+        $this->PaymentService = $PaymentService;
 
         $this->cartService = $cartService;
 
@@ -35,7 +35,12 @@ class OrderPaymentController extends Controller
      */
     public function create(Order $order)
     {
-        return view('payments.create')->with([
+
+
+        $request = $this->PaymentService
+            ->getRequestInformation('');
+
+        return view('payment.create')->with([
             'order' => $order
         ]);
     }
@@ -51,11 +56,13 @@ class OrderPaymentController extends Controller
      */
     public function store(Request $request, Order $order)
     {
-        $payment = PaymentService::handlePayment();
+        $payment = $this->PaymentService->handlePayment($order, $request);
 
         $this->cartService->getFromCookie()->products()->detach();
 
-        $order->payment()->create([
+        return redirect($payment['processUrl']);
+
+        /*         $order->payment()->create([
             'amount' => $order->total,
             'payed_at' => now()
         ]);
@@ -65,6 +72,6 @@ class OrderPaymentController extends Controller
 
         return redirect()
             ->route('home.index')
-            ->with('message', "Gracias! su compra porvalor de \${$order->total} ha sido Exitosa");
+            ->with('message', "Gracias! su compra porvalor de \${$order->total} ha sido Exitosa"); */
     }
 }
