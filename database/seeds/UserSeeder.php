@@ -33,6 +33,7 @@ class UserSeeder extends Seeder
         $users->password = bcrypt('12345678');
         $users->save();
 
+        /* 
         $users = factory(App\User::class, 10)
             ->create()
             ->each(function ($user) {
@@ -72,6 +73,6 @@ class UserSeeder extends Seeder
                 ]);
                 $images = factory(Image::class, mt_rand(2, 4))->make();
                 $product->images()->saveMany($images);
-            });
+            }); */
     }
 }
