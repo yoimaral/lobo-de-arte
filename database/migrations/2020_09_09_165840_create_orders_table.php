@@ -17,6 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('status')->default('pending');
             $table->bigInteger('customer_id')->unsigned();
+            $table->bigInteger('requestId')->nullable();
+            $table->string('processUrl')->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('users')->constrained()->onDelete('cascade');

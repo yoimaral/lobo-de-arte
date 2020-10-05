@@ -26,22 +26,21 @@
             </tr>
 
             <tr>
-                <th scope="col">Request</th>
+                <th scope="col">Información del pago</th>
             </tr>
 
         </thead>
         <tbody>
-            @forelse ($orders as $order)
+
 
             <tr>
                 <td>
-                    <a href="{{route('orders.payments.show', [$order, 1])}}">{{$order->requestId}}</a>
+                    {{$consul['status']['message']}}
+                    {{$order->requestId}}
                 </td>
-
+                {{-- 
+                <td>{{$consulta->amount}}</td> --}}
             </tr>
-            @empty
-            No hay ordenes
-            @endforelse
         </tbody>
     </table>
 

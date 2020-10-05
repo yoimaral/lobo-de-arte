@@ -36,7 +36,7 @@ class PaymentService
                 ],
             ],
             'expiration' => date('c', strtotime('+1 hour')),
-            'returnUrl' => 'http://127.0.0.1:8000',
+            'returnUrl' => 'http://127.0.0.1:8000/payment',
             'ipAddress' => '127.0.0.1',
             'userAgent' => 'PlacetoPay Sandbox',
         ]);
@@ -44,13 +44,19 @@ class PaymentService
         return $response->json();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $requestId
+     * @return void
+     */
     public function getRequestInformation($requestId)
     {
-        $response = Http::post('https://test.placetopay.com/redirection/api/session/' . $requestId, [
+        $getResponse = Http::post('https://test.placetopay.com/redirection/api/session/' . $requestId, [
             'auth' => $this->getCredentials()
         ]);
 
-        return $response->json();
+        return $getResponse->json();
     }
 
     /**

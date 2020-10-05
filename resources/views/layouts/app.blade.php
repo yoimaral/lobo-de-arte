@@ -101,6 +101,10 @@
             <a class="nav-link" href="{{ route('home.index') }}">{{ __('Home') }}</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('payments.index') }}">{{ __('Pedidos') }}</a>
+          </li>
+
           @auth
           @if (Auth::user()->is_admin)
 

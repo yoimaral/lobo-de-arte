@@ -31,7 +31,9 @@ Route::resource('orders', 'OrderController')
     ->only(['create', 'store'])->middleware('verified');
 
 Route::resource('orders.payments', 'OrderPaymentController')
-    ->only(['create', 'store'])->middleware('verified');
+    ->only(['create', 'store', 'show'])->middleware('verified');
+
+Route::resource('payments', 'Payments\PaymentController')->middleware('verified');
 
 Route::get('home', 'Users\HomeController@index')->name('home.index');
 

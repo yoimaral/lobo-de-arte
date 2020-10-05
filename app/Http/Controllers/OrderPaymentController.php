@@ -28,6 +28,17 @@ class OrderPaymentController extends Controller
     }
 
     /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return void
+     */
+    public function index(OrderPaymentController $payment)
+    {
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @param  \App\Order  $order
@@ -35,7 +46,6 @@ class OrderPaymentController extends Controller
      */
     public function create(Order $order)
     {
-
 
         $request = $this->PaymentService
             ->getRequestInformation('');
@@ -60,6 +70,10 @@ class OrderPaymentController extends Controller
 
         $this->cartService->getFromCookie()->products()->detach();
 
+        $order->requestId = $payment['requestId'];
+        $order->processUrl = $payment['processUrl'];
+        $order->save();
+
         return redirect($payment['processUrl']);
 
         /*         $order->payment()->create([
@@ -73,5 +87,15 @@ class OrderPaymentController extends Controller
         return redirect()
             ->route('home.index')
             ->with('message', "Gracias! su compra porvalor de \${$order->total} ha sido Exitosa"); */
+    }
+
+    public function show(Order $order, int $payment, Request $infoPay)
+    {
+        $requestId = $order->requestId;
+
+        $consul = $this->PaymentService->getRequestInformation($requestId);
+
+
+        return view('payment.show', ['consul' => $consul, 'order' => $order]);
     }
 }
