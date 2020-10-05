@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Http;
 
 class PaymentService
 {
+    protected $endpointBase;
+    protected $login;
+    protected $secretkey;
+
+    public function __construct()
+    {
+        $this->endpointBase = env('PASARELA_ENDPOINT_BASE');
+        $this->login = env('PASARELA_LOGIN');
+        $this->secretkey = env('PASARELA_SECRETKEY');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +36,7 @@ class PaymentService
      */
     public function handlePayment(Order $order, Request $request)
     {
-        $response = Http::POST(url('https://test.placetopay.com/redirection/api/session'), [
+        $response = Http::POST(url($this->endpointBase . '/api/session'), [
             'auth' => $this->getCredentials(),
             'payment' => [
                 'reference' => $order->id,
@@ -36,7 +47,7 @@ class PaymentService
                 ],
             ],
             'expiration' => date('c', strtotime('+1 hour')),
-            'returnUrl' => 'http://127.0.0.1:8000/payment',
+            'returnUrl' => 'http://127.0.0.1:8000',
             'ipAddress' => '127.0.0.1',
             'userAgent' => 'PlacetoPay Sandbox',
         ]);
@@ -65,8 +76,8 @@ class PaymentService
      */
     public function getCredentials()
     {
-        $login = '6dd490faf9cb87a9862245da41170ff2';
-        $secretKey = '024h1IlD';
+        $login = $this->login;
+        $secretKey = $this->secretkey;
         $seed = date('c');
         if (function_exists('random_bytes')) {
             $nonce = bin2hex(random_bytes(16));
