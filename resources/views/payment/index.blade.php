@@ -26,6 +26,7 @@
             </tr>
 
             <tr>
+                <th scope="col">#</th>
                 <th scope="col">Request</th>
             </tr>
 
@@ -34,6 +35,7 @@
             @forelse ($orders as $order)
 
             <tr>
+                <td>{{$order->id}}</td>
                 <td>
                     <a href="{{route('orders.payments.show', [$order, 1])}}">{{$order->requestId}}</a>
                 </td>

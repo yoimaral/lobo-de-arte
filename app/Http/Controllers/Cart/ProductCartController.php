@@ -23,12 +23,12 @@ class ProductCartController extends Controller
         $this->cartService = $cartService;
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * Undocumented function
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Product $product
      */
     public function store(Request $request, Product $product)
     {

@@ -31,7 +31,7 @@
                 <th scope="col">Precio</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Acciones</th>
-            </tr>s
+            </tr>
         </thead>
         <tbody>
             @forelse ($products as $product)

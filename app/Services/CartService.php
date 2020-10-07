@@ -25,10 +25,10 @@ class CartService
         return $cart;
     }
 
+
     /**
      * Undocumented function
      *
-     * @return void
      */
     public function getFromCookieOrCreate()
     {
