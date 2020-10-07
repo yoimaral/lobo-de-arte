@@ -57,9 +57,7 @@ class OrderPaymentController extends Controller
 
 
     /**
-     * Realiza la funcion de eliminar 
-     * los productos del carrito
-     * $this->cartService->getFromCookie()->product()->detach();
+     * 
      *
      * @param Request $request
      * @param Order $order
@@ -75,20 +73,16 @@ class OrderPaymentController extends Controller
         $order->save();
 
         return redirect($payment['processUrl']);
-
-        /*         $order->payment()->create([
-            'amount' => $order->total,
-            'payed_at' => now()
-        ]);
-
-        $order->status = 'payed';
-        $order->save();
-
-        return redirect()
-            ->route('home.index')
-            ->with('message', "Gracias! su compra porvalor de \${$order->total} ha sido Exitosa"); */
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Order $order
+     * @param integer $payment
+     * @param Request $infoPay
+     * @return void
+     */
     public function show(Order $order, int $payment, Request $infoPay)
     {
         $requestId = $order->requestId;

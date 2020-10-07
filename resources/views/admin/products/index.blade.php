@@ -48,7 +48,7 @@
                 </td>
                 <td>{{$product->name}}</td>
                 <td>{{$product->description}}</td>
-                <td>${{$product->price}} USD</td>
+                <td>${{$product->price}} COP</td>
                 <td>{{$product->stock}}</td>
                 <td>
                     <input name="disabled_at" type="checkbox" class="form-check-input"

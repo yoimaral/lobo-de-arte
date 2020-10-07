@@ -51,24 +51,22 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        return DB::transaction(function () use ($request) {
 
-            $user = $request->user();
+        $user = $request->user();
 
-            $order = $user->orders()->create([
-                'status' => 'in process'
-            ]);
+        $order = $user->orders()->create([
+            'status' => 'in process'
+        ]);
 
-            $cart = $this->cartService->getFromCookie();
+        $cart = $this->cartService->getFromCookie();
 
-            $cartProductsWithQuantity = $cart->products->mapWithKeys(function ($product) {
-                $element[$product->id] = ['quantity' => $product->pivot->quantity];
+        $cartProductsWithQuantity = $cart->products->mapWithKeys(function ($product) {
+            $element[$product->id] = ['quantity' => $product->pivot->quantity];
 
-                return $element;
-            });
-
-            $order->products()->attach($cartProductsWithQuantity->toArray());
-            return redirect()->route('orders.payments.create', ['order' => $order]);
+            return $element;
         });
+
+        $order->products()->attach($cartProductsWithQuantity->toArray());
+        return redirect()->route('orders.payments.create', ['order' => $order]);
     }
 }
