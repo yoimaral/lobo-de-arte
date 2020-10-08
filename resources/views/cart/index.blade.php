@@ -6,7 +6,7 @@
     <div class="">
       <div class="card">
         <div class="card-header">
-          <h4><strong> Su sesta</strong></h4>
+          <h4><strong> Su cesta</strong></h4>
         </div>
 
         @include('components.product-card')
