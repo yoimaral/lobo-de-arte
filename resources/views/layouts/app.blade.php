@@ -102,7 +102,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('payments.index') }}">{{ __('Pedidos') }}</a>
+            <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Pedidos') }}</a>
           </li>
 
           @auth

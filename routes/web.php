@@ -28,7 +28,7 @@ Route::resource('carts', 'Cart\CartController')
     ->only(['index'])->middleware('verified');
 
 Route::resource('orders', 'OrderController')
-    ->only(['create', 'store'])->middleware('verified');
+    ->only(['create', 'store', 'index', 'show'])->middleware('verified');
 
 Route::resource('orders.payments', 'OrderPaymentController')
     ->only(['create', 'store', 'show'])->middleware('verified');

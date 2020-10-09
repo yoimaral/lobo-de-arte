@@ -28,10 +28,14 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart.index')
-            ->with([
+        $cart = $this->cartService->getFromCookie();
 
-                'cart' => $this->cartService->getFromCookie(),
-            ]);
+        if (!isset($cart) || $cart->products->isEmpty()) {
+            return redirect()
+                ->back()
+                ->withErrors("Tu carro esta vacio!");
+        }
+
+        return view('cart.index',['cart' => $cart]);
     }
 }
