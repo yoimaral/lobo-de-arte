@@ -38,9 +38,9 @@ class OrderController extends Controller
         $requestId = $order->requestId;
 
         $consul = $this->paymentService->getRequestInformation($requestId);
-        return view('orders.show', ['order' => $consul]);
+        return view('orders.show', ['consul' => $consul]);
     }
-
+    
     /**
      * Retorna a la vista la informacion del carrito 
      * accediendo al cardService
