@@ -24,8 +24,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('payment.index', ['orders' => $orders]);
+ 
     }
 
     /**

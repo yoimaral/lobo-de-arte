@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Order;
+use App\Product;
 use App\Services\CartService;
 use App\Services\PaymentService;
 use Illuminate\Http\Request;
@@ -82,12 +84,30 @@ class OrderController extends Controller
         });
         $order->products()->attach($cartProductsWithQuantity->toArray());
         $payment = $this->paymentService->handlePayment($order, $request);
+      /*   $order->status = $payment['status']['status']; */
         $order->requestId = $payment['requestId'];
         $order->processUrl = $payment['processUrl'];
         $order->save();
         $this->cartService->getFromCookie()->products()->detach();
 
         return redirect($payment['processUrl']);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Product $product
+     * @param Cart $cart
+     * @return void
+     */
+    public function destroy(Product $product, Cart $cart)
+    {
+
+        $cart->products()->detach($product->id);
+
+        $cookie = $this->cartService->makeCookie($cart);
+
+        return redirect()->back()->cookie($cookie);
     }
 
 }

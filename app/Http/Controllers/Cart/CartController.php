@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Cart;
 
+use App\Cart;
 use App\Http\Controllers\Controller;
+use App\Product;
 use App\Services\CartService;
 
 
@@ -30,12 +32,23 @@ class CartController extends Controller
     {
         $cart = $this->cartService->getFromCookie();
 
-        if (!isset($cart) || $cart->products->isEmpty()) {
-            return redirect()
-                ->back()
-                ->withErrors("Tu carro esta vacio!");
-        }
-
         return view('cart.index',['cart' => $cart]);
+    }
+
+
+    /**
+     * Undocumented function
+     *
+     * @param Product $product
+     * @param Cart $cart
+     * @return void
+     */
+    public function destroy(Product $product, Cart $cart)
+    {
+        $cart->products()->detach($product->id);
+
+        $cookie = $this->cartService->makeCookie($cart);
+
+        return redirect()->back()->cookie($cookie);
     }
 }

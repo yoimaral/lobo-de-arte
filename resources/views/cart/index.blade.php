@@ -33,7 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($cart->products as $product)
+                            @forelse($cart->products as $product)
                             <div class="card ">
                                 <tr>
                                     <td>
@@ -74,7 +74,7 @@
 
                                     <td>
                                         <form
-                                            action="{{route('products.carts.destroy',['cart' => $cart->id, 'product' => $product->id])}}"
+                                            action="{{route('carts.destroy',['cart' => $cart->id, 'product' => $product->id])}}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -83,12 +83,13 @@
                                     </td>
 
                                 </tr>
-                                @endforeach
+                                @empty
+                                No hay ordenes
+                                @endforelse
                         </tbody>
                     </table>
 
                 </div>
-
 
                 @endif
                 <!---ENDFOREACH-->
