@@ -37,10 +37,17 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $requestId = $order->requestId;
+        
+        $consul = $this->paymentService
+        ->getRequestInformation($order->requestId);
 
-        $consul = $this->paymentService->getRequestInformation($requestId);
-        return view('orders.show', ['consul' => $consul]);
+        if ($order->status == 'PENDING') {
+            
+            $order->status = $consul['status']['status'];
+            $order->save();
+        }
+        
+        return view('orders.show', ['consul' => $consul,'order'=> $order],);
     }
     
     /**
@@ -84,7 +91,6 @@ class OrderController extends Controller
         });
         $order->products()->attach($cartProductsWithQuantity->toArray());
         $payment = $this->paymentService->handlePayment($order, $request);
-      /*   $order->status = $payment['status']['status']; */
         $order->requestId = $payment['requestId'];
         $order->processUrl = $payment['processUrl'];
         $order->save();
@@ -110,16 +116,31 @@ class OrderController extends Controller
         return redirect()->back()->cookie($cookie);
     }
 
-        /**
-     * Show the form for editing the specified resource.
+
+    /**
+     * Undocumented function
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Order $order
+     * @return void
      */
-    public function edit($id)
+    public function repeatPayment(Order $order,Request $request)
     {
-        //
+
+        $payment = $this->paymentService->handlePayment($order, $request);
+        $order->requestId = $payment['requestId'];
+        $order->processUrl = $payment['processUrl'];
+        $order->save();
+
+        return redirect($payment['processUrl']);
     }
+
+
+
+
+
+
+
+
 
     /**
      * Update the specified resource in storage.

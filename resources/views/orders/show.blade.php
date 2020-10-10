@@ -26,7 +26,12 @@
                     <tr>
                         <td>{{$consul["requestId"]}}</td>
                         <td>{{$consul["status"]["status"]}}</td>
-                        <td><a href=""><button type="button" class="btn btn-outline-success">Reintentar</button></a>
+
+                        <td>
+                            <form action="{{route('orders.repeatPayment', ['order'=>$order])}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-success">Reintentar</button>
+                            </form>
                         </td>
                     </tr>
                 </tbody>

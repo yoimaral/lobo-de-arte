@@ -28,6 +28,7 @@ Route::resource('carts', 'Cart\CartController')
     ->only(['index','destroy'])->middleware('verified');
 
 Route::resource('orders', 'OrderController')->middleware('verified');
+Route::post('orders/{order}','OrderController@repeatPayment',)->name('orders.repeatPayment');
 
 Route::resource('orders.payments', 'OrderPaymentController')
     ->only(['create', 'store', 'show'])->middleware('verified');

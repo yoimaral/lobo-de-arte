@@ -47,7 +47,7 @@ class PaymentService
                 ],
             ],
             'expiration' => date('c', strtotime('+1 hour')),
-            'returnUrl' => 'http://127.0.0.1:8000',
+            'returnUrl' => route('orders.show', $order->id),
             'ipAddress' => '127.0.0.1',
             'userAgent' => 'PlacetoPay Sandbox',
         ]);
