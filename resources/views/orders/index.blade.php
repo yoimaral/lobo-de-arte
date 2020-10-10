@@ -8,7 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>RequestId</th>
-                <th>Amount</th>
+                <th>Total</th>
                 <th>Acción</th>
             </tr>
         </thead>
@@ -17,7 +17,7 @@
             <tr>
                 <td scope="row">{{$order->id}}</td>
                 <td>{{$order->requestId}}</td>
-                <td>{{$order->total}}</td>
+                <td>${{$order->total}}</td>
                 <td><a href="{{route('orders.show', $order)}}">Ver</a></td>
             </tr>
             @endforeach

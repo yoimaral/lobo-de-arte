@@ -14,8 +14,8 @@
         <tbody>
             <tr>
                 <td scope="row">{{$order->id}}</td>
-                <td>{{$order->requestId}}</td>
-                <td>{{$order->total}}</td>
+                <td>{{$consul['status']['message']}}</td>
+                <td>{{$consul->total}}</td>
             </tr>
         </tbody>
     </table>

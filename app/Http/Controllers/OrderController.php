@@ -35,10 +35,10 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $request = $this->PaymentService->getRequestInformation();
-        
+        $requestId = $order->requestId;
 
-        return view('orders.show', ['order' => $order, 'request' => $request ]);
+        $consul = $this->paymentService->getRequestInformation($requestId);
+        return view('orders.show', ['order' => $consul]);
     }
 
     /**
