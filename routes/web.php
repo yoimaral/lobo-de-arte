@@ -30,10 +30,10 @@ Route::resource('carts', 'Cart\CartController')
 Route::resource('orders', 'OrderController')->middleware('verified');
 Route::post('orders/{order}','OrderController@repeatPayment',)->name('orders.repeatPayment');
 
-Route::resource('orders.payments', 'OrderPaymentController')
-    ->only(['create', 'store', 'show'])->middleware('verified');
-
-Route::resource('payments', 'Payments\PaymentController')->middleware('verified');
+/* Route::resource('orders.payments', 'OrderPaymentController')
+    ->only(['create', 'store', 'show'])->middleware('verified'); */
+/* 
+Route::resource('payments', 'Payments\PaymentController')->middleware('verified'); */
 
 Route::get('home', 'Users\HomeController@index')->name('home.index');
 

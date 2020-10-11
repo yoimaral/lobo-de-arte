@@ -49,6 +49,20 @@ class ProductCartController extends Controller
         return redirect()->back()->cookie($cookie);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param Product $product
+     * @param Cart $cart
+     * @return void
+     */
+    public function destroy(Product $product, Cart $cart)
+    {
+        $cart->products()->detach($product->id);
 
+        $cookie = $this->cartService->makeCookie($cart);
+
+        return redirect()->back()->cookie($cookie);
+    }
 
 }

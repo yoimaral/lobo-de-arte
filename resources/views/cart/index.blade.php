@@ -74,11 +74,11 @@
 
                                     <td>
                                         <form
-                                            action="{{route('carts.destroy',['cart' => $cart->id, 'product' => $product->id])}}"
+                                            action="{{route('products.carts.destroy',['cart' => $cart->id, 'product' => $product->id])}}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class=" btn btn-primary">Remover</button>
+                                            <button type="submit" class=" btn btn-primary">Remover</button>
                                         </form>
                                     </td>
 

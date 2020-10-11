@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{$consul["requestId"]}}</td>
                         <td>{{$consul["status"]["status"]}}</td>
-                        <td class="text-success">${{number_format($consul["request"]["payment"]["amount"]["total"])}}
+                        <td class="text-secondary">${{number_format($consul["request"]["payment"]["amount"]["total"])}}
                         </td>
                         @if ($consul['status']['status'] != 'APPROVED')
                         <td>
