@@ -19,20 +19,26 @@
                     <tr>
                         <th>Referencia</th>
                         <th>Estado</th>
+                        <th>Total</th>
+                        @if ($consul['status']['status'] != 'APPROVED')
                         <th>Acciones</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{$consul["requestId"]}}</td>
                         <td>{{$consul["status"]["status"]}}</td>
-
+                        <td class="text-success">${{number_format($consul["request"]["payment"]["amount"]["total"])}}
+                        </td>
+                        @if ($consul['status']['status'] != 'APPROVED')
                         <td>
                             <form action="{{route('orders.repeatPayment', ['order'=>$order])}}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-outline-success">Reintentar</button>
                             </form>
                         </td>
+                        @endif
                     </tr>
                 </tbody>
             </table>

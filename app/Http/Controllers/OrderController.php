@@ -41,11 +41,8 @@ class OrderController extends Controller
         $consul = $this->paymentService
         ->getRequestInformation($order->requestId);
 
-        if ($order->status == 'PENDING') {
-            
             $order->status = $consul['status']['status'];
             $order->save();
-        }
         
         return view('orders.show', ['consul' => $consul,'order'=> $order],);
     }
