@@ -20,7 +20,8 @@
                 <td>{{$order->requestId}}</td>
                 <td>${{$order->total}}</td>
                 <td>{{$order->created_at}}</td>
-                <td><a href="{{route('orders.show', $order)}}">Ver</a></td>
+                <td><a class="btn btn-outline-secondary" type="button" href="{{route('orders.show', $order)}}">Ver</a>
+                </td>
             </tr>
             @endforeach
         </tbody>
