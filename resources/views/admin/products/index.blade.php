@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container">
+    <h1>Welcom your the Products</h1>
 
     <div class="d-flex float-right my-3">
         <a href="{{route('products.create')}}" type="button" class="btn btn-info">Crear un nuevo

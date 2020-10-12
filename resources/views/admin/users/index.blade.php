@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h1>Welcom your the user</h1>
+    <h1>Welcom your the User</h1>
 
     <div class="container">
         <form action="{{route('users.index')}}" method="GET" class="form-inline float-right" pull="right">
@@ -107,3 +107,5 @@
 </div>
 
 @endsection
+
+@yield('footer')
