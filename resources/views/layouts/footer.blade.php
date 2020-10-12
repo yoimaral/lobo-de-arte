@@ -1,5 +1,3 @@
-@section('footer')
-
 <!--Footer-->
 <footer id="footer" class="foo pb-4 pt-4 bg-dark d-flex mt-3" style=": 18rem ">
     <div class=" container">
@@ -27,5 +25,3 @@
         </div>
     </div>
 </footer>
-
-@endsection
