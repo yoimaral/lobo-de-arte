@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Http;
 
 class PaymentService
 {
-    protected $endpoint_base;
+    protected $endpointBase;
     protected $login;
-    protected $secret_key;
+    protected $secretKey;
 
     public function __construct()
     {
-        $endpoint_base = config('services.placetopay.endpoint_base');
+        $endpointBase = config('services.placetopay.endpoint_base');
         $login = config('services.placetopay.login');
-        $secret_key = config('services.placetopay.secret_key');
+        $secretKey = config('services.placetopay.secret_key');
     }
 
     /**
@@ -36,7 +36,7 @@ class PaymentService
      */
     public function handlePayment(Order $order, Request $request)
     {
-        $response = Http::POST(url($this->endpoint_base . '/api/session'), [
+        $response = Http::POST(url($this->endpointBase . '/api/session'), [
             'auth' => $this->getCredentials(),
             'payment' => [
                 'reference' => $order->id,
@@ -77,7 +77,7 @@ class PaymentService
     public function getCredentials()
     {
         $login = $this->login;
-        $secretKey = $this->secret_key;
+        $secretKey = $this->secretKey;
         $seed = date('c');
         if (function_exists('random_bytes')) {
             $nonce = bin2hex(random_bytes(16));
