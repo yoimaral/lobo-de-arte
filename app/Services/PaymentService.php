@@ -11,13 +11,13 @@ class PaymentService
 {
     protected $endpointBase;
     protected $login;
-    protected $secretkey;
+    protected $secretKey;
 
     public function __construct()
     {
-        $this->endpointBase = env('PASARELA_ENDPOINT_BASE');
-        $this->login = env('PASARELA_LOGIN');
-        $this->secretkey = env('PASARELA_SECRETKEY');
+    $this->endpointBase = config('services.placetopay.endpoint_base');
+    $this->login = config('services.placetopay.login');
+    $this->secretKey = config('services.placetopay.secret_key');
     }
 
     /**
@@ -77,7 +77,7 @@ class PaymentService
     public function getCredentials()
     {
         $login = $this->login;
-        $secretKey = $this->secretkey;
+        $secretKey = $this->secretKey;
         $seed = date('c');
         if (function_exists('random_bytes')) {
             $nonce = bin2hex(random_bytes(16));
