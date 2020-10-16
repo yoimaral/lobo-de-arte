@@ -8,6 +8,7 @@
             <tr>
                 <th>Id</th>
                 <th>Referencia</th>
+                <th>Estatus</th>
                 <th>Total</th>
                 <th>Fecha de pedido</th>
                 <th>Acciones</th>
@@ -18,6 +19,7 @@
             <tr>
                 <td scope="row">{{$order->id}}</td>
                 <td>{{$order->requestId}}</td>
+                <td>{{$order->status}}</td>
                 <td>${{$order->total}}</td>
                 <td>{{$order->created_at}}</td>
                 <td><a class="btn btn-outline-secondary" type="button" href="{{route('orders.show', $order)}}">Ver</a>

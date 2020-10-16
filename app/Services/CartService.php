@@ -42,7 +42,6 @@ class CartService
      * Undocumented function
      *
      * @param Cart $cart
-     * @return void
      */
     public function makeCookie(Cart $cart)
     {
@@ -50,12 +49,8 @@ class CartService
         return Cookie::make($this->cookieName, $cart->id, 7 * 24 * 60);
     }
 
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function countProducts()
+
+    public function countProducts(): int
     {
         $cart = $this->getFromCookie();
 
