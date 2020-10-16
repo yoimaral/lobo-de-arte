@@ -23,11 +23,6 @@ class LoginTest extends TestCase
                 'password' => '12345678',
             ]);
 
-        /*        $this->assertDatabaseHas('users', [
-            'name' => 'Yepeto',
-            'email' => 'Yepeto@gmail.com',
-            'password' => '12345678',
-        ]); */
         $response->assertRedirect(url(''));
     }
 }
