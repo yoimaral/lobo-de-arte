@@ -6,8 +6,10 @@ use App\Cart;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Services\CartService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductCartController extends Controller
 {
@@ -29,8 +31,9 @@ class ProductCartController extends Controller
      *
      * @param Request $request
      * @param Product $product
+     * \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, Product $product)
+    public function store(Request $request, Product $product):RedirectResponse
     {
         $cart = $this->cartService->getFromCookieOrCreate();
 
@@ -56,7 +59,7 @@ class ProductCartController extends Controller
      * @param Cart $cart
      * @return void
      */
-    public function destroy(Product $product, Cart $cart)
+    public function destroy(Product $product, Cart $cart): RedirectResponse
     {
         $cart->products()->detach($product->id);
 
