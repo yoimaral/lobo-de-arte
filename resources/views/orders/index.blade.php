@@ -20,7 +20,7 @@
                 <td scope="row">{{$order->id}}</td>
                 <td>{{$order->requestId}}</td>
                 <td>{{$order->status}}</td>
-                <td>${{$order->total}}</td>
+                <td>${{number_format($order->total)}}</td>
                 <td>{{$order->created_at}}</td>
                 <td><a class="btn btn-outline-secondary" type="button" href="{{route('orders.show', $order)}}">Ver</a>
                 </td>
