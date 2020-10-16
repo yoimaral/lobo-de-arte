@@ -25,19 +25,5 @@ class pagosTest extends TestCase
       /*    ->press('addtocard')
          ->post(route('')); */
     }
-    
-/** @test */
-public function addCart(){
-
-       $user = factory(User::class)->create();
-
-         $response = $this->actingAs($user)
-         ->get(route('home.index'));
-
-         $response->assertOk();
-
-         $response->assertViewHas('products');
-
-}
 
 }

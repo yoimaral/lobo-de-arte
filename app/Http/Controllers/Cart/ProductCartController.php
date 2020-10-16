@@ -40,7 +40,7 @@ class ProductCartController extends Controller
             ->quantity ?? 0;
 
         $cart->products()->syncWithoutDetaching([
-            $product->id => ['quantity' => $quantity + 1]
+            $product->id => ['quantity' => $quantity = 1]
 
         ]);
 
