@@ -37,7 +37,7 @@
                             <div class="card ">
                                 <tr>
                                     <td>
-                                        @if (substr($product->img, 0, 5) == 'https')
+                                        @if (substr($product->img, 4, 8) == 'products')
                                         <img class="col my-2" src="{{$product->img}}" alt="">
                                         @else
                                         <img class="col my-2" src="/storage/{{$product->img}}" alt="">

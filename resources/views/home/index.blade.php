@@ -21,7 +21,7 @@
         @forelse ($products as $product)
         <div class="col mb-4">
             <div class="col border-0 card h-100">
-                @if (substr($product->img, 0, 5) == 'https')
+                @if (substr($product->img, 4, 8) == 'products')
                 <img class="rounded-lg my-2 w-50" src="{{$product->img}}" alt="">
                 @else
                 <img class="rounded-lg my-2 w-50" src="/storage/{{$product->img}}" alt="">

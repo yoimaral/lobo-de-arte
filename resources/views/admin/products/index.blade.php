@@ -39,7 +39,7 @@
                 <td>{{$product->id}}</td>
                 <td>
                     <div class="product-image">
-                        @if (substr($product->img, 0, 5) == 'https')
+                        @if (substr($product->img, 4, 8) == 'products')
                         <img src="{{$product->img}}" alt="">
                         @else
                         <img src="/storage/{{$product->img}}" alt="">
