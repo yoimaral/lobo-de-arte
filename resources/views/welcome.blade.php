@@ -119,7 +119,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/1.jpg" alt="Image">
+                      <img src="/img/1.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -129,7 +129,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/2.jpg" alt="Image">
+                      <img src="/img/2.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -139,7 +139,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/3.jpg" alt="Image">
+                      <img src="/img/3.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -149,7 +149,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/4.jpg" alt="Image">
+                      <img src="/img/4.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -159,7 +159,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/5.jpg" alt="Image">
+                      <img src="/img/5.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -169,7 +169,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/6.jpg" alt="Image">
+                      <img src="/img/6.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -179,7 +179,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/7.jpg" alt="Image">
+                      <img src="/img/7.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -189,7 +189,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/8.jpg" alt="Image">
+                      <img src="/img/8.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -199,7 +199,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/9.jpg" alt="Image">
+                      <img src="/img/9.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -209,7 +209,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/10.jpg" alt="Image">
+                      <img src="/img/10.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -219,7 +219,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/11.jpg" alt="Image">
+                      <img src="/img/11.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -229,7 +229,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/12.jpg" alt="Image">
+                      <img src="/img/12.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -239,7 +239,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/13.jpg" alt="Image">
+                      <img src="/img/13.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -249,7 +249,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/14.jpg" alt="Image">
+                      <img src="/img/14.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -259,7 +259,7 @@
                   <a href="/">
                     <h4><small>Share Your Message</small>Watch</h4>
                     <picture>
-                      <img src="/images/15.jpg" alt="Image">
+                      <img src="/img/15.jpg" alt="Image">
                     </picture>
                   </a>
                 </div>
@@ -283,7 +283,7 @@
   {{--Fin Nuevo carrousel --}}
 
   <div class="img-histori">
-    <img class="img d-block w-100" object-fit="fill" height="450" src="/images/decada.jpeg" alt="...">
+    <img class="img d-block w-100" object-fit="fill" height="450" src="/img/decada.jpeg" alt="...">
   </div>
 
   <!--SECTION-->
@@ -302,7 +302,7 @@
 
         <div class="col-lg-4 col-md-3 col-sm-12  mb-4">
           <div class="card">
-            <img src="/images/1.jpg" class="card-img-top" alt="yoimar">
+            <img src="/img/1.jpg" class="card-img-top" alt="yoimar">
             <div class="card-body">
               <h5 class="card-title mb-0">
                 Hela</h5>
@@ -318,7 +318,7 @@
         </div>
         <div class="col-lg-4 col-md-3 col-sm-12  mb-4">
           <div class="card">
-            <img src="./images/14.jpg" class="card-img-top" alt="yoimar">
+            <img src="./img/14.jpg" class="card-img-top" alt="yoimar">
             <div class="card-body">
               <h5 class="card-title mb-0">
                 Rainero</h5>
@@ -334,7 +334,7 @@
         </div>
         <div class="col-lg-4 col-md-3 col-sm-12 mb-4">
           <div class="card">
-            <img src="/images/7.jpg" class="card-img-top" alt="yoimar">
+            <img src="/img/7.jpg" class="card-img-top" alt="yoimar">
             <div class="card-body">
               <h5 class="card-title mb-0">
                 Agnes</h5>
