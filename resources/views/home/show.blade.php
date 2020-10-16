@@ -10,8 +10,8 @@
         <div class="row">
 
           <div class="col-6 my-3">
-            @if (substr($product->img, 0, 5) == 'https')
-            <img class="rounded-lg w-350%" src="{{$product->img}}" alt="">
+            @if (substr($product->img, 4, 8) == 'products')
+            <img class="rounded-lg w-350%" src="/{{$product->img}}" alt="">
             @else
             <img class="rounded-lg w-350%" src="/storage/{{$product->img}}" alt="">
             @endif
@@ -23,7 +23,7 @@
             <h6> <strong>Stock: </strong> {{$product->stock}} </h6>
 
           </div>
-          <a href="{{route('carts.index')}}" class="btn btn-primary btn-lg btn-block" role="button"
+          <a href="{{route('home.index')}}" class="btn btn-primary btn-lg btn-block" role="button"
             aria-pressed="true">Cancelar</a>
 
         </div>
