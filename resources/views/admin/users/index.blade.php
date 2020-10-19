@@ -5,13 +5,23 @@
 <div class="container">
     <h1>Welcom your the user</h1>
 
-    <div class="container">
-        <form action="{{route('users.index')}}" method="GET" class="form-inline float-right" pull="right">
-            <input name="name" type="search" class="form-control ds-input border-darck mb-1 border-3" id="search-input"
-                placeholder="Search..." aria-label="Search for..." autocomplete="off" data-docs-version="4.5"
-                spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false"
-                aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
-        </form>
+    <div class="row">
+
+        <div class="col mb-1">
+            <form action="{{route('users.index')}}" method="GET" class="form-inline float-right" pull="right">
+                <input name="name" type="search" class="form-control ds-input border-darck mb-1 border-3"
+                    id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off"
+                    data-docs-version="4.5" spellcheck="false" role="combobox" aria-autocomplete="list"
+                    aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto"
+                    style="position: relative; vertical-align: top;">
+            </form>
+        </div>
+
+        <div class="col mb-1">
+            <a href="{{route('products.create')}}" type="button" class="btn btn-info">Crear un nuevo
+                producto</a>
+        </div>
+
     </div>
 
     <table class="table table-dark">

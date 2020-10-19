@@ -3,17 +3,14 @@
 namespace Tests\Feature;
 
 use App\User;
-use Faker\Factory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class pagosTest extends TestCase
+class PagosTest extends TestCase
 {
     /** @test */
-    public function viewProducts()
+    public function view_Products()
     {
-         $user = factory(User::class)->create();
+         $user = Factory(User::class)->create();
 
          $response = $this->actingAs($user)
          ->get(route('home.index'));
@@ -22,8 +19,24 @@ class pagosTest extends TestCase
 
          $response->assertViewHas('products');
 
-      /*    ->press('addtocard')
-         ->post(route('')); */
+    
     }
 
+     /** @test */
+     public function payment()
+    {
+         $user = Factory(User::class)->create();
+
+          $cart = $this->cartService;
+         $response = $this->actingAs($user)
+         ->get('carts.index',$cart);
+/* 
+         $cart = Factory(Cookie::class()->create());
+         $response->return('cart.index', ['cart' => $cart]); */
+
+         $response->assertViewIs('carts.index');
+
+         $response->assertStatus(200);
+      /*    ->press('addtocard'); */
+    }
 }

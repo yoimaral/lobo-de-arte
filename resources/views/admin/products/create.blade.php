@@ -55,7 +55,7 @@
                         <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('price') }}</label>
 
                         <div class="col-md-6">
-                            <input id="price" type="number" class="form-control " name="price" autocomplete="new-price"
+                            <input id="price" type="number" class="form-control " name="price"
                                 value="{{ old('price') }}">
 
                         </div>
@@ -68,7 +68,7 @@
                         <label for="stock" class="col-md-4 col-form-label text-md-right">{{ __('stock') }}</label>
 
                         <div class="col-md-6">
-                            <input id="stock" type="number" class="form-control " name="stock" autocomplete="new-stock"
+                            <input id="stock" type="number" class="form-control " name="stock"
                                 value="{{ old('stock') }}">
                         </div>
                     </div>

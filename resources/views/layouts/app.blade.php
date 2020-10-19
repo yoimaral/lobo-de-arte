@@ -25,6 +25,11 @@
 
 <body>
 
+  {{--  Mensaje de validacion exitosamente. Carpeta en views partials --}}
+  <h5>@include('messages.session-status')</h5>
+
+  {{-- endInclude --}}
+
   @include('layouts.navbar')
 
   <div class="main">

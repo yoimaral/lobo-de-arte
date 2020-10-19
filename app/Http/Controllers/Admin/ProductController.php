@@ -10,9 +10,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
 
-use function Symfony\Component\String\b;
-
-
 class ProductController extends Controller
 {
 
@@ -53,9 +50,8 @@ class ProductController extends Controller
      * y luego se crea un producto nuevo
      * 
      * @param SaveProductRequest $request
-     * @return void
      */
-    public function store(SaveProductRequest $request)
+    public function store(SaveProductRequest $request): \Illuminate\Http\RedirectResponse
     {
 
         $product = new Product;
