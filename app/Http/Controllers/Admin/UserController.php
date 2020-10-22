@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 
 class UserController extends Controller
@@ -26,6 +29,33 @@ class UserController extends Controller
 
         return view('admin.users.index', compact('users'));
     }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function create()
+    {
+        return view('admin.users.create');
+    }
+
+        /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\User
+     */
+     public function store(RegisterRequest $data)
+     {
+            $users = new User;
+            $users->name = $data->name;
+            $users->email = $data->email;
+            $users->password = Hash::make($data->password);
+            $users->save();
+
+        return redirect()->route('admin.users.index',compact($users));
+     }
 
     /**
      * Recibe y devuelve un ID con la información del producto

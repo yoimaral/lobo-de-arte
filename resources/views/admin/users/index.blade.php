@@ -18,8 +18,9 @@
         </div>
 
         <div class="col mb-1">
-            <a href="{{route('products.create')}}" type="button" class="btn btn-info">Crear un nuevo
-                producto</a>
+            @if (Route::has('register'))
+            <a class="btn btn-info" type="button" href="{{ route('users.create') }}">Crear nuevo usuario</a>
+            @endif
         </div>
 
     </div>
