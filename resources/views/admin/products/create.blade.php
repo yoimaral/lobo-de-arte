@@ -80,8 +80,9 @@
             <div class="form-group row mb-2 mt-2">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-primary">
-                        {{ __('Enviar') }}
+                        {{ __('Registrar') }}
                     </button>
+                    <a class="btn btn-dark" href="{{route('users.index')}}" type="button">Cancelar</a>
                 </div>
             </div>
             </form>
