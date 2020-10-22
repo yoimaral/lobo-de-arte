@@ -14,13 +14,12 @@ class ProductController extends Controller
 {
 
     /**
-     * Devuelve una peticion de busqueda 
-     * junto con los productos que hay en la DB
+     * Undocumented function
      *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\View\View
     {
 
         $products = trim($request->get('product'));
@@ -38,18 +37,19 @@ class ProductController extends Controller
     /**
      * Retorna a la vista create
      *
-     * @return void
+     * @return view
      */
     public function create()
     {
         return view('admin.products.create');
     }
 
+
     /**
-     * se valida con el SaveProductRequest la información
-     * y luego se crea un producto nuevo
-     * 
+     * Undocumented function
+     *
      * @param SaveProductRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(SaveProductRequest $request): \Illuminate\Http\RedirectResponse
     {
@@ -80,29 +80,27 @@ class ProductController extends Controller
     }
 
 
+ 
     /**
-     * 
-     * Recibe y devuelve un ID con la información del producto
-     *a lavista edit
-     * 
+     * Undocumented function
+     *
      * @param Product $product
-     * @return void
+     * @return \Illuminate\View\View
      */
-    public function edit(Product $product)
+    public function edit(Product $product): \Illuminate\View\View
     {
         return view('admin.products.edit', compact('product'));
     }
 
 
     /**
-     * Se validan los datos con el request y 
-     * luego se actualizan en la BD
-     * 
-     * @param Product $product
+     * Undocumented function
+     *
      * @param SaveProductRequest $request
-     * @return void
+     * @param Product $product
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(SaveProductRequest $request, Product $product)
+    public function update(SaveProductRequest $request, Product $product): \Illuminate\Http\RedirectResponse
     {
 
         if ($request->hasFile('img')) {
@@ -128,7 +126,7 @@ class ProductController extends Controller
             $product->update(array_filter($request->validated()));
         }
 
-        return back()->with('message', 'Ha sido exitosamente actualizado');
+        return redirect()->route('products.index')->with('message', 'Ha sido exitosamente actualizado');
     }
 
 

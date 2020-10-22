@@ -66,6 +66,18 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <div class="form-group row">
+                        <label for="stock" class="col-md-4 col-form-label text-md-right">{{ __('stock') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="stock" type="number" class="form-control " name="stock"
+                                value="{{ old('stock') }}">
+                        </div>
+                    </div>
+                    @error('stock')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                     <div class="form-group row mb-2">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
@@ -76,7 +88,6 @@
                     </div>
 
                 </form>
-
             </div>
         </div>
     </div>
