@@ -82,7 +82,7 @@
                     <button type="submit" class="btn btn-primary">
                         {{ __('Registrar') }}
                     </button>
-                    <a class="btn btn-dark" href="{{route('users.index')}}" type="button">Cancelar</a>
+                    <a class="btn btn-dark" href="{{route('products.index')}}" type="button">Cancelar</a>
                 </div>
             </div>
             </form>
