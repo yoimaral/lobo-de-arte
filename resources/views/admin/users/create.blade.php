@@ -74,6 +74,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <a class="btn btn-dark" href="{{route('users.index')}}" type="button">Cancelar</a>
                             </div>
                         </div>
                     </form>
