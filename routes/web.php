@@ -35,6 +35,6 @@ Route::post('orders/{order}','OrderController@repeatPayment',)->name('orders.rep
 /* 
 Route::resource('payments', 'Payments\PaymentController')->middleware('verified'); */
 
-Route::get('home', 'Users\HomeController@index')->name('home.index');
+Route::get('home', 'Users\HomeController@index')->name('home.index')->middleware('verified');
 
-Route::get('home/{product}', 'Users\HomeController@show')->name('home.show');
+Route::get('home/{product}', 'Users\HomeController@show')->name('home.show')->middleware('verified');

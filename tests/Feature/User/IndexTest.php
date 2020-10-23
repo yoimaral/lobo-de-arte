@@ -2,32 +2,47 @@
 
 namespace Tests\Feature\User;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class IndexTest extends TestCase
 {
+    use RefreshDatabase;
 
     /** @test */
-    public function ListUsers()
+    public function it_can_list_users_when_is_admin()
     {
-        /*  $this->withoutExceptionHandling(); */
+        //$this->withoutExceptionHandling();
+        //Arrange
+        $adminUser = factory(User::class)->create([
+            'is_admin' => true
+        ]);
 
-        $response = $this->get(route('login'))
-            ->assertStatus(200)
-            ->assertViewIs('auth.login');
+        //Act
+        $response = $this->actingAs($adminUser)
+        ->get(route('users.index'));
 
-        /*        $response->assertSeeText('email', 'yoimar@gmail.com');
-        $response->assertSeeText('password', '12345678');
-        $response->assertSeeText('Login'); */
-        /* Confirmamos que sea el nombre de la vista */
+        //Assert
+        $response->assertOk()
+        ->assertViewIs('admin.users.index')
+        ->assertViewHas('users');
+    }
 
-        /* $response =>$this->get(route('admin/users/index'))
-            ->assertStatus(200); */
+    /** @test */
+    public function it_cannot_list_users_when_user_is_not_admin()
+    {
+        $this->withoutExceptionHandling();
+        //Arrange
+        $user = factory(User::class)->create([
+            'is_admin' => false
+        ]);
 
-        /*  $response->assertViewIs('welcome');
-        $response->assertViewHas('users'); */
+        //Act
+        $response = $this->actingAs($user)
+        ->get(route('users.index'));
+
+        //Assert
+        $response->assertRedirect('home');
     }
 }

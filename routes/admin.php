@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AdminVerify;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,25 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('users', 'UserController')->middleware('verified');
+Route::resource('users', 'UserController')->middleware(['verified', AdminVerify::class]);
 /* Con resource puedo crear las 7 rutas rest en una sola línea */
 /* AdminVerify para que la persona que este logueada y no sea admin lo saque de la tabla user */
-Route::resource('products', 'ProductController')->middleware('verified');
+Route::resource('products', 'ProductController')->middleware(['verified', AdminVerify::class]);
 
 Route::patch('/change_state/{product}', 'ProductController@state')
-    ->name('state')->middleware('verified');
+    ->name('state')->middleware(['verified', AdminVerify::class]);
 
 // Route::get('/user', 'Admin\UserController@index')
 //     ->name('User')
-//     ->middleware('verified', AdminVerify::class);
+//     ->middleware(['verified', AdminVerify::class]);
 
 // Route::get('/editar/{usuarId}', 'Admin\UserController@editar')
-//     ->name('editar')->middleware('verified', AdminVerify::class);
+//     ->name('editar')->middleware(['verified', AdminVerify::class]);
 
 // Route::patch('/actualizar/{usuario}', 'Admin\UserController@actualizar')
 //     ->name('actualizar')
-//     ->middleware('verified', AdminVerify::class);
+//     ->middleware(['verified', AdminVerify::class]);
 
 // Route::delete('/delete/{usuarId}', 'Admin\UserController@destroy')
 //     ->name('destroy')
-//     ->middleware('verified', AdminVerify::class);
+//     ->middleware(['verified', AdminVerify::class]);
