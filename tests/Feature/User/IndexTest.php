@@ -45,4 +45,28 @@ class IndexTest extends TestCase
         //Assert
         $response->assertRedirect('home');
     }
+            /** @test */
+    public function the_admin_it_can_update_users()
+    {
+        $this->withoutExceptionHandling();
+        //Arrange
+
+        $admin = factory(User::class)->create([
+        'is_admin' => true
+        ]);
+        $user = factory(User::class)->create([
+            'name'=>'yoimar'
+            ]);
+        //Act
+        $response = $this->actingAs($admin)
+        ->patch(route('users.update',$user), [
+            'name'=>'yoma',
+            'trick' =>'trick'
+            ]);
+        
+        //Assert
+        $user = $user->refresh();
+        $this->assertEquals($user->name,'yoma');
+        $response->assertRedirect();
+    }
 }
