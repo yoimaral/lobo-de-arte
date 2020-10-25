@@ -85,9 +85,8 @@ class UserController extends Controller
                 // 'email' => $request->email,
             ]);
         } else {
-            $user->update([
-                'disabled_at' => $user->disabled_at ? null : now(),
-            ]);
+            $user->disabled_at = $user->disabled_at ? null : now();
+            $user->save();
         }
 
         return back()->with('message', 'Se ha actualizado exitosamente');
