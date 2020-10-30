@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Order;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,9 +25,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->call(function(){
+            log::info('One minute more');
+  
+     $order = Order::estatus()->get();
+
+     $consul = $this->paymentService
+        ->getRequestInformation($order);
+
+            $order->status = $consul['status']['status'];
+            $order->save();
+
+    })->everyMinute();
+        
         // $schedule->command('inspire')->hourly();
     }
-
+    
     /**
      * Register the commands for the application.
      *

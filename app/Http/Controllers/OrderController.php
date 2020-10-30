@@ -35,17 +35,6 @@ class OrderController extends Controller
         return view('orders.index', ['orders' => $orders]);
     }
 
-    public function show(Order $order)
-    {
-        
-        $consul = $this->paymentService
-        ->getRequestInformation($order->requestId);
-
-            $order->status = $consul['status']['status'];
-            $order->save();
-        
-        return view('orders.show', ['consul' => $consul,'order'=> $order],);
-    }
     
     /**
      * Retorna a la vista la informacion del carrito 
@@ -131,13 +120,31 @@ class OrderController extends Controller
         return redirect($payment['processUrl']);
     }
 
+    public function show(Order $order)
+    {
+        
+        $consul = $this->paymentService
+            ->getRequestInformation($order->requestId);
+        $currentStatus = $this->currentStatus($consul['status']['status']);
+        $order->status = $currentStatus;
+        $order->save();
+        
+        return view('orders.show', ['consul' => $consul,'order'=> $order]);
+    }
 
-
-
-
-
-
-
+    public function currentStatus($paymentStatus)
+    {
+        switch ($paymentStatus) {
+            case PaymentService::P2P_APROBADO:
+                return Order::APROBADO;
+            case PaymentService::P2P_RECHAZADO:
+                return Order::RECHAZADO;
+            case PaymentService::P2P_PENDIENTE:
+                return Order::PENDIENTE;
+            default:
+                return Order::PROCESANDO;
+        }
+    }
 
     /**
      * Update the specified resource in storage.

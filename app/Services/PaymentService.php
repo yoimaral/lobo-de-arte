@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Http;
 
 class PaymentService
 {
+    public const P2P_APROBADO = 'APPROVED';
+    public const P2P_RECHAZADO = 'REJECTED';
+    public const P2P_PENDIENTE = 'PENDING';
+
     protected $endpointBase;
     protected $login;
     protected $secretKey;

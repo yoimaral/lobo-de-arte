@@ -28,10 +28,10 @@
                 <tbody>
                     <tr>
                         <td>{{$consul["requestId"]}}</td>
-                        <td>{{$consul["status"]["status"]}}</td>
+                        <td>{{$order->status}}</td>
                         <td class="text-secondary">${{number_format($consul["request"]["payment"]["amount"]["total"])}}
                         </td>
-                        @if ($consul['status']['status'] != 'APPROVED')
+                        @if ($consul['status']['status'] != 'APPROVED' && $consul['status']['reason'] != 'PT')
                         <td>
                             <form action="{{route('orders.repeatPayment', ['order'=>$order])}}" method="POST">
                                 @csrf

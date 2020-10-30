@@ -6,9 +6,15 @@ use App\Payment;
 use App\User;
 
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\Self_;
 
 class Order extends Model
 {
+    public const APROBADO = 'APROBADO';
+    public const RECHAZADO = 'Johndusua';
+    public const PENDIENTE = 'Mirá ve, ve';
+    public const PROCESANDO = 'PROCESANDO';
+
     /**
      * Undocumented variable
      *
@@ -64,5 +70,11 @@ class Order extends Model
     {
 
         return $this->products->pluck('total')->sum();
+    }
+
+    public function scopeEstatus($query, $order)
+    {
+        return $query->orWhere('status', self::PENDIENTE)
+            ->orWhere('status', self::PROCESANDO);
     }
 }
