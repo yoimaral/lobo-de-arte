@@ -4,15 +4,15 @@ namespace App;
 
 use App\Payment;
 use App\User;
-
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use phpDocumentor\Reflection\Types\Self_;
 
 class Order extends Model
 {
     public const APROBADO = 'APROBADO';
-    public const RECHAZADO = 'Johndusua';
-    public const PENDIENTE = 'Mirá ve, ve';
+    public const RECHAZADO = 'RECHAZADO';
+    public const PENDIENTE = 'PENDIENTE';
     public const PROCESANDO = 'PROCESANDO';
 
     /**
@@ -72,9 +72,9 @@ class Order extends Model
         return $this->products->pluck('total')->sum();
     }
 
-    public function scopeEstatus($query, $order)
+    public function scopeEstatus(Builder $query)
     {
-        return $query->orWhere('status', self::PENDIENTE)
-            ->orWhere('status', self::PROCESANDO);
+        return $query->orWhere('status', Order::PENDIENTE)
+            ->orWhere('status', Order::PROCESANDO);
     }
 }

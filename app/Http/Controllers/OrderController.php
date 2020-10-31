@@ -132,7 +132,7 @@ class OrderController extends Controller
         return view('orders.show', ['consul' => $consul,'order'=> $order]);
     }
 
-    public function currentStatus($paymentStatus)
+    public static function currentStatus($paymentStatus)
     {
         switch ($paymentStatus) {
             case PaymentService::P2P_APROBADO:

@@ -2,7 +2,9 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\OrderController;
 use App\Order;
+use App\Services\PaymentService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -26,17 +28,15 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function(){
-            log::info('One minute more');
-  
-     $order = Order::estatus()->get();
-
-     $consul = $this->paymentService
-        ->getRequestInformation($order);
-
-            $order->status = $consul['status']['status'];
-            $order->save();
-
-    })->everyMinute();
+            $orders = Order::estatus()->get();
+            foreach ($orders as $order) {
+                $paymentService = new PaymentService();
+                $consul = $paymentService->getRequestInformation($order->requestId);
+                $currentStatus = OrderController::currentStatus($consul['status']['status']);
+                $order->status = $currentStatus;
+                $order->save();
+            }
+        })->everyMinute();
         
         // $schedule->command('inspire')->hourly();
     }
@@ -52,4 +52,18 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+    /* public function currentStatus($paymentStatus)
+    {
+        switch ($paymentStatus) {
+            case PaymentService::P2P_APROBADO:
+                return Order::APROBADO;
+            case PaymentService::P2P_RECHAZADO:
+                return Order::RECHAZADO;
+            case PaymentService::P2P_PENDIENTE:
+                return Order::PENDIENTE;
+            default:
+                return Order::PROCESANDO;
+        }
+    } */
 }
