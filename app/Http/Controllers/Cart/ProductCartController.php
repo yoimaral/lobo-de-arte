@@ -31,9 +31,9 @@ class ProductCartController extends Controller
      *
      * @param Request $request
      * @param Product $product
-     * \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function store(Request $request, Product $product):RedirectResponse
+    public function store(Request $request, Product $product): RedirectResponse
     {
         $cart = $this->cartService->getFromCookieOrCreate();
 
@@ -52,12 +52,13 @@ class ProductCartController extends Controller
         return redirect()->back()->cookie($cookie);
     }
 
+
     /**
      * Undocumented function
      *
      * @param Product $product
      * @param Cart $cart
-     * @return void
+     * @return RedirectResponse
      */
     public function destroy(Product $product, Cart $cart): RedirectResponse
     {

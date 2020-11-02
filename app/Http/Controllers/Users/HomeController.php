@@ -19,12 +19,14 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+
     /**
-     * Show the application dashboard.
+     * Undocumented function
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Request $request
+     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\View\View
     {
 
         $products = trim($request->get('product'));
@@ -35,9 +37,15 @@ class HomeController extends Controller
         return view('home.index', compact('products'));
     }
 
-    /* Lo llame home para que la ruta me pase el objeto con la información y luego
-     lo renombro como product para que me lo muestre en la vista */
-    public function show(Product $product)
+
+    /**
+     * Lo llame home para que la ruta me pase el objeto con la información y luego
+     *lo renombro como product para que me lo muestre en la vista 
+     *
+     * @param Product $product
+     * @return \Illuminate\View\View
+     */
+    public function show(Product $product): \Illuminate\View\View
     {
         return view('home.show', ['product' => $product]);
     }

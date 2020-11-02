@@ -35,14 +35,14 @@ class OrderController extends Controller
         return view('orders.index', ['orders' => $orders]);
     }
 
-    
+
     /**
-     * Retorna a la vista la informacion del carrito 
-     * accediendo al cardService
+     * Retorna lavista de crear el
+     * carrito
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(): \Illuminate\View\View
     {
         $cart = $this->cartService->getFromCookie();
 
@@ -55,14 +55,15 @@ class OrderController extends Controller
         return view('orders.create')->with(['cart' => $cart]);
     }
 
+
     /**
-     * Para validar de que si allá un usuario autenticado 
+     *Para validar de que si allá un usuario autenticado 
      * $user = $request->user();
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         $cart= $this->cartService->getFromCookie();
         $user = $request->user();
@@ -85,14 +86,15 @@ class OrderController extends Controller
         return redirect($payment['processUrl']);
     }
 
+
     /**
      * Undocumented function
      *
      * @param Product $product
      * @param Cart $cart
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Product $product, Cart $cart)
+    public function destroy(Product $product, Cart $cart): \Illuminate\Http\RedirectResponse
     {
 
         $cart->products()->detach($product->id);
@@ -103,13 +105,15 @@ class OrderController extends Controller
     }
 
 
+  
     /**
      * Undocumented function
      *
      * @param Order $order
-     * @return void
+     * @param Request $request
+     * @return \Illuminate\Routing\Redirector
      */
-    public function repeatPayment(Order $order,Request $request)
+    public function repeatPayment(Order $order,Request $request): \Illuminate\Routing\Redirector
     {
 
         $payment = $this->paymentService->handlePayment($order, $request);
@@ -120,7 +124,13 @@ class OrderController extends Controller
         return redirect($payment['processUrl']);
     }
 
-    public function show(Order $order)
+    /**
+     * Undocumented function
+     *
+     * @param Order $order
+     * @return \Illuminate\View\View
+     */
+    public function show(Order $order): \Illuminate\View\View
     {
         
         $consul = $this->paymentService
@@ -132,6 +142,11 @@ class OrderController extends Controller
         return view('orders.show', ['consul' => $consul,'order'=> $order]);
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $paymentStatus
+     */
     public static function currentStatus($paymentStatus)
     {
         switch ($paymentStatus) {

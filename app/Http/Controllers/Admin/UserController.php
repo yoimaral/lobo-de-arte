@@ -12,14 +12,15 @@ use App\User;
 class UserController extends Controller
 {
 
+
     /**
      * Devuelve una peticion de busqueda 
      * junto con los productos que hay en la DB
-     * 
+     *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\View\View
     {
         $name = trim($request->get('name'));
 
@@ -40,13 +41,14 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-        /**
+
+    /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
-     * @return \App\User
+     * @param RegisterRequest $data
+     * @return \Illuminate\Http\RedirectResponse
      */
-     public function store(RegisterRequest $data)
+     public function store(RegisterRequest $data): \Illuminate\Http\RedirectResponse
      {
             $users = new User;
             $users->name = $data->name;
@@ -57,27 +59,29 @@ class UserController extends Controller
         return redirect()->route('admin.users.index',compact($users));
      }
 
+
     /**
      * Recibe y devuelve un ID con la información del producto
      *a lavista edit
-
+     *
      * @param User $user
-     * @return void
+     * @return \Illuminate\View\View
      */
-    public function edit(User $user)
+    public function edit(User $user): \Illuminate\View\View
     {
         return view('admin.users.edit', compact('user'));
     }
 
+
     /**
      * Se reciben los datos atravez del request
      *  y luego se actualizan en la BD
-     * 
+     *
      * @param Request $request
      * @param User $user
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user): \Illuminate\Http\RedirectResponse
     {
         if ($request->trick) {
             $user->update([
@@ -92,15 +96,16 @@ class UserController extends Controller
         return back()->with('message', 'Se ha actualizado exitosamente');
     }
 
+
     /**
      * Se resive el ID del producto 
      * y se elimina de la base de datos
      * y devuelve el mensaje de validación
-     * 
+     *
      * @param User $user
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User $user)
+    public function destroy(User $user): \Illuminate\Http\RedirectResponse
     {
         $user->delete();
 

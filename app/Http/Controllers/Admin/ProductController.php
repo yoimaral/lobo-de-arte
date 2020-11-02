@@ -49,9 +49,8 @@ class ProductController extends Controller
      * Undocumented function
      *
      * @param SaveProductRequest $request
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(SaveProductRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(SaveProductRequest $request)
     {
 
         $product = new Product;
@@ -73,12 +72,11 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function show()
     {
     }
-
 
  
     /**
@@ -136,9 +134,9 @@ class ProductController extends Controller
      * activo a inactivo
      *
      * @param Product $product
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function state(Product $product)
+    public function state(Product $product): \Illuminate\Http\RedirectResponse
     {
         $product->disabled_at = $product->disabled_at ? null : now();
         $product->save();
@@ -156,9 +154,9 @@ class ProductController extends Controller
      * y devuelve el mensaje de validación
      *
      * @param Product $product
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): \Illuminate\Http\RedirectResponse
     {
 
         $product->delete();

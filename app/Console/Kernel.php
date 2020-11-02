@@ -33,6 +33,7 @@ class Kernel extends ConsoleKernel
                 $paymentService = new PaymentService();
                 $consul = $paymentService->getRequestInformation($order->requestId);
                 $currentStatus = OrderController::currentStatus($consul['status']['status']);
+                logger("$currentStatus");
                 $order->status = $currentStatus;
                 $order->save();
             }
