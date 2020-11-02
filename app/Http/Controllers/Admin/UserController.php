@@ -93,7 +93,7 @@ class UserController extends Controller
             $user->save();
         }
 
-        return back()->with('message', 'Se ha actualizado exitosamente');
+        return redirect()->route('users.index')->with('message', 'Se ha actualizado exitosamente');
     }
 
 
