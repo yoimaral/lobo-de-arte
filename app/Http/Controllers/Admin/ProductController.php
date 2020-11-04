@@ -140,10 +140,6 @@ class ProductController extends Controller
     {
         $product->disabled_at = $product->disabled_at ? null : now();
         $product->save();
-
-        // $state->update([
-        //     'disabled_at' => $stated
-        // ]);
         return back();
     }
 
@@ -162,16 +158,5 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')->with('message', 'Ha sido exitosamente eliminado');
-
-        // $product = Product::withTrashed()->where('id', $id)->get()->first();
-        // if ($product->deleted_at) {
-        //     $product->restore();
-        //     /* findOrFile para seleccionar el producto a habilitar nuevamente */
-        //     /* restore Para restaurar el producto */
-        //     return redirect()->route('products.index')->with('message', 'Ha sido exitosamente habilitado');
-        // } else {
-        //     $product->delete();
-        //     return redirect()->route('products.index')->with('message', 'Ha sido exitosamente inhabilitado');
-        // }
     }
 }
