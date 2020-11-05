@@ -23,6 +23,20 @@
             @endif
         </div>
 
+        <div class="col mb-1">
+            <a href="{{route('users.export')}}" class="btn btn-info" type="button">Exportar Usuarios</a>
+        </div>
+
+        <div class="col mb-1">
+            <form action="{{route('users.import')}}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <input type="file" accept=".csv,xsl" name="file">
+
+                <button class="btn btn-info" type="submit">Importar Usuarios</button>
+            </form>
+        </div>
+
     </div>
 
     <table class="table table-dark">

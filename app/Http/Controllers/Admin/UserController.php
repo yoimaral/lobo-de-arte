@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\User;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -96,7 +99,6 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('message', 'Se ha actualizado exitosamente');
     }
 
-
     /**
      * Se resive el ID del producto 
      * y se elimina de la base de datos
@@ -110,5 +112,21 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')->with('message', 'Se ha eliminado exitosamente');
+    }
+
+        public function export() 
+    {
+    return (new UsersExport)->download('users.xlsx');
+
+         /* (new UsersExport)->store('users.xlsx', 'public'); Por si lo quiero realizar des del disco publico*/
+        
+        /* return redirect()->back()->with('message', 'Se ha Exportado exitosamente');  */
+    }
+
+    public function import()
+    {
+        Excel::import(new UsersImport, 'users.xlsx');
+        
+        return redirect('users.index')->with('messages', 'Se ha Importado exitosamente');
     }
 }

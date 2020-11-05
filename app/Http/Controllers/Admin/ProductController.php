@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-
+use App\Exports\UsersExport;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SaveProductRequest;
 use App\Http\Controllers\Controller;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use App\Product;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -158,5 +160,21 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')->with('message', 'Ha sido exitosamente eliminado');
+    }
+
+        public function export() 
+    {
+    return (new UsersExport)->download('product.xlsx');
+
+         /* (new UsersExport)->store('users.xlsx', 'public'); Por si lo quiero realizar des del disco publico*/
+        
+        /* return redirect()->back()->with('message', 'Se ha Exportado exitosamente');  */
+    }
+
+        public function import()
+    {
+        Excel::import(new UsersImport, 'users.xlsx');
+        
+        return redirect('users.index')->with('messages', 'Se ha Importado exitosamente');
     }
 }

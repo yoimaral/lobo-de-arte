@@ -17,10 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::resource('users', 'UserController')->middleware(['verified', AdminVerify::class]);
 /* Con resource puedo crear las 7 rutas rest en una sola línea */
 /* AdminVerify para que la persona que este logueada y no sea admin lo saque de la tabla user */
+
+Route::get('/users_export','UserController@export')->name('users.export');
+Route::post('/users_import','UserController@import')->name('users.import');
+
+Route::post('/product_export','ProductController@import')->name('product.export');
+Route::post('/product_import','ProductController@import')->name('product.import');
+
+
 Route::resource('products', 'ProductController')->middleware(['verified', AdminVerify::class]);
 
 Route::patch('/change_state/{product}', 'ProductController@state')
     ->name('state')->middleware(['verified', AdminVerify::class]);
+
 
 // Route::get('/user', 'Admin\UserController@index')
 //     ->name('User')
