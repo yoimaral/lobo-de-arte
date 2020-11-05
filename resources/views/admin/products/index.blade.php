@@ -22,16 +22,23 @@
         </div>
 
         <div class="col mb-1">
-            <a href="{{route('product.export')}}" class="btn btn-info" type="button">Exportar Usuarios</a>
+            <a href="{{route('product.export')}}" class="btn btn-info" type="button">Exportar Productos</a>
         </div>
 
         <div class="col mb-1">
             <form action="{{route('product.import')}}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <input type="file" accept=".csv,xsl" name="file">
-
-                <button class="btn btn-info" type="submit">Importar Usuarios</button>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" accept=".csv,xsl" class="custom-file-input">
+                        <label class="custom-file-label" for="inputGroupFile04">Seleccionar Archivo</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit"
+                            id="inputGroupFileAddon04">Button</button>
+                    </div>
+                </div>
             </form>
         </div>
 
