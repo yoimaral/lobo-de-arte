@@ -21,7 +21,7 @@ Route::resource('users', 'UserController')->middleware(['verified', AdminVerify:
 Route::get('/users_export','UserController@export')->name('users.export');
 Route::post('/users_import','UserController@import')->name('users.import');
 
-Route::post('/product_export','ProductController@import')->name('product.export');
+Route::get('/product_export','ProductController@export')->name('product.export');
 Route::post('/product_import','ProductController@import')->name('product.import');
 
 

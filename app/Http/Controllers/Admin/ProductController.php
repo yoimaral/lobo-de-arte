@@ -174,7 +174,7 @@ class ProductController extends Controller
 
         public function import()
     {
-        Excel::import(new ProductImport, 'product.xlsx');
+        Excel::import(new ProductImport, 'product.csv');
         
         return redirect('product.index')->with('messages', 'Se ha Importado exitosamente');
     }
