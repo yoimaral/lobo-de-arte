@@ -26,7 +26,7 @@ class UsersImport implements ToModel
     }
 
         /**
-         * FUnciona como un request
+         * Funciona como un request
          *
          * @return array
          */
