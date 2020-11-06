@@ -31,7 +31,8 @@
 
                 <div class="input-group">
                     <div class="custom-file">
-                        <input name="prod_File_Import" type="file" accept=".csv,.xlsx" class="custom-file-input">
+                        <input name="prod_File_Import" type="file" accept=".csv,.xlsx" class="custom-file-input"
+                            required>
                         <label class="custom-file-label" for="inputGroupFile04">Seleccionar Archivo</label>
                     </div>
                     <div class="input-group-append">
