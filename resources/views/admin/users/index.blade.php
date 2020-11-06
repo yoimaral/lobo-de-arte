@@ -31,7 +31,7 @@
             <form action="{{route('users.import')}}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <input type="file" accept=".csv,xsl" name="file">
+                <input type="file" accept=".csv,xsl" name="file" required>
 
                 <button class="btn btn-info" type="submit">Importar Usuarios</button>
             </form>
