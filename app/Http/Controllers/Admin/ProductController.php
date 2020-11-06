@@ -177,8 +177,9 @@ class ProductController extends Controller
 
         $file = $request->file('prod_File_Import');
 
-        Excel::import(new ProductImport, $file );
+        (new ProductImport())->import('product.csv')
+        /* Excel::import(new ProductImport, $file ); 
         
-        return redirect('product.index')->with('messages', 'Se ha Importado exitosamente');
+        return redirect('product.index')->with('messages', 'Se ha Importado exitosamente');*/
     }
 }

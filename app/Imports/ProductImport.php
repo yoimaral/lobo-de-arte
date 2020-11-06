@@ -3,10 +3,14 @@
 namespace App\Imports;
 
 use App\Product;
+use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 
 class ProductImport implements ToModel
 {
+
+   use Importable;
+
     /**
     * @param array $row
     *
