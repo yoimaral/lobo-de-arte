@@ -29,13 +29,13 @@ class ProductImport implements ToModel
     public function rules(): array
     {
         return [
-            
+
             'img' => 'required|',
             'name' => 'required|',
             'description' => 'required|',
-            'price' => 'required|min 5000',
-            'stock' => 'required|min 1|max 1',
-            'disabled_at' => 'required|',
+            'price' => 'required|min 5000|numeric',
+            'stock' => 'required|min 1|max 1|numeric',
+            'disabled_at' => 'required|numeric',
             'created_at' => 'required|',
             'updated_at' => 'required|',
 
