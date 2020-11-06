@@ -180,6 +180,6 @@ class ProductController extends Controller
         /* (new ProductImport())->import('product.csv'); */
         Excel::import(new ProductImport, $file );
         
-        return redirect('product.index')->with('messages', 'Se ha Importado exitosamente'); 
+        return redirect()->route('products.index')->with('messages', 'Se ha Importado exitosamente'); 
     }
 }
