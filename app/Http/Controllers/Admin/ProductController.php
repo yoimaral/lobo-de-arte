@@ -172,9 +172,12 @@ class ProductController extends Controller
         /* return redirect()->back()->with('message', 'Se ha Exportado exitosamente');  */
     }
 
-        public function import()
+        public function import(Request $request)
     {
-        Excel::import(new ProductImport, 'product.csv');
+
+        $file = $request->file('prod_File_Import');
+
+        Excel::import(new ProductImport, $file );
         
         return redirect('product.index')->with('messages', 'Se ha Importado exitosamente');
     }
