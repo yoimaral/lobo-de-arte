@@ -28,10 +28,11 @@
         </div>
 
         <div class="col-5 mb-1">
-            <form action="{{route('users.import')}}" method="POST" enctype="multipart/form-data">
+            <form name="user_File_Import" action="{{route('users.import')}}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
 
-                <input type="file" accept=".csv,.xsl" name="file">
+                <input type="file" accept=".csv,.xlsx" name="file">
 
                 <button class="btn btn-info" type="submit">Importar Usuarios</button>
             </form>
