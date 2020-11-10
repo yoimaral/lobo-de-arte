@@ -124,10 +124,10 @@ class UserController extends Controller
     }
 
     public function import(Request $request)
-    {
-         $file = $request->file('user_File_Import');
+    {/* 
+         $file = $request->file('user_File_Import'); */
 
-        Excel::import(new UsersImport, $file );
+        Excel::import(new UsersImport, $request->file('user_File_Import') );
         
         return redirect()->route('users.index')->with('messages', 'Se ha Importado exitosamente');
     }

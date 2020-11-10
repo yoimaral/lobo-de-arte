@@ -21,12 +21,15 @@ class UsersImport implements ToModel
             'is_admin' => $row[3],
             'disabled_at' => $row[4],
             'email_verified_at' => $row[5],
-            'password' => Hash::make($row[6])
+            'password' => $row[6],
+            'created_at' => $row[8],
+            'update_at' => $row[9]
+
         ]);
     }
 
         /**
-         * Funciona como un request
+         * Validación
          *
          * @return array
          */
