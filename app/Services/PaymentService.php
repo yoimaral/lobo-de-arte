@@ -22,6 +22,7 @@ class PaymentService
     $this->endpointBase = config('services.placetopay.endpoint_base');
     $this->login = config('services.placetopay.login');
     $this->secretKey = config('services.placetopay.secret_key');
+
     }
 
     /**
