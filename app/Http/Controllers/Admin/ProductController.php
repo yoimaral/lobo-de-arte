@@ -164,7 +164,9 @@ class ProductController extends Controller
 
         public function export() 
     {
-         (new ProductExport())->store('products.xlsx', 'public');
+         (new ProductExport)->queue('invoices.xlsx')->chain([
+    new NotifyUserOfCompletedExport(auth()->user()),
+]);
         
         return redirect()->back()->with('message', 'Exportando...'); 
     }
