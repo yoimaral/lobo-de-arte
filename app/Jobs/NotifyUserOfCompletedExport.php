@@ -10,6 +10,10 @@ use Illuminate\Queue\SerializesModels;
 
 class NotifyUserOfCompletedExport implements ShouldQueue
 {
+
+    public $user;
+    public $filePath;
+
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
@@ -17,9 +21,11 @@ class NotifyUserOfCompletedExport implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user, $filePath)
     {
-        //
+        $this->user = $user;
+        $this->filePath = $filePath;
+
     }
 
     /**
@@ -29,6 +35,6 @@ class NotifyUserOfCompletedExport implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $this->user->notify(new ExportReady($this->filePath));
     }
 }

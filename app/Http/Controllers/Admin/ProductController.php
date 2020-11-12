@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SaveProductRequest;
 use App\Http\Controllers\Controller;
 use App\Imports\ProductImport;
+use App\Jobs\NotifyUserOfCompletedExport;
 use Illuminate\Http\Request;
 use App\Product;
 use Maatwebsite\Excel\Facades\Excel;
@@ -162,10 +163,14 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('message', 'Ha sido exitosamente eliminado');
     }
 
-        public function export() 
+        public function export()
     {
-         (new ProductExport)->queue('invoices.xlsx')->chain([
-    new NotifyUserOfCompletedExport(auth()->user()),
+
+        $filePath = 'products.xlsx';
+        $user = auth()->user();
+
+        (new ProductExport)->queue('products.xlsx', 'public')->chain([
+        new NotifyUserOfCompletedExport($user , $filePath)
 ]);
         
         return redirect()->back()->with('message', 'Exportando...'); 
