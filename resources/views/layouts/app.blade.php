@@ -25,20 +25,14 @@
 
 <body>
 
-  {{--  Mensaje de validacion exitosamente. Carpeta en views partials --}}
-  <h5>@include('messages.session-status')</h5>
-
-  {{-- endInclude --}}
-
   @include('layouts.navbar')
 
-  {{--  Mensaje de validacion exitosamente. Carpeta en views partials --}}
-  <div class="include-messages text-center mt-2 text-success">
-    <h5>@include('messages.session-status')</h5>
-  </div>
-  {{-- endInclude --}}
+
 
   <div class="main">
+    {{--  Mensaje de validacion exitosamente. Carpeta en views partials --}}
+    @include('messages.session-status')
+    {{-- endInclude --}}
     @yield('content')
   </div>
 

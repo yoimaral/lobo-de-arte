@@ -166,14 +166,14 @@ class ProductController extends Controller
         public function export()
     {
 
-        $filePath = 'products.xlsx';
+        $filePath = asset('storage/products.xlsx');
         $user = auth()->user();
 
-        (new ProductExport)->queue('products.xlsx', 'public')->chain([
-        new NotifyUserOfCompletedExport($user , $filePath)
-]);
+        (new ProductExport)->store('products.xlsx', 'public')->chain([
+            new NotifyUserOfCompletedExport($user , $filePath)
+        ]);
         
-        return redirect()->back()->with('message', 'Exportando...'); 
+        return redirect()->route('products.index')->with('message', 'Hemos iniciado el proceso de EXPORTACIÓN, te enviaremos un correo cuando este listo!'); 
     }
 
         public function import(Request $request)
@@ -183,6 +183,6 @@ class ProductController extends Controller
 
         Excel::import(new ProductImport, $file );
         
-        return redirect()->route('products.index')->with('messages', 'Se ha Importado exitosamente'); 
+        return redirect()->route('products.index')->with('message', 'Se ha Importado exitosamente!'); 
     }
 }
