@@ -164,11 +164,9 @@ class ProductController extends Controller
 
         public function export() 
     {
-    return (new ProductExport)->download('product.xlsx');
-
-         /* (new UsersExport)->store('users.xlsx', 'public'); Por si lo quiero realizar des del disco publico*/
+         (new ProductExport())->store('products.xlsx', 'public');
         
-        /* return redirect()->back()->with('message', 'Se ha Exportado exitosamente');  */
+        return redirect()->back()->with('message', 'Exportando...'); 
     }
 
         public function import(Request $request)
