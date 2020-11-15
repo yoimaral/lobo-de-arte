@@ -163,7 +163,7 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('message', 'Ha sido exitosamente eliminado');
     }
 
-        public function export()
+    public function export()
     {
 
         $filePath = asset('storage/products.xlsx');
@@ -176,7 +176,13 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('message', 'Hemos iniciado el proceso de EXPORTACIÓN, te enviaremos un correo cuando este listo!'); 
     }
 
-        public function import(Request $request)
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function import(Request $request)
     {
 
         $file = $request->file('prod_File_Import');
