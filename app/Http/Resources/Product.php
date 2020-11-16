@@ -7,8 +7,11 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class Product extends JsonResource
 {
     /**
-     * Transform the resource into an array.
-     *
+     * ya que no se puede formatear des del controllador 
+     * ya que un sistema real no funciona con pocos campos
+     * si no con muchos. 
+     * Por eso el Resource\Product se encarga de formatear
+     * los datos por el controlador API
      * 
      * @param  \Illuminate\Http\Request  $request
      * @return array
