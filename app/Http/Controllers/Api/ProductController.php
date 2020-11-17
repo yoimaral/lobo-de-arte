@@ -8,6 +8,8 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
+use App\Image;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -30,6 +32,13 @@ class ProductController extends Controller
     public function store(SaveProductRequest $request)
     {
         $product = Product::create($request->all());
+
+        $product->img = $request->file('img')->store('images');
+
+        $this->optimizaImage($product->img);
+
+        $product->save();
+
         return response()->json(new ProductResource($product), 201);
     }
 
@@ -53,7 +62,16 @@ class ProductController extends Controller
      */
     public function update(SaveProductRequest $request, Product $product)
     {
-        $product->update($request->all());
+        $product->fill($request->validated());
+
+        if ($request->hasFile('img')){
+            Storage::delete($product->img);
+            $product->img = $request->file('img')->store('images');
+
+            $this->optimizaImage($product->img);
+        }
+
+        $product->save();
 
         return response()->json(new ProductResource($product));
     }
@@ -66,8 +84,21 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        Storage::delete($product->img);
         $product->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function optimizaImage(string $img)
+    {
+      $image = Image::make(storage::get($img))
+                ->widen(600)
+                // Para redimencionar el ancho de la imagen
+                ->LimitColors(255)
+                ->encode();
+            /* Para poder volver a codificar el contenido de la iamgen ya sea png,IMG_JPG */
+
+            Storage::put($img, (string) $image);
     }
 }
