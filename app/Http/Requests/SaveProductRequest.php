@@ -28,7 +28,7 @@ class SaveProductRequest extends FormRequest
             'description' => 'required|min:3|max:1000',
             'img' => [
                 $this->route('product') ? 'nullable' : 'required',
-                /* 'image:jpg,png' */
+                'image'
             ],
             'price' => 'required|numeric|min:3|max:30000',
             'stock' => 'required|min:1|max:1',

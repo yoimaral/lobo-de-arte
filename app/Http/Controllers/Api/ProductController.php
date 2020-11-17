@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SaveProductRequest;
 use App\Product;
-use Illuminate\Http\Request;
 use App\Http\Resources\Product as ProductResource;
 use App\Http\Resources\ProductCollection;
-use App\Image;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -31,7 +30,8 @@ class ProductController extends Controller
      */
     public function store(SaveProductRequest $request)
     {
-        $product = Product::create($request->all());
+        /* dd($request->validated()); */
+        $product = Product::create($request->validated());
 
         $product->img = $request->file('img')->store('images');
 
@@ -92,7 +92,7 @@ class ProductController extends Controller
 
     public function optimizaImage(string $img)
     {
-      $image = Image::make(storage::get($img))
+      $image = Image::make(Storage::get($img))
                 ->widen(600)
                 // Para redimencionar el ancho de la imagen
                 ->LimitColors(255)
