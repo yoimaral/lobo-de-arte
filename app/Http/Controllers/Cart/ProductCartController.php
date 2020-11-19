@@ -52,7 +52,6 @@ class ProductCartController extends Controller
         return redirect()->back()->cookie($cookie);
     }
 
-
     /**
      * Undocumented function
      *
