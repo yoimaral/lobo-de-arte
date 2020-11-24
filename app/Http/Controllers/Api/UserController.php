@@ -38,6 +38,7 @@ class UserController extends Controller
     {
 /*         $user = User::all($request->user());
 
+
         if ($user->rol('Admin')) {
         $user->api_token = Str::random(100);
         } */
