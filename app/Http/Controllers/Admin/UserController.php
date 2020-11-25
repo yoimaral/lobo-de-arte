@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UserTokenRequest;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use App\User;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -123,6 +124,7 @@ class UserController extends Controller
         /* return redirect()->back()->with('message', 'Se ha Exportado exitosamente');  */
     }
 
+
     public function import(Request $request)
     {/* 
          $file = $request->file('user_File_Import'); */
@@ -130,5 +132,17 @@ class UserController extends Controller
         Excel::import(new UsersImport, $request->file('user_File_Import') );
         
         return redirect()->route('users.index')->with('messages', 'Se ha Importado exitosamente');
+    }
+
+    
+    public function __invoke(UserTokenRequest $user)
+    {
+        $user = new User;
+        $user->api_token = Str::random(90);
+
+        return response()->json([
+            $user->api_token,
+            'messages', 'Se ha Creado el Token exitosamente'
+        ]);
     }
 }

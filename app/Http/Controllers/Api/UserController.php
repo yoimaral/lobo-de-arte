@@ -36,12 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-/*         $user = User::all($request->user());
 
-
-        if ($user->rol('Admin')) {
-        $user->api_token = Str::random(100);
-        } */
     }
 
     /**
