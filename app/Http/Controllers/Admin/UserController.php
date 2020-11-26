@@ -135,12 +135,18 @@ class UserController extends Controller
     }
 
     
+    public function show(Request $request)
+    {
+
+        return view('admin.users.show',['users' => $request]);
+    }
+    
     public function __invoke(UserTokenRequest $user)
     {
         $user = new User;
         $user->api_token = Str::random(90);
 
-        return response()->json([
+        return redirect()->route('users.show')->response()->json([
             $user->api_token,
             'messages', 'Se ha Creado el Token exitosamente'
         ]);

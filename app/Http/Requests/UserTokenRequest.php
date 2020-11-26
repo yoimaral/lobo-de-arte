@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class UserTokenRequest extends FormRequest
 {
@@ -25,8 +25,10 @@ class UserTokenRequest extends FormRequest
      */
     public function rules(Request $request)
     {
+       $request = Auth::user()->is_admin;
+
         return [
-            $user = $request->user()->rol('Admin')
+            $request
         ];
     }
 }
