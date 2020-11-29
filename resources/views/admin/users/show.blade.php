@@ -7,7 +7,7 @@
                 <div class="card-header">{{ __('My profile') }}</div>
 
 
-
+                {{$user->name}}
 
 
             </div>

@@ -135,10 +135,10 @@ class UserController extends Controller
     }
 
     
-    public function show(Request $request)
+    public function show(User $user)
     {
-
-        return view('admin.users.show',['users' => $request]);
+        
+        return view('admin.users.show',['user' => $user]);
     }
     
     public function __invoke(UserTokenRequest $user)
