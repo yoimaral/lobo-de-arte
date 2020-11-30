@@ -19,16 +19,33 @@
             <input type="text" name="trick" hidden value="trick">
         </div>
 
+        <div class="form-group">
+            <label for="exampleInputName">Api_token</label>
+            <input name="apiToken" type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp"
+                placeholder="N U L L" value="{{$user->api_token}}">
+            <input type="text" name="trick" hidden value="trick">
+        </div>
+
         {{--  <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
             <input name="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                 value="{{$user->email}}">
 </div> --}}
 
-<button type="submit" class="btn btn-primary">Actualizar</button>
+<div class="row">
 
-<a href="{{route('users.index')}}" class="btn btn-secondary">Cancelar</a>
-</form>
+    <div class="col">
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </div>
+
+    <div class="col">
+        <a href="{{route('users.index')}}" class="btn btn-secondary" type="button">Cancelar</a>
+    </div>
+
+    <div class="col">
+        <a href="{{route('users.index')}}" class="btn btn-success" type="button">Crear Token</a>
+    </div>
+</div>
 <!--EndFORM-->
 
 </div>
