@@ -48,6 +48,7 @@
                 <th>Type User</th>
                 <th>Verificación de E-mail</th>
                 <th>Estado de la cuenta</th>
+                <th>Api Token</th>
                 <th>Fecha de creacion</th>
                 <th>Acciones</th>
             </tr>
@@ -80,6 +81,10 @@
                     @else
                     Enabled
                     @endif
+                </td>
+
+                <td>
+                    {{$user->api_token}}
                 </td>
 
                 <td>

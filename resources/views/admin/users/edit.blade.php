@@ -43,7 +43,7 @@
     </div>
 
     <div class="col">
-        <button href="{{route('users.token',$user)}}" class="btn btn-success" type="button">Crear Token</button>
+        <a href="{{route('users.token',$user)}}" class="btn btn-success">Crear Token</a>
     </div>
 </div>
 <!--EndFORM-->
