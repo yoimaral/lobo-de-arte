@@ -144,11 +144,12 @@ class UserController extends Controller
     
     public function token(User $user )
     {
-        $user->api_token = Str::random(90);
-        $user->save();
+    $token = $user->createToken('develoepr-access');
+
+    return $token->plainTextToken;
         
-        return redirect()->route('users.index')->with(
+/*         return redirect()->route('users.index')->with(
             'messages', 'Se ha Creado el Token exitosamente'
-        );
+        ); */
     }
 }

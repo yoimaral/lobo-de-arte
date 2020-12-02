@@ -26,7 +26,6 @@ Route::get('user_token/{user}','UserController@token')->name('users.token');
 Route::get('/product_export','ProductController@export')->name('product.export');
 Route::post('/product_import','ProductController@import')->name('product.import');
 
-
 Route::resource('products', 'ProductController')->middleware(['verified', AdminVerify::class]);
 
 Route::patch('/change_state/{product}', 'ProductController@state')
