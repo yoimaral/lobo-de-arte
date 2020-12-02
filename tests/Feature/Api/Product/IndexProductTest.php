@@ -5,7 +5,7 @@ namespace Tests\Feature\Api\Tasks;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class IndexTasksTest extends TestCase
+class IndexProductTest extends TestCase
 {
     //use RefreshDatabase;
 
