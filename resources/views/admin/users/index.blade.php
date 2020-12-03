@@ -84,7 +84,7 @@
                 </td>
 
                 <td>
-                    {{$user->api_token}}
+                    {{$user->tokens}}
                 </td>
 
                 <td>

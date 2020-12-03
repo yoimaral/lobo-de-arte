@@ -144,12 +144,16 @@ class UserController extends Controller
     
     public function token(User $user )
     {
-    $token = $user->createToken('develoepr-access');
 
-    return $token->plainTextToken;
-        
-/*         return redirect()->route('users.index')->with(
-            'messages', 'Se ha Creado el Token exitosamente'
-        ); */
+    $token = $user->createToken('develoepr-access')->plainTextToken = Str::random(32);
+
+    $response = [
+        'user' => $user,
+        'token' => $token
+    ];
+
+        return redirect()->route('users.index')->with(
+            'message','Se ha Creado el Token exitosamente, Token:'.$response['token']
+        );
     }
 }
