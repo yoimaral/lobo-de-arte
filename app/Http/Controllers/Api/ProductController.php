@@ -30,7 +30,7 @@ class ProductController extends Controller
      */
     public function store(SaveProductRequest $request)
     {
-        /* dd($request->validated()); */
+        
         $product = Product::create($request->validated());
 
         $product->img = $request->file('img')->store('images');

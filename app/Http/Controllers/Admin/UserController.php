@@ -145,7 +145,7 @@ class UserController extends Controller
     public function token(User $user )
     {
 
-    $token = $user->createToken('develoepr-access')->plainTextToken = Str::random(32);
+    $token = $user->createToken('develoepr-access')->plainTextToken;
 
     $response = [
         'user' => $user,

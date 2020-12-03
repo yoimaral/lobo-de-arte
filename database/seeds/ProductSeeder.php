@@ -22,7 +22,7 @@ class ProductSeeder extends Seeder
             $product->name = $faker->sentence(1, true);
             $product->description = $faker->text(80);
             $product->price = $faker->numberBetween(1, 50) * 100;
-            $product->stock = $faker->numberBetween(1, 100);
+            $product->stock = $faker->numberBetween(1);
             $product->save();
         }
     }

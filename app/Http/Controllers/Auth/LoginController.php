@@ -41,17 +41,10 @@ class LoginController extends Controller
 
     protected function credentials(Request $request)
     {
-        /*  if($credenciales['disabled_at'] = null){ */
 
         $credenciales = $request->only($this->username(), 'password');
         $credenciales['disabled_at'] = null;
         return $credenciales;
 
-        /*  } */
-        /*   else{
-
-            return back()->with('messages','Esta cuenta ha sido inhabilitada, 
-            revisa en nuestraspoliticas de uso');
-        } */
     }
 }
