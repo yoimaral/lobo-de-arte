@@ -49,12 +49,14 @@ class ProductController extends Controller
     }
 
 
+
     /**
      * Undocumented function
      *
      * @param SaveProductRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(SaveProductRequest $request)
+    public function store(SaveProductRequest $request): \Illuminate\Http\RedirectResponse
     {
 
         $product = new Product;

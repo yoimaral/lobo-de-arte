@@ -84,7 +84,9 @@
                 </td>
 
                 <td>
-                    {{$user->tokens}}
+                    @foreach ($user->tokens as $token)
+                    {{$token->name}}
+                    @endforeach
                 </td>
 
                 <td>
