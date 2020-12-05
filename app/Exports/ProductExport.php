@@ -30,6 +30,8 @@ class ProductExport implements FromQuery, ShouldQueue, WithHeadings
            'price',
            'stock',
            'disabled_at',
+           'created_at',
+           'updated_at'
 
         ];
     }
