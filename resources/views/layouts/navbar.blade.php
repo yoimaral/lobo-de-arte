@@ -1,4 +1,4 @@
-<div class="fixed-top" id="app">
+<div class="fixed-top">
 
     <nav class="navbar navbar-expand-lg navbar-dark 
     bg-dark">

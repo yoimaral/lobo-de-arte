@@ -1925,6 +1925,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'example-component',
   mounted: function mounted() {
     console.log('Component mounted.');
   }
@@ -37489,10 +37490,10 @@ var staticRenderFns = [
             _c("div", { staticClass: "card-header" }, [
               _vm._v("Example Component")
             ]),
-            _vm._v(" "),
+            _vm._v("\nhola\n                    "),
             _c("div", { staticClass: "card-body" }, [
               _vm._v(
-                "\n                    I'm an example component.\n                "
+                "\n                        I'm an example component.\n                    "
               )
             ])
           ])
@@ -49832,32 +49833,31 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var buttonPrev = document.getElementById("button-prev");
-var buttonNext = document.getElementById("button-next");
-var track = document.getElementById("track");
-var slickList = document.getElementById("slick-list");
-var slick = document.querySelectorAll(".slick");
-var slickWidth = slick[0].offsetWidth;
+/* const buttonPrev = document.getElementById("button-prev");
+const buttonNext = document.getElementById("button-next");
+const track = document.getElementById("track");
+const slickList = document.getElementById("slick-list");
+const slick = document.querySelectorAll(".slick");
 
-buttonPrev.onclick = function () {
-  return Move(1);
-};
+const slickWidth = slick[0].offsetWidth;
 
-buttonNext.onclick = function () {
-  return Move(2);
-};
+buttonPrev.onclick = () => Move(1);
+buttonNext.onclick = () => Move(2);
 
 function Move(value) {
-  var trackWidth = track.offsetWidth;
-  var listWidth = slickList.offsetWidth;
-  track.style.left == "" ? leftPosition = track.style.left = 0 : leftPosition = parseFloat(track.style.left.slice(0, -2) * -1);
+    const trackWidth = track.offsetWidth;
+    const listWidth = slickList.offsetWidth;
 
-  if (leftPosition < trackWidth - listWidth && value == 2) {
-    track.style.left = "".concat(-1 * (leftPosition + slickWidth), "px");
-  } else if (leftPosition > 0 && value == 1) {
-    track.style.left = "".concat(-1 * (leftPosition - slickWidth), "px");
-  }
-}
+    track.style.left == ""
+        ? (leftPosition = track.style.left = 0)
+        : (leftPosition = parseFloat(track.style.left.slice(0, -2) * -1));
+
+    if (leftPosition < trackWidth - listWidth && value == 2) {
+        track.style.left = `${-1 * (leftPosition + slickWidth)}px`;
+    } else if (leftPosition > 0 && value == 1) {
+        track.style.left = `${-1 * (leftPosition - slickWidth)}px`;
+    }
+} */
 
 /***/ }),
 

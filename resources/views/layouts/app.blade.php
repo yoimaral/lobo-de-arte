@@ -29,7 +29,7 @@
 
 
 
-  <div class="main">
+  <div class="main" id="app">
     {{--  Mensaje de validacion exitosamente. Carpeta en views partials --}}
     @include('messages.session-status')
     {{-- endInclude --}}
