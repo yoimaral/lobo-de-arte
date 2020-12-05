@@ -8,11 +8,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SaveProductRequest;
 use App\Http\Controllers\Controller;
 use App\Imports\ProductImport;
-use App\Imports\ProductsImportUpdate;
 use App\Jobs\NotifyUserOfCompletedExport;
 use Illuminate\Http\Request;
 use App\Product;
-use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -169,8 +167,8 @@ class ProductController extends Controller
     public function export()
     {
 
-        $filePath = asset('storage/products.xlsx');
         $user = auth()->user();
+        $filePath = asset('storage/products.xlsx');
 
         (new ProductExport)->store('products.xlsx', 'public')->chain([
             new NotifyUserOfCompletedExport($user , $filePath)
@@ -180,52 +178,16 @@ class ProductController extends Controller
     }
 
     /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function import(Request $request,Product $product)
-    {
-
-       return  $request->id = $product->id ? $this->importUpdate : $this->importCreate ;
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param Request $request
-     * @return void
-     */
-    public function importCreate(Request $request)
-    {
-        $file = $request->file('prod_File_Import');
-
-        Excel::import(new ProductImport, $file );
-        
-        return redirect()->route('products.index')->with('message', 'Se ha Importado exitosamente!'); 
-    }
-
-    /**
      * Import products to the database
      *
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function importUpdate(Request $request, ProductsImportUpdate $productsImportUpdate): \Illuminate\Http\RedirectResponse
+    public function import(Request $request, ProductImport $productImport): \Illuminate\Http\RedirectResponse
     {
-        $archivo = $productsImportUpdate->toCollection($request->file);
-        foreach ($archivo[0] as $product) {
-            Product::where('id', $product[0])->update([
-             'img' => $product[1],
-            'name' => $product[2],
-            'description' => $product[3],
-            'price' => $product[4],
-            'stock' => $product[5],
-            'disabled_at' => $product[6],
-            ]);
-        }
+        $productImport->import($request->file);
 
-        return redirect()->route('products.index')->with('message', 'Se ha Importado exitosamente!');
+        return back()->with('message', 'The Import has been completed successfully!');
     }
+    
 }

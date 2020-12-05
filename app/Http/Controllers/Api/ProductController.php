@@ -22,13 +22,14 @@ class ProductController extends Controller
         return new ProductCollection(Product::paginate(7));
     }
 
+
     /**
-     * Store a newly created resource in storage.
+     * Undocumented function
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param SaveProductRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(SaveProductRequest $request)
+    public function store(SaveProductRequest $request): \Illuminate\Http\JsonResponse
     {
         
         $product = Product::create($request->validated());
@@ -43,24 +44,24 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Undocumented function
      *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Product $product)
+    public function show(Product $product): \Illuminate\Http\JsonResponse
     {
         return response()->json(new ProductResource($product), 201);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Undocumented function
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param SaveProductRequest $request
+     * @param Product $product
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(SaveProductRequest $request, Product $product)
+    public function update(SaveProductRequest $request, Product $product): \Illuminate\Http\JsonResponse
     {
         $product->fill($request->validated());
 
@@ -77,12 +78,12 @@ class ProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Undocumented function
      *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product): \Illuminate\Http\JsonResponse
     {
         Storage::delete($product->img);
         $product->delete();
@@ -90,7 +91,13 @@ class ProductController extends Controller
         return response()->json(null, 204);
     }
 
-    public function optimizaImage(string $img)
+    /**
+     * Undocumented function
+     *
+     * @param string $img
+     * @return void
+     */
+    public function optimizaImage(string $img): void
     {
       $image = Image::make(Storage::get($img))
                 ->widen(600)

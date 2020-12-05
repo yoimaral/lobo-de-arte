@@ -24,7 +24,7 @@
         </div>
 
         <div class="col mb-1">
-            <a href="" class="btn btn-info" type="button">Exportar Productos</a>
+            <a href="{{route('product.export')}}" class="btn btn-info" type="button">Exportar Productos</a>
         </div>
 
         <form action="{{ route('product.import') }}" method="POST" enctype="multipart/form-data">
