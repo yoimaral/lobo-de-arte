@@ -161,4 +161,10 @@ class OrderController extends Controller
         }
     }
 
+    public function report(Request $request)
+    {
+
+        return view('orders.report');
+    }
+
 }

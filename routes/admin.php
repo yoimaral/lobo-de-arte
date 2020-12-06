@@ -32,6 +32,7 @@ Route::patch('/change_state/{product}', 'ProductController@state')
     ->name('state')->middleware(['verified', AdminVerify::class]);
 
 
+
 // Route::get('/user', 'Admin\UserController@index')
 //     ->name('User')
 //     ->middleware(['verified', AdminVerify::class]);

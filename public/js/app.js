@@ -37490,7 +37490,7 @@ var staticRenderFns = [
             _c("div", { staticClass: "card-header" }, [
               _vm._v("Example Component")
             ]),
-            _vm._v("\nhola\n                    "),
+            _vm._v("\nHola\n                    "),
             _c("div", { staticClass: "card-body" }, [
               _vm._v(
                 "\n                        I'm an example component.\n                    "

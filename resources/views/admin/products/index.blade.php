@@ -5,8 +5,6 @@
 <div class="container">
     <h1>Welcom your the Products</h1>
 
-
-
     <div class=" d-flex justify-content-between m-2">
         <div class="col mb-1">
             <form action="{{route('products.index')}}" method="GET" class="form-inline float-right" pull="right">
@@ -43,7 +41,6 @@
             @csrf
         </form>
     </div>
-
 
     <table class="table table-dark">
         <thead>
