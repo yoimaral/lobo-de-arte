@@ -39,9 +39,10 @@
       {{--  Mensaje de validacion exitosamente. Carpeta en views partials --}}
       @include('messages.session-status')
       {{-- endInclude --}}
-    </div>
 
+    </div>
     @yield('content')
+
 
 
     @include('layouts.footer')
@@ -50,43 +51,71 @@
 </body>
 
 {{-- Inint Grafic --}}
+
+<script>
+  var order=[];
+  var values=[];
+
+    $(document).ready(function(){
+      $.ajax({
+        url: '/report',
+        method:'GET'
+        data: {
+        id:1,
+        _token:$('input[name="_token"]').val()
+        }
+      }).done(function(res){
+          var arreglo = JSON.parse(res);
+
+          for(var x=0;x<arreglo.length;x++>){
+            order.push(arreglo[x].status);
+            values.push(arreglo[x].created_at);
+
+          }
+      });
+
+    });
+
+
+</script>
+
 <script>
   var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-type: 'bar',
-data: {
-labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-datasets: [{
-label: '# of Votes',
-data: [12, 19, 3, 5, 2, 3],
-backgroundColor: [
-'rgba(255, 99, 132, 0.2)',
-'rgba(54, 162, 235, 0.2)',
-'rgba(255, 206, 86, 0.2)',
-'rgba(75, 192, 192, 0.2)',
-'rgba(153, 102, 255, 0.2)',
-'rgba(255, 159, 64, 0.2)'
-],
-borderColor: [
-'rgba(255, 99, 132, 1)',
-'rgba(54, 162, 235, 1)',
-'rgba(255, 206, 86, 1)',
-'rgba(75, 192, 192, 1)',
-'rgba(153, 102, 255, 1)',
-'rgba(255, 159, 64, 1)'
-],
-borderWidth: 1
-}]
-},
-options: {
-scales: {
-yAxes: [{
-ticks: {
-beginAtZero: true
-}
-}]
-}
-}
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: $order,
+      datasets: [{
+        label: '# Cantidad de las ventas',
+        data: $values,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
 });
 
 </script>
@@ -94,20 +123,21 @@ beginAtZero: true
 <script type="module">
 
   import data from './data.js'
-debugger
-function totalCasesChart()
-{
+    debugger
+    function totalCasesChart()
+    {
 
-}
+    }
 
-function renderCharts()
-{
-cons ctx = document.querySelector('#myChart').getContext('2d')
-totalCasesChart(ctx)
-}
+    function renderCharts()
+    {
+      cons ctx = document.querySelector('#myChart').getContext('2d')
+      totalCasesChart(ctx)
+    }
 
-renderCharts()
+    renderCharts()
 </script>
 
+{{-- EndGrafic --}}
 
 </html>

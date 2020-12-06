@@ -163,8 +163,14 @@ class OrderController extends Controller
 
     public function report(Request $request)
     {
+    $order = DB::table('orders')
+    ->select('orders.*')
+    ->orderBy('id','DESC')
+    ->get();
 
-        return view('orders.report');
+    return response(json_decode($order),200)->header('Content-type','text/plain');
+
+        /* return view('orders.report'); */
     }
 
 }

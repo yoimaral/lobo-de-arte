@@ -29,12 +29,12 @@ class HomeController extends Controller
     public function index(Request $request): \Illuminate\View\View
     {
 
-/*         $products = trim($request->get('product'));
+        $products = trim($request->get('product'));
 
         $products = Product::products($products)->where('disabled_at')
-            ->paginate(); */
+            ->paginate();
 
-        return view('home.index2');
+        return view('home.index',compact('products'));
     }
 
 
