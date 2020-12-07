@@ -11,16 +11,15 @@ class IndexProductTest extends TestCase
     //use RefreshDatabase;
 
     /** @test */
-    public function it_can_test()
+    public function test_index()
     {
-        //$this->withoutExceptionHandling();
-        //Arrange
-Sanctum::actingAs(
-    factory(User::class)->create()
-);
+        factory(Product::class, 5)->create();
 
-        //Act
+        $response = $this->getJson('/api/products');
 
-        //Assert
+        $response->assertSuccessful();
+        $response->assertHeader('content-type', 'application/json');
+        $response->assertJsonCount(5);
     }
+
 }
