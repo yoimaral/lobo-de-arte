@@ -134,8 +134,13 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('messages', 'Se ha Importado exitosamente');
     }
 
-    
-    public function show(User $user)
+    /**
+     * Undocumented function
+     *
+     * @param User $user
+     * @return \Illuminate\View\View
+     */
+    public function show(User $user): \Illuminate\View\View
     {
         
         return view('admin.users.show',['user' => $user]);
@@ -144,11 +149,24 @@ class UserController extends Controller
     
     public function token(User $user )
     {
-        $user->api_token = Str::random(90);
-        $user->save();
-        
+
+    $token = $user->createToken('develoepr-access')->plainTextToken;
+
+    $response = [
+        'user' => $user,
+        'token' => $token
+    ];
+
         return redirect()->route('users.index')->with(
-            'messages', 'Se ha Creado el Token exitosamente'
+            'message','Se ha Creado el Token exitosamente, Token:'.$response['token']
         );
+    }
+
+    public function deleteToken(User $user)
+    {
+        $user->tokens()->where('tokenable_id', $user->id)->delete();
+
+        return redirect()->route('users.index')->with(
+            'message','Se ha Eliminado el Token exitosamente');
     }
 }

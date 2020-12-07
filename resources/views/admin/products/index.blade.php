@@ -4,8 +4,8 @@
 
 <div class="container">
     <h1>Welcom your the Products</h1>
-    <div class="row">
 
+    <div class=" d-flex justify-content-between m-2">
         <div class="col mb-1">
             <form action="{{route('products.index')}}" method="GET" class="form-inline float-right" pull="right">
                 <input name="product" type="search" class="form-control ds-input border-info" id="search-input"
@@ -16,7 +16,7 @@
             </form>
         </div>
 
-        <div class="col mb-1">
+        <div class="">
             <a href="{{route('products.create')}}" type="button" class="btn btn-info">Crear un nuevo
                 producto</a>
         </div>
@@ -25,24 +25,21 @@
             <a href="{{route('product.export')}}" class="btn btn-info" type="button">Exportar Productos</a>
         </div>
 
-        <div class="col mb-1">
-            <form action="{{route('product.import')}}" method="POST" enctype="multipart/form-data">
-                @csrf
+        <form action="{{ route('product.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
 
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input name="prod_File_Import" type="file" accept=".csv,.xlsx" class="custom-file-input"
-                            required>
-                        <label class="custom-file-label" for="inputGroupFile04">Seleccionar Archivo</label>
-                    </div>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit"
-                            id="inputGroupFileAddon04">Button</button>
-                    </div>
+            <div class="input-group">
+                <div class="custom-file">
+                    <input name="file" type="file" class="custom-file-input" id="inputGroupFile04"
+                        aria-describedby="inputGroupFileAddon04">
+                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
                 </div>
-            </form>
-        </div>
-
+                {{-- <div class="input-group-append"> --}}
+                <button class="btn btn-primary ml-2" type="submit" id="inputGroupFileAddon04">Importar</button>
+                {{-- </div> --}}
+            </div>
+            @csrf
+        </form>
     </div>
 
     <table class="table table-dark">
@@ -77,7 +74,7 @@
                 </td>
                 <td>{{$product->name}}</td>
                 <td>{{$product->description}}</td>
-                <td>${{$product->price}} COP</td>
+                <td>${{$product->getFormattedPrice()}}</td>
                 <td>{{$product->stock}}</td>
                 <td>
                     <input name="disabled_at" type="checkbox" class="form-check-input"

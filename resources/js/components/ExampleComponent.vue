@@ -5,6 +5,14 @@
                 <div class="card">
                     <div class="card-header">Example Component</div>
 
+
+                 <!-- Implement Canvast for grafic  -->
+                <div class="row col-6">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+                 <!-- End Canvast --> 
+
+
                     <div class="card-body">
                         I'm an example component.
                     </div>
@@ -16,6 +24,7 @@
 
 <script>
     export default {
+        name: 'example-component',
         mounted() {
             console.log('Component mounted.')
         }

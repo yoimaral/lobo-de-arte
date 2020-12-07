@@ -34,7 +34,7 @@ class HomeController extends Controller
         $products = Product::products($products)->where('disabled_at')
             ->paginate();
 
-        return view('home.index', compact('products'));
+        return view('home.index',compact('products'));
     }
 
 

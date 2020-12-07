@@ -20,9 +20,9 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleInputName">Api_token</label>
+            <label for="exampleInputName">Email</label>
             <input name="apiToken" type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp"
-                placeholder="N U L L" value="{{$user->api_token}}">
+                placeholder="{{$user->email}}">
             <input type="text" name="trick" hidden value="trick">
         </div>
 
@@ -35,15 +35,19 @@
 <div class="row">
 
     <div class="col">
-        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <button type="submit" class="btn btn-primary">Enter</button>
     </div>
 
     <div class="col">
-        <a href="{{route('users.index')}}" class="btn btn-secondary" type="button">Cancelar</a>
+        <a href="{{route('users.index')}}" class="btn btn-secondary" type="button">Cancel</a>
     </div>
 
     <div class="col">
-        <a href="{{route('users.token',$user)}}" class="btn btn-success">Crear Token</a>
+        <a href="{{route('users.deleteToken',$user)}}" class="btn btn-secondary" type="button">Delete Token</a>
+    </div>
+
+    <div class="col">
+        <a href="{{route('users.token',$user)}}" class="btn btn-success">Create Token</a>
     </div>
 </div>
 <!--EndFORM-->

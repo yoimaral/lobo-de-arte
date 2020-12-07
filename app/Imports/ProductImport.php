@@ -5,11 +5,11 @@ namespace App\Imports;
 use App\Product;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ProductImport implements ToModel
+class ProductImport implements ToModel, WithHeadingRow
 {
-
-   use Importable;
+    use Importable;
 
     /**
     * @param array $row
@@ -18,31 +18,33 @@ class ProductImport implements ToModel
     */
     public function model(array $row)
     {
+        $product = Product::find($row['id']);
+        return $product ? $this->updateProduct($product, $row) : $this->createProduct($row);
+    }
+
+    public function createProduct($row)
+    {
         return new Product([
+             'id' => $row[0],
              'img' => $row[1],
             'name' => $row[2],
             'description' => $row[3],
             'price' => $row[4],
             'stock' => $row[5],
             'disabled_at' => $row[6],
-            'created_at' => $row[7],
-            'updated_at' => $row[8]
         ]);
     }
 
-    public function rules(): array
+    /**
+     * Undocumented function
+     *
+     * @param Product $product
+     * @param array $row
+     * @return void
+     */
+    public function updateProduct(Product $product, $row)
     {
-        return [
-
-            'img' => 'required|',
-            'name' => 'required|',
-            'description' => 'required|',
-            'price' => 'required|min 5000|numeric',
-            'stock' => 'required|min 1|max 1|numeric',
-            'disabled_at' => 'required|numeric',
-            'created_at' => 'required|',
-            'updated_at' => 'required|',
-
-        ];
+        $product->update($row);
+        return $product;
     }
 }
