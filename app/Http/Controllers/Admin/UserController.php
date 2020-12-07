@@ -134,8 +134,13 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('messages', 'Se ha Importado exitosamente');
     }
 
-    
-    public function show(User $user)
+    /**
+     * Undocumented function
+     *
+     * @param User $user
+     * @return \Illuminate\View\View
+     */
+    public function show(User $user): \Illuminate\View\View
     {
         
         return view('admin.users.show',['user' => $user]);
