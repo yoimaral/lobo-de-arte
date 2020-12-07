@@ -21,23 +21,55 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="https://kit.fontawesome.com/de25909b6f.js" crossorigin="anonymous" defer></script>
   {{-- Para que me tome los icosnos de fontawesome y se le pone el defer para que el crip se ejecute al final de la pagina --}}
+
+  <!-- Link de Chart.js paragraficar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+
 </head>
 
 <body>
 
+
   @include('layouts.navbar')
 
-
-
-  <div class="main">
+  <div class="main" id="app">
     {{--  Mensaje de validacion exitosamente. Carpeta en views partials --}}
     @include('messages.session-status')
     {{-- endInclude --}}
     @yield('content')
   </div>
 
+
   @include('layouts.footer')
+  </div>
+
 
 </body>
+
+{{-- Inint Grafic --}}
+
+{{-- <script>
+  var order=[];
+  var values=[];
+
+    $(document).ready(function(){
+      $.ajax({
+        url: '/admin/report',
+        method:'GET'
+      }).done(function(res){
+          var arreglo = JSON.parse(res);
+
+          for(var x=0;x<arreglo.length;x++>){
+            order.push(arreglo[x].status);
+            values.push(arreglo[x].created_at);
+
+          }
+        });
+
+    });
+</script> --}}
+
+{{-- EndGrafic
 
 </html>

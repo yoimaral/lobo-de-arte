@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UserTokenRequest;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use App\User;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -123,6 +124,7 @@ class UserController extends Controller
         /* return redirect()->back()->with('message', 'Se ha Exportado exitosamente');  */
     }
 
+
     public function import(Request $request)
     {/* 
          $file = $request->file('user_File_Import'); */
@@ -130,5 +132,41 @@ class UserController extends Controller
         Excel::import(new UsersImport, $request->file('user_File_Import') );
         
         return redirect()->route('users.index')->with('messages', 'Se ha Importado exitosamente');
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param User $user
+     * @return \Illuminate\View\View
+     */
+    public function show(User $user): \Illuminate\View\View
+    {
+        
+        return view('admin.users.show',['user' => $user]);
+    }
+    
+    
+    public function token(User $user )
+    {
+
+    $token = $user->createToken('develoepr-access')->plainTextToken;
+
+    $response = [
+        'user' => $user,
+        'token' => $token
+    ];
+
+        return redirect()->route('users.index')->with(
+            'message','Se ha Creado el Token exitosamente, Token:'.$response['token']
+        );
+    }
+
+    public function deleteToken(User $user)
+    {
+        $user->tokens()->where('tokenable_id', $user->id)->delete();
+
+        return redirect()->route('users.index')->with(
+            'message','Se ha Eliminado el Token exitosamente');
     }
 }

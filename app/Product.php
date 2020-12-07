@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Decorators\CurrencyDecorator;
+use App\Decorators\PriceFormatter;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -72,5 +74,25 @@ class Product extends Model
     {
 
         return $this->pivot->quantity * $this->price;
+    }
+
+        public function getFormattedPrice(): string
+    {
+        $formatter = new PriceFormatter();
+
+    switch(config('app.currency')){
+        case 'COP': 
+        $formatter = new CurrencyDecorator($formatter);
+    }
+
+
+/*         $currency = config('app.currency');
+        $decoratorClassName = "Currency{$currency}Decorator"; */
+/*         $formatter = 
+        new 
+        $decoratorClassName
+        ($formatter); */
+
+        return $formatter->format($this->price);
     }
 }

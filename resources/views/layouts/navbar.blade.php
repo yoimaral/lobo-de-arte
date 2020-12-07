@@ -1,4 +1,4 @@
-<div class="fixed-top" id="app">
+<div class="fixed-top">
 
     <nav class="navbar navbar-expand-lg navbar-dark 
     bg-dark">
@@ -79,8 +79,13 @@
                     <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Pedidos') }}</a>
                 </li>
 
+
                 @auth
                 @if (Auth::user()->is_admin)
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('order.report')}}">{{ __('generate reports') }}</a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">{{ __('Users') }}</a>
@@ -103,12 +108,17 @@
                 @endif
                 @else
                 <li class="nav-item dropdown">
+
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                        <a href="{{ route('users.show', Auth::user())}}"
+                            class="dropdown-item">{{ __('Mi profile') }}</a>
+
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}

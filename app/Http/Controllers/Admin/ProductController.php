@@ -11,7 +11,6 @@ use App\Imports\ProductImport;
 use App\Jobs\NotifyUserOfCompletedExport;
 use Illuminate\Http\Request;
 use App\Product;
-use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -48,12 +47,14 @@ class ProductController extends Controller
     }
 
 
+
     /**
      * Undocumented function
      *
      * @param SaveProductRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(SaveProductRequest $request)
+    public function store(SaveProductRequest $request): \Illuminate\Http\RedirectResponse
     {
 
         $product = new Product;
@@ -166,8 +167,8 @@ class ProductController extends Controller
     public function export()
     {
 
-        $filePath = asset('storage/products.xlsx');
         $user = auth()->user();
+        $filePath = asset('storage/products.xlsx');
 
         (new ProductExport)->store('products.xlsx', 'public')->chain([
             new NotifyUserOfCompletedExport($user , $filePath)
@@ -177,18 +178,16 @@ class ProductController extends Controller
     }
 
     /**
-     * Undocumented function
+     * Import products to the database
      *
      * @param Request $request
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function import(Request $request)
+    public function import(Request $request, ProductImport $productImport): \Illuminate\Http\RedirectResponse
     {
+        $productImport->import($request->file);
 
-        $file = $request->file('prod_File_Import');
-
-        Excel::import(new ProductImport, $file );
-        
-        return redirect()->route('products.index')->with('message', 'Se ha Importado exitosamente!'); 
+        return back()->with('message', 'The Import has been completed successfully!');
     }
+    
 }
