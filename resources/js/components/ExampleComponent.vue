@@ -4,7 +4,15 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Example Component</div>
-Hola
+
+
+                 <!-- Implement Canvast for grafic  -->
+                <div class="row col-6">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+                 <!-- End Canvast --> 
+
+
                     <div class="card-body">
                         I'm an example component.
                     </div>

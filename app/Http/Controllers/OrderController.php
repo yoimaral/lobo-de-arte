@@ -161,14 +161,29 @@ class OrderController extends Controller
         }
     }
 
+public function reportVew()
+{
+    return view('orders.report');
+}
+
     public function report(Request $request)
     {
-    $order = DB::table('orders')
+
+        $order = Order::where('status', 'rechazado')
+            ->select(
+                DB::raw('DATE(created_at) as date'),
+                DB::raw('DATE(status) as status')
+            )
+            ->orderBy('id','DESC')
+            ->get();
+
+/*     $order = DB::table('orders')
     ->select('orders.*')
     ->orderBy('id','DESC')
-    ->get();
+    ->get();*/
 
-    return response(json_decode($order),200)->header('Content-type','text/plain');
+
+    return response(json_decode($order),200)->header('Content-type','text/plain'); 
 
         /* return view('orders.report'); */
     }

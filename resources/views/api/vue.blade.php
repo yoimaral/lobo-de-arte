@@ -2,11 +2,11 @@
 
 @section('content')
 
-
 <div class="container">
-    <example-component></example-component>
+
+    <vue-component></vue-component>
+    @include('api.edit')
 
 </div>
-
 
 @endsection

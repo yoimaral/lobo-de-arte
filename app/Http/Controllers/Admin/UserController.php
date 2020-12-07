@@ -156,4 +156,12 @@ class UserController extends Controller
             'message','Se ha Creado el Token exitosamente, Token:'.$response['token']
         );
     }
+
+    public function deleteToken(User $user)
+    {
+        $user->tokens()->where('tokenable_id', $user->id)->delete();
+
+        return redirect()->route('users.index')->with(
+            'message','Se ha Eliminado el Token exitosamente');
+    }
 }

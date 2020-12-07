@@ -79,12 +79,13 @@
                     <a class="nav-link" href="{{ route('orders.index') }}">{{ __('Pedidos') }}</a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('order.report')}}">{{ __('Generar reportede ventas') }}</a>
-                </li>
 
                 @auth
                 @if (Auth::user()->is_admin)
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('order.report')}}">{{ __('generate reports') }}</a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">{{ __('Users') }}</a>
