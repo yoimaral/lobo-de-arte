@@ -102,7 +102,7 @@ Documentación realizada en stoplight.io.
 Para realizar el metodo PUT en stoplight.io debes realizarlo con el metodo POST debes agregar a la URL el ID y en el request agregar (_method: PUT) en dado caso no funcione recomendable realizar lo mismo pero en POSTMAN.
 
 ```
-## STOPLIGHT.IO
+# STOPLIGHT.IO
 ```
 {
   "openapi": "3.0.0",
